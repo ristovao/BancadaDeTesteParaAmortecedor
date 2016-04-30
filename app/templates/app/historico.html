@@ -1,0 +1,30 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<div class="col-lg-12">
+            <label>Busca:  <input text class="form-control" id="busca" name="busca"  ></label>
+</div>
+
+<table class="table table-striped">
+                <tr>
+                    <th style="font-weight:bold">Nome</th>
+                    <th style="font-weight:bold">Hora - Data</th>
+                    <th style="font-weight:bold">Observacao</th>
+                </tr>
+                <tr>
+                    <th><a href="/grafico/">Teste mi</a></th>
+                    <th>08:43 - 13/04</th>
+                    <th>123</th>
+                </tr>
+                <tr>
+                    <th><a href="/grafico/">Teste Krt</a></th>
+                    <th>09:54 - 14/04</th>
+                    <th>akdsjfl oop</th>
+                </tr>
+            </table>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Bancada PI2</h1>
+    <p class="lead">Para ensaio de armotecedores.</p>
+    
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Iniciar teste</h2>
+        <p>
+            Aqui voce pode inicar seu teste, e acompanhar o progresso.
+        </p>
+        <p><a class="btn btn-default" href="{% url 'iniciarTeste' %}">Iniciar teste &raquo;</a></p>
+    </div>
+    <div class="col-md-6">
+        <h2>Historico</h2>
+        <p>Aqui voce pode ver os dados de testes feitos anteriomente.</p>
+        <p><a class="btn btn-default" href="{% url 'historico' %}">Historico &raquo;</a></p>
+    </div>
+    
+</div>
+
+{% endblock %}

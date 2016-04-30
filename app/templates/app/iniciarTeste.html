@@ -1,0 +1,31 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<form role="form" action="{% url 'teste' %}" method="post" name="FrmRecurso">
+                        {%csrf_token %}
+                 <div class="">
+                    <div class="form-group">
+                        Nome:
+                        <input text class="form-control" id="nome" name="nome" required ></text>
+                    </div>
+                    <div class="form-group">
+                        Observacoes:
+                        <textarea class="form-control" rows="5" cols="150" id="observacoes" name="observacoes" ></textarea>
+                    </div>
+                      {%csrf_token %}
+                    <div class="form-group">
+                        Tempo (minutos):
+                        <input class="form-control" type="number" name="tempo" min="1" max="10" step="1" value="1" required/> 
+                    </div>
+               
+                    <div class="">
+                        <input id="btnCriarNovaQuestao" class="btn btn-primary" type="submit" name="enviar" value="Iniciar" >
+                    </div>
+                </div>
+            </form>
+
+{% endblock %}

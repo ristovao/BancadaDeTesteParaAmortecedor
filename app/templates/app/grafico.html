@@ -1,0 +1,85 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<div id="container" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+    
+        <style type="text/css">
+${demo.css}
+        </style>
+        <script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'spline',
+            inverted: true
+        },
+        title: {
+            text: 'Temperatura por velocidade'
+        },
+        subtitle: {
+            text: 'Modelo do grafico'
+        },
+        xAxis: {
+            reversed: false,
+            title: {
+                enabled: true,
+                text: 'Velocidade'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value + 'km';
+                }
+            },
+            maxPadding: 0.05,
+            showLastLabel: true
+        },
+        yAxis: {
+            title: {
+                text: 'Temperatura'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value + '°';
+                }
+            },
+            lineWidth: 2
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            headerFormat: '<b>{series.name}</b><br/>',
+            pointFormat: '{point.x} km: {point.y}°C'
+        },
+        plotOptions: {
+            spline: {
+                marker: {
+                    enable: false
+                }
+            }
+        },
+        series: [{
+            name: 'Temperatura',
+            data: [[0, Math.random()*100], [10, Math.random()*100], [20, Math.random()*100], [30, -Math.random()*100], [40, -Math.random()*100],
+                [50, Math.random()*100], [60, Math.random()*100], [70, Math.random()*100], [80, -Math.random()*100]]
+        }]
+    });
+});
+        </script>
+        
+        
+        
+    
+
+
+{% endblock %}
