@@ -3,8 +3,8 @@ from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from .forms import TesteForm
-from .models import Teste
+from .forms import TesteTemperaturaForm, TesteTempoForm
+from .models import Teste, TesteTempo, TesteTemperatura
 
 
 def home(request):
@@ -83,7 +83,7 @@ def iniciarTeste(request):
     page = 'app/iniciarTeste.html'
 
     if request.method == "POST":
-        form = TesteForm(request.POST)
+        form = TesteTempoForm(request.POST)
         
         if form.is_valid():
             teste = form.save(commit=False)
@@ -91,11 +91,35 @@ def iniciarTeste(request):
             teste.teste_tempo_total = request.POST['teste_tempo_total']
             teste.teste_tempo_oscilacao = request.POST['teste_tempo_oscilacao']
             teste.teste_observacoes = request.POST['teste_observacoes']
+            teste.teste_tempo_inicio = request.POST['teste_tempo_inicio']
             teste.save()
             return redirect('/grafico')
 
     else:
-        form = TesteForm()
+        form = TesteTempoForm()
+    
+    return render(request, page, {'form':form})
+
+def iniciarTesteTemperatura(request):
+    
+    page = 'app/iniciarTesteTemperatura.html'
+
+    if request.method == "POST":
+        form = TesteTemperaturaForm(request.POST)
+        
+        if form.is_valid():
+            teste = form.save(commit=False)
+            teste.teste_nome = request.POST['teste_nome']
+            teste.teste_tempo_total = request.POST['teste_tempo_total']
+            teste.teste_tempo_oscilacao = request.POST['teste_tempo_oscilacao']
+            teste.teste_observacoes = request.POST['teste_observacoes']
+            teste.teste_temperatura_um = request.POST['teste_temperatura_um']
+            teste.teste_temperatura_dois = request.POST['teste_temperatura_dois']
+            teste.save()
+            return redirect('/grafico')
+
+    else:
+        form = TesteTemperaturaForm()
     
     return render(request, page, {'form':form})
 

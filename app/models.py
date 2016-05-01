@@ -13,3 +13,14 @@ class Teste(models.Model):
 	teste_tempo_oscilacao = models.TimeField(null=True)	
 	teste_observacoes = models.TextField(max_length=255, null=True)
 	teste_data_hora = models.DateTimeField(default=timezone.now)
+
+class TesteTempo(Teste):
+
+	teste_tempo_inicio = models.TimeField(null=True)
+
+
+
+class TesteTemperatura(Teste):
+
+	teste_temperatura_um = models.IntegerField()
+	teste_temperatura_dois = models.IntegerField()

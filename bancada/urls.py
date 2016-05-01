@@ -29,6 +29,7 @@ urlpatterns = [
     # Rotas do APP
     url(r'^$', appviews.home, name='home'),
     url(r'^iniciarTeste$', appviews.iniciarTeste, name='iniciarTeste'),
+    url(r'^iniciarTesteTemperatura$', appviews.iniciarTesteTemperatura, name='iniciarTesteTemperatura'),
     url(r'^historico', appviews.historico, name='historico'),
     url(r'^grafico', appviews.grafico, name='grafico'),
     url(r'^teste', appviews.teste, name='teste'),
