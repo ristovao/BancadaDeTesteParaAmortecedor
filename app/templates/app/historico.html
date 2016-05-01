@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h2>{{ title }}.</h2>
+<h2>{{ title }}</h2>
 <h3>{{ message }}</h3>
 
 <div class="col-lg-12">
@@ -11,20 +11,24 @@
 
 <table class="table table-striped">
                 <tr>
+                    <th style="font-weight:bold">ID</th>
                     <th style="font-weight:bold">Nome</th>
-                    <th style="font-weight:bold">Hora - Data</th>
-                    <th style="font-weight:bold">Observacao</th>
+                    <th style="font-weight:bold">Tempo Total</th>
+                    <th style="font-weight:bold">Tempo Oscilação</th>
+                    <th style="font-weight:bold">Data e Hora</th>
+                    <th style="font-weight:bold">Observação</th>
                 </tr>
-                <tr>
-                    <th><a href="/grafico/">Teste mi</a></th>
-                    <th>08:43 - 13/04</th>
-                    <th>123</th>
-                </tr>
-                <tr>
-                    <th><a href="/grafico/">Teste Krt</a></th>
-                    <th>09:54 - 14/04</th>
-                    <th>akdsjfl oop</th>
-                </tr>
+
+                {% for teste in lista_de_testes %}
+                    <tr>
+                        <th>{{teste.teste_id}}</th>
+                        <th><a href="/grafico/">{{teste.teste_nome}}</a></th>
+                        <th>{{teste.teste_tempo_total}}</th>
+                        <th>{{teste.teste_tempo_oscilacao}}</th>
+                        <th>{{teste.teste_data_hora}}</th>
+                        <th>{{teste.teste_observacoes}}</th>
+                    </tr>
+                {% endfor %}
             </table>
 
 {% endblock %}

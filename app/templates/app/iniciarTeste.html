@@ -2,12 +2,14 @@
 
 {% block content %}
 
-<h2>{{ title }}.</h2>
+<h2>{{ title }}</h2>
 <h3>{{ message }}</h3>
 
-<form role="form" action="{% url 'teste' %}" method="post" name="FrmRecurso">
-                        {%csrf_token %}
-                 <div class="">
+<!--<form role="form" action="{% url 'grafico' %}" method="POST" name="FrmRecurso">-->
+<form role="form" method="POST" name="FrmRecurso">
+                {%csrf_token %}
+                {{form.as_p}}
+                 <!--<div class="">
                     <div class="form-group">
                         Nome:
                         <input text class="form-control" id="nome" name="nome" required ></text>
@@ -22,10 +24,10 @@
                         <input class="form-control" type="number" name="tempo" min="1" max="10" step="1" value="1" required/> 
                     </div>
                
+                </div>-->
                     <div class="">
                         <input id="btnCriarNovaQuestao" class="btn btn-primary" type="submit" name="enviar" value="Iniciar" >
                     </div>
-                </div>
             </form>
 
 {% endblock %}
