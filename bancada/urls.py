@@ -20,9 +20,13 @@ from django.conf.urls import patterns, url
 from app import views as appviews
 from app.forms import BootstrapAuthenticationForm
 from django.contrib.auth import views as authviews
+from django.contrib import admin
 
 urlpatterns = [
-    #url(r'^admin/', admin.site.urls),
+    # Gerenciamento de Acesso -ADMIN-
+    url(r'^admin/', admin.site.urls),
+    
+    # Rotas do APP
     url(r'^$', appviews.home, name='home'),
     url(r'^iniciarTeste$', appviews.iniciarTeste, name='iniciarTeste'),
     url(r'^historico', appviews.historico, name='historico'),
