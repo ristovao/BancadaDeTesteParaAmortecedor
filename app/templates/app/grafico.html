@@ -17,7 +17,26 @@
 ${demo.css}
         </style>
         <script type="text/javascript">
+
+
+
 $(function () {
+    $.LoadingOverlay("show");
+
+    // Hide it after 3 seconds
+    // setTimeout(function(){
+    //     $.LoadingOverlay("hide");
+    // }, 3000);
+
+
+    $.when(grafico()).then(terminarLoaging());
+
+
+    
+});
+
+
+function grafico() {
     $('#container').highcharts({
         chart: {
             type: 'spline',
@@ -74,8 +93,13 @@ $(function () {
                 [50, Math.random()*100], [60, Math.random()*100], [70, Math.random()*100], [80, -Math.random()*100]]
         }]
     });
-});
-        </script>
+}
+
+function terminarLoaging() {
+     $.LoadingOverlay("hide");
+}
+
+</script>
         
         
         
