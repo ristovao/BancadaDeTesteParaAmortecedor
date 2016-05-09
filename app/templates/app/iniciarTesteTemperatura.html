@@ -5,7 +5,6 @@
 <h2>{{ title }}</h2>
 <h3>{{ message }}</h3>
 
-<!--<form role="form" action="{% url 'grafico' %}" method="POST" name="FrmRecurso">-->
 <form role="form" method="POST" name="FrmRecurso">
                 {%csrf_token %}
                 {{form.as_p}}

@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from .forms import TesteTemperaturaForm, TesteTempoForm
-from .models import Teste, TesteTempo, TesteTemperatura
+from .forms import AmortecedorForm, TesteVelocidadeFixaForm, TesteVelocidadeVariavelForm, TesteTemperaturaForm
+from .models import Amortecedor, Teste, TesteVelocidadeFixa, TesteVelocidadeVariavel, TesteTemperatura
 
 
 def home(request):
@@ -48,22 +48,9 @@ def home(request):
 #            'year':datetime.now().year,
 #        })
 #    )
-
-def grafico(request):
-    """Renders the  page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/grafico.html',
-        context_instance = RequestContext(request,
-        {
-            'title':'Grafico',
-            'message':'',
-            'year':datetime.now().year,
-        })
-    )
     
-@login_required
+
+#@login_required
 def teste(request):
     """Renders the  page."""
     assert isinstance(request, HttpRequest)
@@ -78,25 +65,35 @@ def teste(request):
         })
     )
 
+
+def detalharTeste(request, primary_key):
+    
+    page = 'app/detalhamento.html'
+    teste_current = get_object_or_404(Teste, teste_id=primary_key)
+
+    return render(request, page, {'detalhamento_do_teste': teste_current})
+
+    
+
+
 def iniciarTeste(request):
     
     page = 'app/iniciarTeste.html'
 
     if request.method == "POST":
-        form = TesteTempoForm(request.POST)
+        form = TesteVelocidadeFixaForm(request.POST)
         
         if form.is_valid():
             teste = form.save(commit=False)
             teste.teste_nome = request.POST['teste_nome']
-            teste.teste_tempo_total = request.POST['teste_tempo_total']
-            teste.teste_tempo_oscilacao = request.POST['teste_tempo_oscilacao']
+            teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
-            teste.teste_tempo_inicio = request.POST['teste_tempo_inicio']
+            
             teste.save()
-            return redirect('/grafico')
+            return redirect('app.views.detalharTeste', primary_key=teste.pk)
 
     else:
-        form = TesteTempoForm()
+        form = TesteVelocidadeFixaForm()
     
     return render(request, page, {'form':form})
 
@@ -110,13 +107,10 @@ def iniciarTesteTemperatura(request):
         if form.is_valid():
             teste = form.save(commit=False)
             teste.teste_nome = request.POST['teste_nome']
-            teste.teste_tempo_total = request.POST['teste_tempo_total']
-            teste.teste_tempo_oscilacao = request.POST['teste_tempo_oscilacao']
             teste.teste_observacoes = request.POST['teste_observacoes']
-            teste.teste_temperatura_um = request.POST['teste_temperatura_um']
-            teste.teste_temperatura_dois = request.POST['teste_temperatura_dois']
+            
             teste.save()
-            return redirect('/grafico')
+            return redirect('app.views.detalharTeste', primary_key=teste.pk)
 
     else:
         form = TesteTemperaturaForm()

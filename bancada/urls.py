@@ -31,8 +31,11 @@ urlpatterns = [
     url(r'^iniciarTeste$', appviews.iniciarTeste, name='iniciarTeste'),
     url(r'^iniciarTesteTemperatura$', appviews.iniciarTesteTemperatura, name='iniciarTesteTemperatura'),
     url(r'^historico', appviews.historico, name='historico'),
-    url(r'^grafico', appviews.grafico, name='grafico'),
-    url(r'^teste', appviews.teste, name='teste'),
+    url(r'^teste/(?P<primary_key>[0-9]+)/$', appviews.detalharTeste, name='detalharTeste'),
+    #url(r'^detalhamento', appviews.detalhamento, name='detalhamento'),
+    #url(r'^teste', appviews.teste, name='teste'),
+
+
     url(r'^login/$',
         authviews.login,
         {
