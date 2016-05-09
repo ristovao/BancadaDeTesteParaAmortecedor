@@ -5,11 +5,19 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from .forms import AmortecedorForm, TesteVelocidadeFixaForm, TesteVelocidadeVariavelForm, TesteTemperaturaForm
 from .models import Amortecedor, Teste, TesteVelocidadeFixa, TesteVelocidadeVariavel, TesteTemperatura
-
+from django.contrib.sessions.models import Session
+from importlib import import_module
+from django.conf import settings
 
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
+
+    if len(Session.objects.all())>1:
+        session = Session.objects.all()[1]
+        session.delete()
+        return render(request,'app/jaLogado.html')
+
     return render(
         request,
         'app/index.html',
@@ -65,7 +73,6 @@ def teste(request):
         })
     )
 
-
 def detalharTeste(request, primary_key):
     
     page = 'app/detalhamento.html'
@@ -73,9 +80,8 @@ def detalharTeste(request, primary_key):
 
     return render(request, page, {'detalhamento_do_teste': teste_current})
 
-    
 
-
+@login_required
 def iniciarTeste(request):
     
     page = 'app/iniciarTeste.html'
@@ -97,6 +103,7 @@ def iniciarTeste(request):
     
     return render(request, page, {'form':form})
 
+@login_required
 def iniciarTesteTemperatura(request):
     
     page = 'app/iniciarTesteTemperatura.html'
