@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -27,17 +27,17 @@
                     <li><a href="{% url 'iniciarTeste' %}">Iniciar teste</a></li>
                     <li><a href="{% url 'historico' %}">Historico</a></li>
                 </ul>
+                
                 {% include 'app/loginParte.html' %}
                 
             </div>
-            
-               
-
         </div>
     </div>
 
     <div class="container body-content">
-{% block content %}{% endblock %}
+        
+        {% block content %}{% endblock %}
+        
         <hr/>
         <footer>
             <p>{{ year }} - Bancada</p>
@@ -52,7 +52,8 @@
     <script src="{% static 'app/scripts/respond.js' %}"></script>
     <script src="{% static 'app/scripts/highcharts.js' %}"></script>
     <script src="{% static 'app/scripts/modules/exporting.js' %}"></script>
-{% block scripts %}{% endblock %}
+    
+    {% block scripts %}{% endblock %}
 
 </body>
 </html>
