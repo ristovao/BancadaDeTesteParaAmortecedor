@@ -84,7 +84,7 @@ def detalharTeste(request, primary_key):
 @login_required
 def iniciarTesteVelocidadeFixa(request):
     
-    page = 'app/iniciarTesteVelocidadeFixa.html.html'
+    page = 'app/iniciarTesteVelocidadeFixa.html'
 
     if request.method == "POST":
         form = TesteVelocidadeFixaForm(request.POST)

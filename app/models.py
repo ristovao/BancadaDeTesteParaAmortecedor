@@ -3,6 +3,9 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils import timezone
+from pickle import loads, dumps
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 # Model: Teste
 # Utilizada para criacao de uma instancia do teste da bancada
@@ -10,7 +13,10 @@ class Teste(models.Model):
 		
 	teste_id = models.AutoField(primary_key=True, verbose_name='ID')
 	teste_nome = models.CharField(max_length=45, null = False, verbose_name='Nome')
-	teste_quantidade_ciclo = models.IntegerField(null = True, verbose_name='Quantidade de Ciclo')
+	teste_quantidade_ciclo = models.IntegerField(null = True, verbose_name='Quantidade de Ciclo',default=5,
+        validators=[
+            MaxValueValidator(100),
+            MinValueValidator(1)])
 	teste_observacoes = models.TextField(max_length=255, null = True, verbose_name='Observações')
 	teste_data_hora = models.DateTimeField(default=timezone.now, verbose_name='Data')
 	#graficos = models.ForeignKey(Grafico, verbose_name='Gráficos', on_delete=models.CASCADE)
@@ -18,12 +24,21 @@ class Teste(models.Model):
 
 class TesteVelocidadeFixa(Teste):
 
-	testeVF_velocidade = models.IntegerField(null = True, verbose_name='Velocidade do Motor')	
+	testeVF_velocidade = models.IntegerField(null = True, verbose_name='Velocidade do Motor',default=5,
+        validators=[
+            MaxValueValidator(100),
+            MinValueValidator(1)])	
 	
 class TesteVelocidadeVariavel(Teste):
 
-	testeVV_quantidade_velocidade = models.IntegerField(null = True, verbose_name='Quantidade de Velocidades')	
+	testeVV_quantidade_velocidade = models.IntegerField(null = True, verbose_name='Quantidade de Velocidades')
+	arrayVelocidades = models.BinaryField()
 	#FALTA: array das velocidade(s)
+	def getArrayVelocidades(self):
+		return loads(self.arrayVelocidades)
+		
+	def setArrayVelocidades(self,lista):
+		self.arrayVelocidades = dumps(lista)
 
 class TesteTemperatura(Teste):
 
@@ -47,5 +62,4 @@ class Amortecedor (models.Model):
 # Model: Grafico
 # Utilizada para criação dos gráficos resultantes da realização dos testes
 class Grafico (models.Model):
-	
 	teste = models.ForeignKey(Teste, verbose_name='Teste', on_delete=models.CASCADE)

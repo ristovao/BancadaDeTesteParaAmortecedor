@@ -24,7 +24,7 @@ class TesteVelocidadeFixaForm(forms.ModelForm):
     model = TesteVelocidadeFixa
     #fields = '__all__'
     #exclude = ['teste_data_hora']   
-    fields = ('teste_id', 'teste_nome', 'teste_quantidade_ciclo', 'teste_observacoes', 'teste_data_hora', 'testeVF_velocidade')
+    fields = ('teste_id', 'teste_nome', 'teste_quantidade_ciclo', 'testeVF_velocidade', 'teste_observacoes')
 
 
 class TesteVelocidadeVariavelForm(forms.ModelForm):
