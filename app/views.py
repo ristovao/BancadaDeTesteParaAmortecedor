@@ -9,6 +9,7 @@ from django.contrib.sessions.models import Session
 from importlib import import_module
 from django.conf import settings
 import random
+from itertools import chain
 
 def home(request):
     """Renders the home page."""
@@ -78,9 +79,10 @@ def detalharTeste(request, primary_key):
     
     page = 'app/detalhamento.html'
     teste_current = get_object_or_404(Teste, teste_id=primary_key)
+    teste_current  = list(chain(TesteTemperatura.objects.filter(teste_id=primary_key),TesteVelocidadeFixa.objects.filter(teste_id=primary_key),TesteVelocidadeVariavel.objects.filter(teste_id=primary_key)))
+    teste_current = teste_current[0]
     teste_current.graficoTemp = str(teste_current.getGraficoTemperatura())
     return render(request, page, {'detalhamento_do_teste': teste_current})
-
 
 @login_required
 def iniciarTesteVelocidadeFixa(request):
@@ -96,7 +98,7 @@ def iniciarTesteVelocidadeFixa(request):
             teste.testeVF_velocidade = request.POST['testeVF_velocidade']
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
-            listaDeValores = pegarValores(30)
+            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
             teste.setGraficoTemperatura(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -143,6 +145,6 @@ def grafico(request):
 #funcao de teste para pegar valores de algum lugar
 def pegarValores(quant):
     f=[]
-    for i in range(quant):
+    for i in range(int(quant)):
         f.append([random.randint(0,90),i])
     return f

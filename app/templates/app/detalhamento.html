@@ -9,16 +9,12 @@
             	Nome do teste: {{ detalhamento_do_teste.teste_nome }}
         	{% endif %}
         </div>
-        <p>
-        	    Velocidade do motor: {{ detalhamento_do_teste.testeVF_velocidade }}
-        </p>
-        <p>
-        	    Ciclos: {{ detalhamento_do_teste.teste_quantidade_ciclo }}
-        </p>
-        <p>{{ detalhamento_do_teste.teste_tempo_total }}</p>
+        <p>Velocidade do motor: {{ detalhamento_do_teste.testeVF_velocidade }}</p>
+        <p>Ciclos: {{ detalhamento_do_teste.teste_quantidade_ciclo }}</p>
+        <p>Tempo total do teste: {{ detalhamento_do_teste.teste_tempo_total }}</p>
         <p>Observações: {{ detalhamento_do_teste.teste_observacoes|linebreaks }}</p>
 
-        <div id="container" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        <div id="temperatura" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
         
     </div>
         
@@ -56,13 +52,13 @@ $(function () {
 function grafico() {
     
     
-    $('#container').highcharts({
+    $('#temperatura').highcharts({
         chart: {
             type: 'spline',
             inverted: true
         },
         title: {
-            text: 'Força por Ciclo'
+            text: 'Temperatura por Ciclo'
         },
         subtitle: {
             text: ''
@@ -71,11 +67,11 @@ function grafico() {
             reversed: false,
             title: {
                 enabled: true,
-                text: 'Força'
+                text: 'Temperatura'
             },
             labels: {
                 formatter: function () {
-                    return this.value + 'N';
+                    return this.value + 'ºC';
                 }
             },
             maxPadding: 0.05,
@@ -97,7 +93,7 @@ function grafico() {
         },
         tooltip: {
             headerFormat: '<b>{series.name}</b><br/>',
-            pointFormat: '{point.x} N: {point.y} Ciclo'
+            pointFormat: '{point.x} ºC: {point.y} Ciclo'
         },
         plotOptions: {
             spline: {
@@ -107,7 +103,7 @@ function grafico() {
             }
         },
         series: [{
-            name: 'Ciclo',
+            name: 'Tempo',
             data: {{ detalhamento_do_teste.graficoTemp }}
         }]
     });
