@@ -63,7 +63,7 @@
             <!-- Menu inicial - HEADER - Inicio -->
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    Bem Vindo <b>Modesto</b>!
+                    Bem Vindo <b>{{ user.username }}</b>!
                 </li>
 
                 <li class="dropdown">
@@ -110,6 +110,56 @@
             </ul>
             <!-- /.navbar-top-links -->
             <!-- Menu inicial - HEADER - Fim -->
+
+                        <!-- Menu lateral - ESQUERDO - Inicio -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                                 <center><h5>Busca Rápida de Teste: </h5></center>
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="[Insira uma data]">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Iniciar Teste<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="iniciarTesteVelocidadeFixa.html">Por Velocidade Fixa</a>
+                                </li>
+                                <li>
+                                    <a href="#.html">Por Velocidade Variável</a>
+                                </li>
+                                <li>
+                                    <a href="iniciarTesteTemperatura.html">Por Temperatura</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="historico.html"><i class="fa fa-bar-chart fa-fw"></i> Histórico de Testes</a>
+                        </li>
+                        <li>
+                            <a href="historicoamortecedor.html"><i class="fa fa-wrench fa-fw"></i> Histórico de Amortecedores</a>
+                        </li>
+                        <li>
+                            <a href="#.html"><i class="fa fa-search fa-fw"></i> Buscar Teste</a>
+                        </li>
+                        <li>
+                            <a href="tables.html"><i class="fa fa-edit fa-fw"></i> Licença da Bancada</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+            <!-- Menu lateral - ESQUERDO - Fim -->
       
                 {% include 'app/loginParte.html' %}
                 
