@@ -2,38 +2,126 @@
 
 {% block content %}
 
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
-
-<!--<script>
-n=0
-setInterval(function() { f= document.getElementById('bar');
-                n=n+Math.random();
-                f.style="width:"+n+"%"
-                if(n>100){
-                    window.location = "http://localhost:8000/grafico";
-                }}, 50);
-
-</script> 
-
-
-<div class="container">
-  <h2>Progresso</h2>
-  <div class="progress">
-    <div id='bar' n='10' class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-
-    </div> -->
 
      <div class="page-wrapper">
         <div class="nome">
         	{% if detalhamento_do_teste.teste_nome %}
-            	{{ detalhamento_do_teste.teste_nome }}
+            	Nome do teste: {{ detalhamento_do_teste.teste_nome }}
         	{% endif %}
         </div>
+        <p>
+        	    Velocidade do motor: {{ detalhamento_do_teste.testeVF_velocidade }}
+        </p>
+        <p>
+        	    Ciclos: {{ detalhamento_do_teste.teste_quantidade_ciclo }}
+        </p>
         <p>{{ detalhamento_do_teste.teste_tempo_total }}</p>
-        <p>{{ detalhamento_do_teste.teste_observacoes|linebreaks }}</p>
+        <p>Observações: {{ detalhamento_do_teste.teste_observacoes|linebreaks }}</p>
+
+        <div id="container" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+        
     </div>
         
         
+
+{% endblock %}
+
+
+{% block scripts %}
+
+    
+        <style type="text/css">
+${demo.css}
+        </style>
+        <script type="text/javascript">
+
+
+
+$(function () {
+    $.LoadingOverlay("show");
+
+    // Hide it after 3 seconds
+    // setTimeout(function(){
+    //     $.LoadingOverlay("hide");
+    // }, 3000);
+
+
+    $.when(grafico()).then(terminarLoaging());
+
+
+    
+});
+
+
+function grafico() {
+    
+    
+    $('#container').highcharts({
+        chart: {
+            type: 'spline',
+            inverted: true
+        },
+        title: {
+            text: 'Força por Ciclo'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            reversed: false,
+            title: {
+                enabled: true,
+                text: 'Força'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value + 'N';
+                }
+            },
+            maxPadding: 0.05,
+            showLastLabel: true
+        },
+        yAxis: {
+            title: {
+                text: 'Ciclo'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value + '';
+                }
+            },
+            lineWidth: 2
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            headerFormat: '<b>{series.name}</b><br/>',
+            pointFormat: '{point.x} N: {point.y} Ciclo'
+        },
+        plotOptions: {
+            spline: {
+                marker: {
+                    enable: false
+                }
+            }
+        },
+        series: [{
+            name: 'Ciclo',
+            data: {{ detalhamento_do_teste.graficoTemp }}
+        }]
+    });
+}
+
+function terminarLoaging() {
+     $.LoadingOverlay("hide");
+}
+
+</script>
+        
+        
+        
+    
+
 
 {% endblock %}

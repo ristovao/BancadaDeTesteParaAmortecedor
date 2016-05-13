@@ -8,15 +8,16 @@ from .models import Amortecedor, Teste, TesteVelocidadeFixa, TesteVelocidadeVari
 from django.contrib.sessions.models import Session
 from importlib import import_module
 from django.conf import settings
+import random
 
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
 
-    if len(Session.objects.all())>1:
-        session = Session.objects.all()[1]
-        session.delete()
-        return render(request,'app/jaLogado.html')
+    #if len(Session.objects.all())>1:
+    #    session = Session.objects.all()[1]
+    #    session.delete()
+    #    return render(request,'app/jaLogado.html')
 
     return render(
         request,
@@ -77,7 +78,7 @@ def detalharTeste(request, primary_key):
     
     page = 'app/detalhamento.html'
     teste_current = get_object_or_404(Teste, teste_id=primary_key)
-
+    teste_current.graficoTemp = str(teste_current.getGraficoTemperatura())
     return render(request, page, {'detalhamento_do_teste': teste_current})
 
 
@@ -92,9 +93,11 @@ def iniciarTesteVelocidadeFixa(request):
         if form.is_valid():
             teste = form.save(commit=False)
             teste.teste_nome = request.POST['teste_nome']
+            teste.testeVF_velocidade = request.POST['testeVF_velocidade']
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
-            
+            listaDeValores = pegarValores(30)
+            teste.setGraficoTemperatura(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
 
@@ -131,3 +134,15 @@ def historico(request):
     lista_de_testes = Teste.objects.order_by('teste_id')
 
     return render(request, page, {'lista_de_testes': lista_de_testes})
+    
+def grafico(request):
+    page='app/grafico.html'
+    
+    return render(request, page,{})
+
+#funcao de teste para pegar valores de algum lugar
+def pegarValores(quant):
+    f=[]
+    for i in range(quant):
+        f.append([random.randint(0,90),i])
+    return f

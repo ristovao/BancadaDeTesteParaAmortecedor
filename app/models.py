@@ -21,7 +21,15 @@ class Teste(models.Model):
 	teste_data_hora = models.DateTimeField(default=timezone.now, verbose_name='Data')
 	#graficos = models.ForeignKey(Grafico, verbose_name='Gráficos', on_delete=models.CASCADE)
 	#amortecedor = models.ForeignKey(Amortecedor, on_delete=models.CASCADE)
-
+	graficoTemperatura = models.BinaryField(null = True)
+	graficoForcaTempo = models.BinaryField(null = True)
+	graficoMimimi = models.BinaryField(null = True)
+	def getGraficoTemperatura(self):
+		return loads(self.graficoTemperatura)
+		
+	def setGraficoTemperatura(self,lista):
+		self.graficoTemperatura = dumps(lista)
+	
 class TesteVelocidadeFixa(Teste):
 
 	testeVF_velocidade = models.IntegerField(null = True, verbose_name='Velocidade do Motor',default=5,
@@ -32,7 +40,7 @@ class TesteVelocidadeFixa(Teste):
 class TesteVelocidadeVariavel(Teste):
 
 	testeVV_quantidade_velocidade = models.IntegerField(null = True, verbose_name='Quantidade de Velocidades')
-	arrayVelocidades = models.BinaryField()
+	arrayVelocidades = models.BinaryField(null = True)
 	#FALTA: array das velocidade(s)
 	def getArrayVelocidades(self):
 		return loads(self.arrayVelocidades)
