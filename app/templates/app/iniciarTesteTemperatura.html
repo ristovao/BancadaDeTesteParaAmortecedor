@@ -5,28 +5,62 @@
 <h2>{{ title }}</h2>
 <h3>{{ message }}</h3>
 
-<form role="form" method="POST" name="FrmRecurso">
-                {%csrf_token %}
-                {{form.as_p}}
-                 <!--<div class="">
-                    <div class="form-group">
-                        Nome:
-                        <input text class="form-control" id="nome" name="nome" required ></text>
+
+
+<!-- Conteúdo Central - Centro - Inicio -->
+    <div id="page-wrapper">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Teste por Velocidade Variável</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Informações básicas
                     </div>
-                    <div class="form-group">
-                        Observacoes:
-                        <textarea class="form-control" rows="5" cols="150" id="observacoes" name="observacoes" ></textarea>
+                    <div class="panel-body">
+                        <form role="form" method="POST" name="FrmRecurso">
+                            {%csrf_token %}
+                            {{form.as_p}}
+                             <!--<div class="">
+                                <div class="form-group">
+                                    Nome:
+                                    <input text class="form-control" id="nome" name="nome" required ></text>
+                                </div>
+                                <div class="form-group">
+                                    Observacoes:
+                                    <textarea class="form-control" rows="5" cols="150" id="observacoes" name="observacoes" ></textarea>
+                                </div>
+                                  {%csrf_token %}
+                                <div class="form-group">
+                                    Tempo (minutos):
+                                    <input class="form-control" type="number" name="tempo" min="1" max="10" step="1" value="1" required/> 
+                                </div>
+                           
+                            </div>-->
+                            <div class="">
+                                <input id="btnCriarNovaQuestao" class="btn btn-primary" type="submit" name="enviar" value="Iniciar" >
+                            </div>
+                        </form>
                     </div>
-                      {%csrf_token %}
-                    <div class="form-group">
-                        Tempo (minutos):
-                        <input class="form-control" type="number" name="tempo" min="1" max="10" step="1" value="1" required/> 
-                    </div>
-               
-                </div>-->
-                    <div class="">
-                        <input id="btnCriarNovaQuestao" class="btn btn-primary" type="submit" name="enviar" value="Iniciar" >
-                    </div>
-            </form>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                   
+            </div>
+        </div>
+    </div>
+    <!-- /#page-wrapper -->
+<!-- Conteúdo Central - Centro - Fim -->
 
 {% endblock %}

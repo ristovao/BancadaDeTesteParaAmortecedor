@@ -29,7 +29,8 @@ urlpatterns = [
     # Rotas do APP
     url(r'^$', appviews.home, name='home'),
     url(r'^iniciarTesteVelocidadeFixa', appviews.iniciarTesteVelocidadeFixa, name='iniciarTesteVelocidadeFixa'),
-    url(r'^iniciarTesteTemperatura$', appviews.iniciarTesteTemperatura, name='iniciarTesteTemperatura'),
+    url(r'^iniciarTesteVelocidadeVariavel', appviews.iniciarTesteVelocidadeVariavel, name='iniciarTesteVelocidadeVariavel'),
+    url(r'^iniciarTesteTemperatura', appviews.iniciarTesteTemperatura, name='iniciarTesteTemperatura'),
     url(r'^historico', appviews.historico, name='historico'),
     url(r'^teste/(?P<primary_key>[0-9]+)/$', appviews.detalharTeste, name='detalharTeste'),
     url(r'^json/amortecedor/(?P<primary_key>[\w\d\.]+)', appviews.pegarDadosAmortecedor, name='jsonAmortecedor'),
