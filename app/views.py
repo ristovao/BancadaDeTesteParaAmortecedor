@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpRequest
+from django.http import HttpRequest, JsonResponse
 from django.template import RequestContext
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
@@ -89,10 +89,14 @@ def iniciarTesteVelocidadeFixa(request):
     
     page = 'app/iniciarTesteVelocidadeFixa.html'
 
+    listaAmortecedore=[]
+    for i in Amortecedor.objects.all():
+        listaAmortecedore.append(i.amortecedor_codigo)
+
     if request.method == "POST":
         form = TesteVelocidadeFixaForm(request.POST)
-        
-        if form.is_valid():
+        formArm = AmortecedorForm(request.POST)
+        if form.is_valid() and formArm.is_valid():
             teste = form.save(commit=False)
             teste.teste_nome = request.POST['teste_nome']
             teste.testeVF_velocidade = request.POST['testeVF_velocidade']
@@ -105,8 +109,9 @@ def iniciarTesteVelocidadeFixa(request):
 
     else:
         form = TesteVelocidadeFixaForm()
-    
-    return render(request, page, {'form':form})
+        formArm = AmortecedorForm()
+
+    return render(request, page, {'form':form, 'formArm':formArm,'listaAmortecedore':listaAmortecedore})
 
 @login_required
 def iniciarTesteTemperatura(request):
@@ -141,6 +146,31 @@ def grafico(request):
     page='app/grafico.html'
     
     return render(request, page,{})
+
+@login_required
+def pegarDadosAmortecedor(request,primary_key):
+    dados={}
+    amortecedor = Amortecedor.objects.filter(amortecedor_codigo=primary_key)
+    if not(len(amortecedor)):
+        dados={'erro':1}
+    else:
+        d=amortecedor[0]
+        dados['amortecedor_diametro_externo']=str(d.amortecedor_diametro_externo)
+        dados['amortecedor_curso']=str(d.amortecedor_curso)
+    
+    return JsonResponse(dados)
+
+@login_required
+def pegarNomesAmortecedor(request):
+    dados={'nomes':[]}
+    amortecedor = Amortecedor.objects.all()
+    if (len(amortecedor)):
+        for i in amortecedor:
+            dados['nomes'].append(i.amortecedor_codigo)
+    
+    return JsonResponse(dados)
+
+
 
 #funcao de teste para pegar valores de algum lugar
 def pegarValores(quant):

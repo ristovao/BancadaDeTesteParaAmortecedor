@@ -32,8 +32,10 @@ urlpatterns = [
     url(r'^iniciarTesteTemperatura$', appviews.iniciarTesteTemperatura, name='iniciarTesteTemperatura'),
     url(r'^historico', appviews.historico, name='historico'),
     url(r'^teste/(?P<primary_key>[0-9]+)/$', appviews.detalharTeste, name='detalharTeste'),
+    url(r'^json/amortecedor/(?P<primary_key>[\w\d\.]+)', appviews.pegarDadosAmortecedor, name='jsonAmortecedor'),
+    url(r'^json/nomeAmortecedor', appviews.pegarNomesAmortecedor, name='jsonNomesAmortecedor'),
     #url(r'^detalhamento', appviews.detalhamento, name='detalhamento'),
-    #url(r'^grafico', appviews.grafico, name='grafico'),
+    url(r'^grafico', appviews.grafico, name='grafico'),
 
 
     url(r'^login/$',
