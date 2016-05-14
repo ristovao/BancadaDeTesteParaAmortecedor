@@ -137,19 +137,21 @@
                                     <a href="{% url 'iniciarTesteVelocidadeFixa' %}">Por Velocidade Fixa</a>
                                 </li>
                                 <li>
-                                    <a href="#.html">Por Velocidade Variável</a>
+                                    <a href="{% url 'iniciarTesteVelocidadeVariavel' %}">Por Velocidade Variável</a>
                                 </li>
                                 <li>
-                                    <a href="iniciarTesteTemperatura.html">Por Temperatura</a>
-                                </li>
+                                    <a href="{% url 'iniciarTesteTemperatura.html' %}">Por Temperatura</a>
+                                </li><!--                                 <li>
+                                    <a href="{% url 'iniciarTesteTemperatura' %}">Por Temperatura</a>
+                                </li> -->
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="historico.html"><i class="fa fa-bar-chart fa-fw"></i> Histórico de Testes</a>
+                            <a href="{%url 'historico'%}"><i class="fa fa-bar-chart fa-fw"></i> Histórico de Testes</a>
                         </li>
                         <li>
-                            <a href="historicoamortecedor.html"><i class="fa fa-wrench fa-fw"></i> Histórico de Amortecedores</a>
+                            <a href="{% url 'historicoamortecedor' %}"><i class="fa fa-wrench fa-fw"></i> Histórico de Amortecedores</a>
                         </li>
                         <li>
                             <a href="#.html"><i class="fa fa-search fa-fw"></i> Buscar Teste</a>

@@ -109,6 +109,30 @@ def iniciarTesteVelocidadeFixa(request):
     return render(request, page, {'form':form})
 
 @login_required
+def iniciarTesteVelocidadeVariavel(request):
+    
+    page = 'app/iniciarTesteVelocidadeVariavel.html'
+
+    if request.method == "POST":
+        form = TesteVelocidadeVariavelForm(request.POST)
+        
+        if form.is_valid():
+            teste = form.save(commit=False)
+            teste.teste_nome = request.POST['teste_nome']
+            teste.testeVV_quantidade_velocidade = request.POST['testeVV_quantidade_velocidade']
+            teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
+            teste.teste_observacoes = request.POST['teste_observacoes']
+            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            teste.setGraficoTemperatura(listaDeValores)
+            teste.save()
+            return redirect('app.views.detalharTeste', primary_key=teste.pk)
+
+    else:
+        form = TesteVelocidadeVariavelForm()
+    
+    return render(request, page, {'form':form})
+
+@login_required
 def iniciarTesteTemperatura(request):
     
     page = 'app/iniciarTesteTemperatura.html'
