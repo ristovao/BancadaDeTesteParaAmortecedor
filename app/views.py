@@ -89,15 +89,26 @@ def iniciarTesteVelocidadeFixa(request):
     
     page = 'app/iniciarTesteVelocidadeFixa.html'
 
-    listaAmortecedore=[]
-    for i in Amortecedor.objects.all():
-        listaAmortecedore.append(i.amortecedor_codigo)
-
     if request.method == "POST":
         form = TesteVelocidadeFixaForm(request.POST)
         formArm = AmortecedorForm(request.POST)
+        if 'amortecedor_codigo' in request.POST :
+            amortecedorList = Amortecedor.objects.filter(amortecedor_codigo=request.POST['amortecedor_codigo'])
+            if len(amortecedorList):
+                amortecedor = amortecedorList[0]
+                formArm = AmortecedorForm(request.POST, instance=amortecedor)
+            
         if form.is_valid() and formArm.is_valid():
             teste = form.save(commit=False)
+            if len(amortecedorList):
+                teste.amortecedor=amortecedor
+            else:
+                amortecedor = formArm.save(commit=False)
+                amortecedor.amortecedor_codigo = request.POST['amortecedor_codigo']
+                amortecedor.amortecedor_diametro_externo = request.POST['amortecedor_diametro_externo']
+                amortecedor.amortecedor_curso = request.POST['amortecedor_curso']
+                amortecedor.save()
+                teste.amortecedor=amortecedor
             teste.teste_nome = request.POST['teste_nome']
             teste.testeVF_velocidade = request.POST['testeVF_velocidade']
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
@@ -110,8 +121,8 @@ def iniciarTesteVelocidadeFixa(request):
     else:
         form = TesteVelocidadeFixaForm()
         formArm = AmortecedorForm()
-
-    return render(request, page, {'form':form, 'formArm':formArm,'listaAmortecedore':listaAmortecedore})
+    
+    return render(request, page, {'form':form, 'formArm':formArm})
 
 @login_required
 def iniciarTesteVelocidadeVariavel(request):

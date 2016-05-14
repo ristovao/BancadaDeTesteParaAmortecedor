@@ -24,9 +24,9 @@
                     <div class="panel-body">
                         <form role="form" method="POST" name="FrmRecurso" autocomplete="off">
                                 {%csrf_token %}
-                                <p><label for="id_amortecedor_codigo">Código:</label> <input id="id_amortecedor_codigo" maxlength="45" name="amortecedor_codigo" type="text" /></p>
-                                <p><label for="id_amortecedor_diametro_externo">Tamanho do Diâmetro Externo:</label> <input id="id_amortecedor_diametro_externo" name="amortecedor_diametro_externo" type="number" /></p>
-                                <p><label for="id_amortecedor_curso">Tamanho do Curso:</label> <input id="id_amortecedor_curso" name="amortecedor_curso" type="number" /></p>
+                                Amortecedor:
+                                {{formArm.as_p}}
+                                Teste:
                                 {{form.as_p}}
                                  <!--<div class="">
                                     <div class="form-group">
@@ -108,11 +108,11 @@ $.getJSON(url, function(dadosRetorno){
                                              // Insere os dados em cada campo
                                              $("#id_amortecedor_diametro_externo").val(dadosRetorno.amortecedor_diametro_externo);
                                              $("#id_amortecedor_curso").val(dadosRetorno.amortecedor_curso);
-                                             $("#id_amortecedor_diametro_externo").prop('disabled', true);
-                                             $("#id_amortecedor_curso").prop('disabled', true);
+                                             $("#id_amortecedor_diametro_externo").prop('readonly', true);
+                                             $("#id_amortecedor_curso").prop('readonly', true);
                                              if (dadosRetorno.erro) {
-                                                 $("#id_amortecedor_diametro_externo").prop('disabled', false);
-                                                 $("#id_amortecedor_curso").prop('disabled', false);
+                                                 $("#id_amortecedor_diametro_externo").prop('readonly', false);
+                                                 $("#id_amortecedor_curso").prop('readonly', false);
                                              }
                                             
 
