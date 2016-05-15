@@ -1,11 +1,9 @@
 {% if user.is_authenticated %}
 <form id="logoutForm" action="/logout" method="post" class="navbar-right">
     {% csrf_token %}
-    <ul class="nav navbar-nav navbar-right">
-        <li><span class="navbar-brand">Usuario {{ user.username }}</span></li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
+    <ul class="nav navbar-nav navbar-left">
+        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw"></i> Sair</a></li>
     </ul>
-
 </form>
 
 {% else %}
