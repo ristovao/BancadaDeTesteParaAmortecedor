@@ -23,40 +23,37 @@
                         Informações básicas
                     </div>
 
-                    <!--   Realizar busca nos testes -->
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>Busca:
-                                <input type="text" class="form-control" id="busca" name="busca">
-                            </label>
-                            
-                        </div>
-                    </div>
-
                     <div class="panel-body">
-                        <!--Tabela com o histórico dos testes -->                        
-                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                            <tr>
-                                <th style="font-weight:bold">ID</th>
-                                <th style="font-weight:bold">Nome</th>
-                                <th style="font-weight:bold">Tempo Total</th>
-                                <th style="font-weight:bold">Tempo Oscilação</th>
-                                <th style="font-weight:bold">Data e Hora</th>
-                                <th style="font-weight:bold">Observação</th>
-                            </tr>
+                        <div class="dataTable_wrapper">
 
-                            {% for teste in lista_de_testes %}
+                            <!--Tabela com o histórico dos testes -->                  
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                              <thead>
                                 <tr>
-                                    <th>{{teste.teste_id}}</th>
-                                    <th><a href="{% url 'detalharTeste' primary_key=teste.pk %}">{{teste.teste_nome}}</a></th> 
-                                    <th>{{teste.teste_tempo_total}}</th>
-                                    <th>{{teste.teste_tempo_oscilacao}}</th>
-                                    <th>{{teste.teste_data_hora}}</th>
-                                    <th>{{teste.teste_observacoes}}</th>
+                                    <th style="font-weight:bold">ID</th>
+                                    <th style="font-weight:bold">Nome</th>
+                                    <th style="font-weight:bold">Tempo Total</th>
+                                    <th style="font-weight:bold">Tempo Oscilação</th>
+                                    <th style="font-weight:bold">Data e Hora</th>
+                                    <th style="font-weight:bold">Observação</th>
                                 </tr>
-                            {% endfor %}
-                        </table>
+                              </thead>
+
+                              <tbody>
+                                {% for teste in lista_de_testes %}
+                                    <tr>
+                                        <th>{{teste.teste_id}}</th>
+                                        <th><a href="{% url 'detalharTeste' primary_key=teste.pk %}">{{teste.teste_nome}}</a></th> 
+                                        <th>{{teste.teste_tempo_total}}</th>
+                                        <th>{{teste.teste_tempo_oscilacao}}</th>
+                                        <th>{{teste.teste_data_hora}}</th>
+                                        <th>{{teste.teste_observacoes}}</th>
+                                    </tr>
+                                {% endfor %}
+                             </tbody>
+                            </table>
                         <!--/.Fim da tabela com o histórico dos testes --> 
+                        </div>
                     </div>
                     <!-- /.panel-body -->
                 </div>
@@ -74,4 +71,11 @@
     <!-- /#page-wrapper -->
 <!-- Conteúdo Central - Centro - Fim -->
 
+{% endblock %}
+{% block scripts%}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#dataTables-example').DataTable();
+    });
+</script>
 {% endblock %}

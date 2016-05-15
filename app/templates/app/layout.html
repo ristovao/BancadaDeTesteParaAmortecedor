@@ -22,6 +22,9 @@
     <!-- Custom Fonts -->
     <link href="{% static 'app/content/font-awesome.min.css' %}" rel="stylesheet" type="text/css"/>
 
+    <!-- DataTables CSS -->
+    <link href="{% static 'app/content/jquery.dataTables.min.css' %}" rel="stylesheet" type="text/css"/>
+
     <!-- jQuery -->
     <script src="{% static 'app/scripts/jquery.min.js' %}"></script>
 
@@ -101,7 +104,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
+                        <li><a href=""><i class="fa fa-sign-out fa-fw"></i> Sair</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -172,8 +175,10 @@
     <script src="{% static 'app/scripts/respond.js' %}"></script>
     <script src="{% static 'app/scripts/highcharts.js' %}"></script>
     <script src="{% static 'app/scripts/modules/exporting.js' %}"></script>
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <!-- DataTables CSS -->
+    <script src="{% static 'app/scripts/jquery.dataTables.min.js' %}"></script>
         {% block content %}{% endblock %}
 
     {% block scripts %}{% endblock %}
