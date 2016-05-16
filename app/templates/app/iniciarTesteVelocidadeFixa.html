@@ -122,57 +122,44 @@
 
 <script>
 
-$.ajax({
-    url: "/json/nomeAmortecedor",
-    success: function(json) {
-        
-        
-        $(function() {
-         var availableTags = ['12','45','as','ter'];
-   
-     $( "#id_amortecedor_codigo" ).autocomplete({
-      source: json.nomes,
-      close: function(){
-                    this.blur();
-     }
+    $.ajax({
+        url: "/json/nomeAmortecedor",
+        success: function(json) {
+            $(function() {
+                var availableTags = ['12','45','as','ter'];
+       
+                $( "#id_amortecedor_codigo" ).autocomplete({
+                    source: json.nomes,
+                    close: function(){
+                        this.blur();
+                    }
+                });
+            });
+        }
     });
-  });
-        
-        
-    }
-});
 
+    $("#id_amortecedor_codigo").blur(function(){
+         // Para fazer a consulta, removemos tudo o que não é número do valor informado pelo usuário
+         var ar = this.value;
 
-  
-
-
-
-$("#id_amortecedor_codigo").blur(function(){
- // Para fazer a consulta, removemos tudo o que não é número do valor informado pelo usuário
- var ar = this.value;
-
- var url = "/json/amortecedor/"+ar;
- 
-$.getJSON(url, function(dadosRetorno){
-                                             try{
-                                             // Insere os dados em cada campo
-                                             $("#id_amortecedor_diametro_externo").val(dadosRetorno.amortecedor_diametro_externo);
-                                             $("#id_amortecedor_curso").val(dadosRetorno.amortecedor_curso);
-                                             $("#id_amortecedor_diametro_externo").prop('readonly', true);
-                                             $("#id_amortecedor_curso").prop('readonly', true);
-                                             if (dadosRetorno.erro) {
-                                                 $("#id_amortecedor_diametro_externo").prop('readonly', false);
-                                                 $("#id_amortecedor_curso").prop('readonly', false);
-                                             }
-                                            
-
-                                             }catch(ex){
-                                             
-                                             }
-                                             });
- });
-
-
+         var url = "/json/amortecedor/"+ar;
+     
+        $.getJSON(url, function(dadosRetorno){
+             try{
+                 // Insere os dados em cada campo
+                 $("#id_amortecedor_diametro_externo").val(dadosRetorno.amortecedor_diametro_externo);
+                 $("#id_amortecedor_curso").val(dadosRetorno.amortecedor_curso);
+                 $("#id_amortecedor_diametro_externo").prop('readonly', true);
+                 $("#id_amortecedor_curso").prop('readonly', true);
+                 if (dadosRetorno.erro) {
+                     $("#id_amortecedor_diametro_externo").prop('readonly', false);
+                     $("#id_amortecedor_curso").prop('readonly', false);
+                 }
+             }catch(ex){
+             
+             }
+        });
+     });
 </script>
 
 

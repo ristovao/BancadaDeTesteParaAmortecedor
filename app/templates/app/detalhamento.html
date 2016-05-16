@@ -3,121 +3,153 @@
 {% block content %}
 
 
-     <div class="page-wrapper">
-        <div class="nome">
-        	{% if detalhamento_do_teste.teste_nome %}
-            	Nome do teste: {{ detalhamento_do_teste.teste_nome }}
-        	{% endif %}
-        </div>
-        <p>Velocidade do motor: {{ detalhamento_do_teste.testeVF_velocidade }}</p>
-        <p>Ciclos: {{ detalhamento_do_teste.teste_quantidade_ciclo }}</p>
-        <p>Tempo total do teste: {{ detalhamento_do_teste.teste_tempo_total }}</p>
-        <p>Observações: {{ detalhamento_do_teste.teste_observacoes|linebreaks }}</p>
 
-        <div id="temperatura" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-        
+
+
+<!-- Conteúdo Central - Centro - Inicio -->
+<div id="page-wrapper">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Resultado do teste {{detalhamento_do_teste.teste_nome}}</h1>
+        </div>
     </div>
-        
-        
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Informações básicas
+                </div>
+                <div class="panel-body">
+                    <!--Cabeçalho do Gráfico-->
+                    <div class="nome">
+                        {% if detalhamento_do_teste.teste_nome %}
+                            <label>Nome do teste: {{ detalhamento_do_teste.teste_nome }}</label>
+                        {% endif %}
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 form-control-label">Ciclos: {{ detalhamento_do_teste.teste_quantidade_ciclo }}</label>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 form-control-label">Velocidade do motor: {{ detalhamento_do_teste.testeVF_velocidade }}</label> 
+                    </div>
+                    <div class="row">          
+                        <label class="col-sm-4 form-control-label">Tempo total do teste: {{ detalhamento_do_teste.teste_tempo_total }}</label>
+                    </div> 
+                    <div class="row">
+                        <label class="col-sm-4 form-control-label">Observações: {{detalhamento_do_teste.teste_observacoes|linebreaks }}</label>
+                    </div> 
+
+                    <h4 class="page-header"></h4>
+                    <!-- Gráfico-->
+                    <div id="temperatura" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+               
+        </div>
+    </div>
+</div>
+<!-- /#page-wrapper -->
+<!-- Conteúdo Central - Centro - Fim -->
 
 {% endblock %}
 
 
 {% block scripts %}
-
     
-        <style type="text/css">
-${demo.css}
-        </style>
-        <script type="text/javascript">
+<style type="text/css">
+    ${demo.css}
+</style>
 
+<script type="text/javascript">
 
+    $(function () {
+        $.LoadingOverlay("show");
 
-$(function () {
-    $.LoadingOverlay("show");
+        // Hide it after 3 seconds
+        // setTimeout(function(){
+        //     $.LoadingOverlay("hide");
+        // }, 3000);
 
-    // Hide it after 3 seconds
-    // setTimeout(function(){
-    //     $.LoadingOverlay("hide");
-    // }, 3000);
-
-
-    $.when(grafico()).then(terminarLoaging());
-
-
-    
-});
-
-
-function grafico() {
-    
-    
-    $('#temperatura').highcharts({
-        chart: {
-            type: 'spline',
-            inverted: true
-        },
-        title: {
-            text: 'Temperatura por Ciclo'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            reversed: false,
-            title: {
-                enabled: true,
-                text: 'Temperatura'
-            },
-            labels: {
-                formatter: function () {
-                    return this.value + 'ºC';
-                }
-            },
-            maxPadding: 0.05,
-            showLastLabel: true
-        },
-        yAxis: {
-            title: {
-                text: 'Ciclo'
-            },
-            labels: {
-                formatter: function () {
-                    return this.value + '';
-                }
-            },
-            lineWidth: 2
-        },
-        legend: {
-            enabled: false
-        },
-        tooltip: {
-            headerFormat: '<b>{series.name}</b><br/>',
-            pointFormat: '{point.x} ºC: {point.y} Ciclo'
-        },
-        plotOptions: {
-            spline: {
-                marker: {
-                    enable: false
-                }
-            }
-        },
-        series: [{
-            name: 'Tempo',
-            data: {{ detalhamento_do_teste.graficoTemp }}
-        }]
+        // Esconde a imagem the loading quando o gráfico termina de plotar as informações
+        $.when(grafico()).then(terminarLoaging());
+        
     });
-}
 
-function terminarLoaging() {
-     $.LoadingOverlay("hide");
-}
+    // Plota o gráfico na tela
+    function grafico() {
+        
+        
+        $('#temperatura').highcharts({
+            chart: {
+                type: 'spline',
+                inverted: true
+            },
+            title: {
+                text: 'Temperatura por Ciclo'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                reversed: false,
+                title: {
+                    enabled: true,
+                    text: 'Temperatura'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + 'ºC';
+                    }
+                },
+                maxPadding: 0.05,
+                showLastLabel: true
+            },
+            yAxis: {
+                title: {
+                    text: 'Ciclo'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + '';
+                    }
+                },
+                lineWidth: 2
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br/>',
+                pointFormat: '{point.x} ºC: {point.y} Ciclo'
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enable: false
+                    }
+                }
+            },
+            series: [{
+                name: 'Tempo',
+                data: {{ detalhamento_do_teste.graficoTemp }}
+            }]
+        });
+    }
+
+    // Esconde a imagem de loading
+    function terminarLoaging() {
+         $.LoadingOverlay("hide");
+    }
 
 </script>
-        
-        
-        
-    
-
-
 {% endblock %}
