@@ -28,37 +28,7 @@ def home(request):
             'title':'Home Page',
             'year':datetime.now().year,
         })
-    )
-
-#@login_required
-#def iniciarTeste(request):
-#    """Renders the  page."""
-#    assert isinstance(request, HttpRequest)
-#    return render(
-#        request,
-#        'app/iniciarTeste.html',
-#        context_instance = RequestContext(request,
-#        {
-#            'title':'Iniciar teste',
-#            'message':'',
-#            'year':datetime.now().year,
-#        })
-#    )
-
-#def historico(request):
-#    """Renders the  page."""
-#    assert isinstance(request, HttpRequest)
-#    return render(
-#        request,
-#        'app/historico.html',
-#        context_instance = RequestContext(request,
-#        {
-#            'title':'Historico',
-#            'message':'',
-#            'year':datetime.now().year,
-#        })
-#    )
-    
+    )    
 
 #@login_required
 def teste(request):
@@ -176,6 +146,14 @@ def historico(request):
     lista_de_testes = Teste.objects.order_by('teste_id')
 
     return render(request, page, {'lista_de_testes': lista_de_testes})
+
+def historicoAmortecedor(request):
+
+    page = 'app/historicoAmortecedor.html'
+
+    lista_de_amortecedores = Amortecedor.objects.order_by('amortecedor_codigo')
+
+    return render(request, page, {'lista_de_amortecedores': lista_de_amortecedores})
     
 def grafico(request):
     page='app/grafico.html'
