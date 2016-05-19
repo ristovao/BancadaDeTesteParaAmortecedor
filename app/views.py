@@ -147,7 +147,7 @@ def historico(request):
 
     return render(request, page, {'lista_de_testes': lista_de_testes})
 
-def historicoAmortecedor(request):
+def amortecedorHistorico(request):
 
     page = 'app/historicoAmortecedor.html'
 
