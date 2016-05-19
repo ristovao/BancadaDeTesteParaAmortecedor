@@ -72,7 +72,6 @@
 
 <script>
 
-<<<<<<< HEAD
 $.ajax({
     url: "/json/nomeAmortecedor",
     success: function(json) {
@@ -85,22 +84,9 @@ $.ajax({
       close: function(){
                     this.blur();
      }
-=======
-    $.ajax({
-        url: "/json/nomeAmortecedor",
-        success: function(json) {
-            $(function() {
-                var availableTags = ['12','45','as','ter'];
-       
-                $( "#id_amortecedor_codigo" ).autocomplete({
-                    source: json.nomes,
-                    close: function(){
-                        this.blur();
-                    }
                 });
             });
         }
->>>>>>> 0c77e8a02ae054823f569c524559ea065bf9befe
     });
 
     $("#id_amortecedor_codigo").blur(function(){
