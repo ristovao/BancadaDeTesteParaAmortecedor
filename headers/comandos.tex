@@ -1,0 +1,59 @@
+\graphicspath{{resource/}}
+\DeclareGraphicsExtensions{.png,.jpg,.pdf}
+
+\newcommand{\curso}[1]{\def\imprimircurso{#1}}
+
+\newcommand\BackgroundPic{
+	\put(0,0){
+		\parbox[b][\paperheight]{\paperwidth}{
+			\vfill
+			\centering
+			\includegraphics[width=\paperwidth,height=\paperheight,
+				keepaspectratio]{capa}
+			\vfill
+		}
+	}
+}
+
+\renewcommand{\imprimircapa}{
+  \begin{capa}
+    \center
+	\AddToShipoutPicture*{\BackgroundPic}
+
+    \vspace*{2.7in}
+	{\textbf{\large\imprimirinstituicao}}
+	\par
+	{\textbf{\large\imprimircurso}}
+
+	\vspace{0.5in}
+
+    {\ABNTEXchapterfont\bfseries\LARGE\imprimirtipotrabalho}
+    \vspace*{\fill}
+    
+	\begin{flushright}
+    	\textbf{{\large{Ponto de Controle II}}}
+		\par
+    	%\textbf{{\large{Projeto Integrador de Engenharias II}}}
+	\end{flushright}
+		
+    \vspace*{0.2in}
+    \textbf{{\large\imprimirlocal}}
+    \par
+    \textbf{{\large\imprimirdata}}
+    
+    \vspace*{2.2in}
+  \end{capa}
+}
+
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+\renewcommand{\backref}{}
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+

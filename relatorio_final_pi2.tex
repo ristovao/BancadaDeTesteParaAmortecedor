@@ -1,0 +1,45 @@
+\input{headers/pacotes}
+\input{headers/comandos}
+
+\input{source/informacoes}
+\input{headers/setup}
+
+\begin{document}
+
+	\frontmatter
+		\frenchspacing
+		\imprimircapa
+		%\renewcommand{\imprimirorientadorRotulo}{ Orientador: }
+		\imprimirfolhaderosto
+		
+		\input{source/resumo}
+		\input{source/abstract}
+		\input{headers/indiceAutomatico}
+		\input{headers/listasAutomaticas}
+		%\input{source/abreviaturas}
+		
+
+	\textual
+
+	\mainmatter
+		
+		
+		\input{source/apresentacaoTrabalho}
+		\input{source/editable/introducao}
+		\input{source/editable/referencialTeorico}
+		\input{source/editable/metodologia}
+		\input{source/editable/desenvolvimento}
+		\input{source/editable/consideracoes}
+		
+		
+		%\bibliographystyle{plain}	
+		\bibliography{bibliografia}
+		%\nocite{slack, costa, razzolini, sir, lamonica, stevenson, martin, chopra, pires, taylor}
+		
+		\input{source/anexos}
+	\backmatter
+		\bookmarksetup{startatroot} 
+		\postextual
+    		\printindex
+
+\end{document}
