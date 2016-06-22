@@ -24,6 +24,7 @@
 
     <!-- DataTables CSS -->
     <link href="{% static 'app/content/jquery.dataTables.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'app/content/jquery-ui.css' %}" />
 
     <!-- jQuery -->
     <script src="{% static 'app/scripts/jquery.min.js' %}"></script>
@@ -172,8 +173,7 @@
     <script src="{% static 'app/scripts/respond.js' %}"></script>
     <script src="{% static 'app/scripts/highcharts.js' %}"></script>
     <script src="{% static 'app/scripts/modules/exporting.js' %}"></script>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="{% static 'app/scripts/jquery-ui.min.js' %}"></script>
     <!-- DataTables CSS -->
     <script src="{% static 'app/scripts/jquery.dataTables.min.js' %}"></script>
         {% block content %}{% endblock %}
