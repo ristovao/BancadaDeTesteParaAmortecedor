@@ -58,11 +58,11 @@
                                 <label class="col-sm-2 form-control-label" for="id_amortecedor_curso">Curso:</label>
 
                                 <div class="col-sm-2">
-                                    <label class="radio-inline" for="id_amortecedor_curso_0"><input type="radio" name="amortecedor_curso" id="id_amortecedor_curso_0">05</label>
+                                    <label class="radio-inline" for="id_amortecedor_curso_0"><input type="radio" name="amortecedor_curso" id="id_amortecedor_curso_5" value="5">05</label>
 
-                                    <label class="radio-inline" for="id_amortecedor_curso_1"><input type="radio" name="amortecedor_curso" id="id_amortecedor_curso_1">10</label>
+                                    <label class="radio-inline" for="id_amortecedor_curso_1"><input type="radio" name="amortecedor_curso" id="id_amortecedor_curso_10" value="10">10</label>
 
-                                    <label class="radio-inline" for="id_amortecedor_curso_2"><input type="radio" name="amortecedor_curso" id="id_amortecedor_curso_2">15</label>
+                                    <label class="radio-inline" for="id_amortecedor_curso_2"><input type="radio" name="amortecedor_curso" id="id_amortecedor_curso_15" value="15">15</label>
                                 </div>
                             </div>
 
@@ -70,11 +70,11 @@
                                 {{ form.amortecedor_diametro_externo.errors }}
                                 <label class="col-sm-2 form-control-label" for="id_amortecedor_diametro_externo">Diâmetro Externo:</label>  
                                 <div class="col-sm-2">
-                                    <label class="radio-inline" for="id_amortecedor_diametro_externo"><input type="radio" name="optrdiametro" id="id_amortecedor_diametro_externo_0">05</label>
+                                    <label class="radio-inline" for="id_amortecedor_diametro_externo"><input type="radio" name="id_amortecedor_diametro_externo" id="id_amortecedor_diametro_externo_5" value="5">05</label>
 
-                                    <label class="radio-inline" for="id_amortecedor_diametro_externo"><input type="radio" name="optrdiametro" id="id_amortecedor_diametro_externo_1">10</label>
+                                    <label class="radio-inline" for="id_amortecedor_diametro_externo"><input type="radio" name="id_amortecedor_diametro_externo" id="id_amortecedor_diametro_externo_10" value="10">10</label>
 
-                                    <label class="radio-inline" for="id_amortecedor_diametro_externo"><input type="radio" name="optrdiametro" id="id_amortecedor_diametro_externo_2">15</label>
+                                    <label class="radio-inline" for="id_amortecedor_diametro_externo"><input type="radio" name="id_amortecedor_diametro_externo" id="id_amortecedor_diametro_externo_15" value="15">15</label>
                                 </div>
                             </div>
 
@@ -173,13 +173,16 @@ $.ajax({
         $.getJSON(url, function(dadosRetorno){
              try{
                  // Insere os dados em cada campo
-                 $("#id_amortecedor_diametro_externo").val(dadosRetorno.amortecedor_diametro_externo);
-                 $("#id_amortecedor_curso").val(dadosRetorno.amortecedor_curso);
-                 $("#id_amortecedor_diametro_externo").prop('readonly', true);
-                 $("#id_amortecedor_curso").prop('readonly', true);
+                 $(':radio:not(:checked)').attr('disabled', true);
+
+                 $("#id_amortecedor_diametro_externo_"+dadosRetorno.amortecedor_diametro_externo).attr('checked', true);
+                 $("#id_amortecedor_curso_"+dadosRetorno.amortecedor_curso).attr('checked', true);
+                 //$("#id_amortecedor_diametro_externo").prop('readonly', true);
+                 //$("#id_amortecedor_curso").prop('readonly', true);
                  if (dadosRetorno.erro) {
-                     $("#id_amortecedor_diametro_externo").prop('readonly', false);
-                     $("#id_amortecedor_curso").prop('readonly', false);
+                     //$("#id_amortecedor_diametro_externo").prop('readonly', false);
+                     //$("#id_amortecedor_curso").prop('readonly', false);
+                     $(':radio:not(:checked)').attr('disabled', false);
                  }
              }catch(ex){
              

@@ -34,14 +34,27 @@ class Teste(models.Model):
 	teste_data_hora = models.DateTimeField(default=timezone.now, verbose_name='Data')
 	#graficos = models.ForeignKey(Grafico, verbose_name='Gráficos', on_delete=models.CASCADE)
 	amortecedor = models.ForeignKey(Amortecedor, on_delete=models.CASCADE)
-	graficoTemperatura = models.BinaryField(null = True)
+	graficoTemperaturaTempo = models.BinaryField(null = True)
 	graficoForcaTempo = models.BinaryField(null = True)
-	graficoMimimi = models.BinaryField(null = True)
-	def getGraficoTemperatura(self):
-		return loads(self.graficoTemperatura)
+	graficoForcaDeslocamento = models.BinaryField(null = True)
+	
+	def getGraficoTemperaturaTempo(self):
+		return loads(self.graficoTemperaturaTempo)
 		
-	def setGraficoTemperatura(self,lista):
-		self.graficoTemperatura = dumps(lista)
+	def setGraficoTemperaturaTempo(self,lista):
+		self.graficoTemperaturaTempo = dumps(lista)
+		
+	def getGraficoForcaTempo(self):
+		return loads(self.graficoForcaTempo)
+		
+	def setGraficoForcaTempo(self,lista):
+		self.graficoForcaTempo = dumps(lista)
+		
+	def getGraficoForcaDeslocamento(self):
+		return loads(self.graficoForcaDeslocamento)
+		
+	def setrGaficoForcaDeslocamento(self,lista):
+		self.graficoForcaDeslocamento = dumps(lista)
 	
 class TesteVelocidadeFixa(Teste):
 
