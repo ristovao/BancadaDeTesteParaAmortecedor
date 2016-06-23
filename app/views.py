@@ -52,6 +52,8 @@ def detalharTeste(request, primary_key):
     teste_current  = list(chain(TesteTemperatura.objects.filter(teste_id=primary_key),TesteVelocidadeFixa.objects.filter(teste_id=primary_key),TesteVelocidadeVariavel.objects.filter(teste_id=primary_key)))
     teste_current = teste_current[0]
     teste_current.graficoTemp = str(teste_current.getGraficoTemperaturaTempo())
+    teste_current.graficoForcaDeslocamento = str(teste_current.getGraficoForcaDeslocamento())
+    teste_current.graficoForcaTempo = str(teste_current.getGraficoForcaTempo())
     return render(request, page, {'detalhamento_do_teste': teste_current})
 
 @login_required
@@ -85,6 +87,10 @@ def iniciarTesteVelocidadeFixa(request):
             teste.curso = request.POST['curso']
             listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
+            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            teste.setGraficoForcaTempo(listaDeValores)
+            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
 
@@ -110,6 +116,10 @@ def iniciarTesteVelocidadeVariavel(request):
             teste.teste_observacoes = request.POST['teste_observacoes']
             listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
+            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            teste.setGraficoForcaTempo(listaDeValores)
+            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
 
