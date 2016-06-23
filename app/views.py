@@ -76,13 +76,13 @@ def iniciarTesteVelocidadeFixa(request):
                 amortecedor = formArm.save(commit=False)
                 amortecedor.amortecedor_codigo = request.POST['amortecedor_codigo']
                 amortecedor.amortecedor_diametro_externo = request.POST['amortecedor_diametro_externo']
-                amortecedor.amortecedor_curso = request.POST['amortecedor_curso']
                 amortecedor.save()
                 teste.amortecedor=amortecedor
             teste.teste_nome = request.POST['teste_nome']
             teste.testeVF_velocidade = request.POST['testeVF_velocidade']
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
+            teste.curso = request.POST['curso']
             listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
             teste.save()
@@ -169,7 +169,7 @@ def pegarDadosAmortecedor(request,primary_key):
     else:
         d=amortecedor[0]
         dados['amortecedor_diametro_externo']=str(d.amortecedor_diametro_externo)
-        dados['amortecedor_curso']=str(d.amortecedor_curso)
+        #dados['amortecedor_curso']=str(d.amortecedor_curso)
     
     return JsonResponse(dados)
 

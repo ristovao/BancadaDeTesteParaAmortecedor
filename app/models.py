@@ -13,8 +13,7 @@ class Amortecedor (models.Model):
 	#amortecedor_id = models.AutoField(primary_key=True, verbose_name='ID do Amortecedor')
 	amortecedor_codigo = models.CharField(max_length=45, primary_key=True, verbose_name='Código') 
 	amortecedor_diametro_externo = models.FloatField(verbose_name='Tamanho do Diâmetro Externo')
-	amortecedor_curso = models.FloatField(verbose_name='Tamanho do Curso')
-
+	
 	def __repr__(self):
 		return self.amortecedor_codigo
 	def __str__(self):
@@ -37,7 +36,8 @@ class Teste(models.Model):
 	graficoTemperaturaTempo = models.BinaryField(null = True)
 	graficoForcaTempo = models.BinaryField(null = True)
 	graficoForcaDeslocamento = models.BinaryField(null = True)
-	
+	curso = models.FloatField(verbose_name='Tamanho do Curso')
+
 	def getGraficoTemperaturaTempo(self):
 		return loads(self.graficoTemperaturaTempo)
 		

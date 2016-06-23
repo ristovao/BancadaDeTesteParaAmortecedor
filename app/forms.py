@@ -24,7 +24,7 @@ class TesteVelocidadeFixaForm(forms.ModelForm):
     model = TesteVelocidadeFixa
     #fields = '__all__'
     #exclude = ['teste_data_hora']   
-    fields = ('teste_id', 'teste_nome', 'teste_quantidade_ciclo', 'testeVF_velocidade', 'teste_observacoes')
+    fields = ('teste_id', 'teste_nome', 'teste_quantidade_ciclo', 'testeVF_velocidade', 'teste_observacoes', 'curso')
 
 
 class TesteVelocidadeVariavelForm(forms.ModelForm):
@@ -45,5 +45,5 @@ class AmortecedorForm(forms.ModelForm):
 
   class Meta:
     model = Amortecedor
-    fields = ('amortecedor_codigo', 'amortecedor_diametro_externo', 'amortecedor_curso')
+    fields = ('amortecedor_codigo', 'amortecedor_diametro_externo')
 

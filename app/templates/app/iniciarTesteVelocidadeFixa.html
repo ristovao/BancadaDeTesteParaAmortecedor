@@ -46,29 +46,14 @@
                         </div>
                     </div> -->
 
-                    <div class="form-group row">
-                        {{ form.amortecedor_curso.errors }}   
-                        <label class="col-sm-2 form-control-label" for="id_amortecedor_curso">Curso:</label>
+                    
 
-                        <div class="col-sm-2">
-                            <select id="id_amortecedor_curso" name="amortecedor_curso">
-                            <option value="10.0" selected="selected">10</option>
-                            <option value="12.5">12.5</option>
-                            <option value="15.0">15</option>
-                            </select> cm
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
+                     <div class="form-group row">
                         {{ form.amortecedor_diametro_externo.errors }}
-                        <label class="col-sm-2 form-control-label" for="id_amortecedor_diametro_externo">Diâmetro Externo:</label>  
-                        <div class="col-sm-2">
-                            <select id="id_amortecedor_diametro_externo" name="amortecedor_diametro_externo">
-                            <option value="10.0" selected="selected">10</option>
-                            <option value="12.5">12.5</option>
-                            <option value="15.0">15</option>
-                            </select>  cm   
-                            </div>
+                        <label class="col-sm-2 form-control-label" for="id_amortecedor_diametro_externo">Tamanho do Diâmetro Externo:</label>
+                        <div class="col-sm-1">
+                            <input class="form-control" id="id_amortecedor_diametro_externo" name="amortecedor_diametro_externo" type="number" value="1"/>
+                        </div>
                     </div>
 
 
@@ -91,6 +76,23 @@
                             <input class="form-control" id="id_teste_quantidade_ciclo" name="teste_quantidade_ciclo" type="number" value="5" />
                         </div>
                     </div>
+                    
+                    
+                    
+                    <div class="form-group row">
+                        {{ form.amortecedor_curso.errors }}   
+                        <label class="col-sm-2 form-control-label" for="id_amortecedor_curso">Curso:</label>
+
+                        <div class="col-sm-2">
+                            <select id="curso" name="curso">
+                            <option value="10.0" selected="selected">10</option>
+                            <option value="12.5">12.5</option>
+                            <option value="15.0">15</option>
+                            </select> cm
+                        </div>
+                    </div>
+                    
+                    
 
                     <div class="form-group row">
                      {{ form.testeVF_velocidade.errors }}
@@ -168,13 +170,13 @@ $.ajax({
                  //$(':radio').attr('disabled', true);
                  if (dadosRetorno.erro) {
                      $("#id_amortecedor_diametro_externo").prop('readonly', false);
-                     $("#id_amortecedor_curso").prop('readonly', false);
+                     //$("#id_amortecedor_curso").prop('readonly', false);
                      //$(':radio').attr('disabled', false);
                  }else{
                      $("#id_amortecedor_diametro_externo").val(dadosRetorno.amortecedor_diametro_externo);
-                     $("#id_amortecedor_curso").val(dadosRetorno.amortecedor_curso);
+                     //$("#id_amortecedor_curso").val(dadosRetorno.amortecedor_curso);
                      $("#id_amortecedor_diametro_externo").prop('readonly', true);
-                     $("#id_amortecedor_curso").prop('readonly', true);
+                     //$("#id_amortecedor_curso").prop('readonly', true);
                  }
              }catch(ex){
              
