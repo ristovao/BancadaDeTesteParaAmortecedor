@@ -1,1 +1,1 @@
-# BancadaDeTesteParaAmortecedor
+Relatório referente ao grupo de software de PI2
