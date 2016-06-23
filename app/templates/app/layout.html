@@ -24,7 +24,6 @@
 
     <!-- DataTables CSS -->
     <link href="{% static 'app/content/jquery.dataTables.min.css' %}" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="{% static 'app/content/jquery-ui.css' %}" />
 
     <!-- jQuery -->
     <script src="{% static 'app/scripts/jquery.min.js' %}"></script>
@@ -70,66 +69,27 @@
                     Bem Vindo <b>{{ user.username }}</b>!
                 </li>
 
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> Novo teste manual
-                                    <span class="pull-right text-muted small">há 4 minutos</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>Outros Alertas</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-alerts -->
-                </li>
-                <!-- /.dropdown -->
-
+                <!-- Dropdown do usuário -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil do Usuário</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
-                        </li>
-                        <li class="divider"></li>
-                        {% include 'app/loginParte.html' %}
+                    {% include 'app/loginParte.html' %}
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
             </ul>
+
+
             <!-- /.navbar-top-links -->
             <!-- Menu inicial - HEADER - Fim -->
 
-                        <!-- Menu lateral - ESQUERDO - Inicio -->
+            <!-- Menu lateral - ESQUERDO - Inicio -->
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                                 <center><h5>Busca Rápida de Teste: </h5></center>
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="[Insira uma data]">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
                         <li>
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Iniciar Teste<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -173,12 +133,23 @@
     <script src="{% static 'app/scripts/respond.js' %}"></script>
     <script src="{% static 'app/scripts/highcharts.js' %}"></script>
     <script src="{% static 'app/scripts/modules/exporting.js' %}"></script>
-    <script src="{% static 'app/scripts/jquery-ui.min.js' %}"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <!-- DataTables CSS -->
     <script src="{% static 'app/scripts/jquery.dataTables.min.js' %}"></script>
-        {% block content %}{% endblock %}
+   
+            <!-- Conteúdo Central - Centro - Inicio -->
+        <div id="page-wrapper">
+
+    {% block content %}{% endblock %}
 
     {% block scripts %}{% endblock %}
+        </div>
+        <!-- /#page-wrapper -->
+        <!-- Conteúdo Central - Centro - Fim -->
+
+
+
 </div>
 </body>
 </html>

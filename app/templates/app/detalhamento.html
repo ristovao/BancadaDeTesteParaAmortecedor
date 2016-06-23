@@ -1,66 +1,54 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-
-
-
-
-
-<!-- Conteúdo Central - Centro - Inicio -->
-<div id="page-wrapper">
-
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Resultado do teste {{detalhamento_do_teste.teste_nome}}</h1>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Informações básicas
-                </div>
-                <div class="panel-body">
-                    <!--Cabeçalho do Gráfico-->
-                    <div class="nome">
-                        {% if detalhamento_do_teste.teste_nome %}
-                            <label>Nome do teste: {{ detalhamento_do_teste.teste_nome }}</label>
-                        {% endif %}
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-4 form-control-label">Ciclos: {{ detalhamento_do_teste.teste_quantidade_ciclo }}</label>
-                    </div>
-                    <div class="row">
-                        <label class="col-sm-4 form-control-label">Velocidade do motor: {{ detalhamento_do_teste.testeVF_velocidade }}</label> 
-                    </div>
-                    <div class="row">          
-                        <label class="col-sm-4 form-control-label">Tempo total do teste: {{ detalhamento_do_teste.teste_tempo_total }}</label>
-                    </div> 
-                    <div class="row">
-                        <label class="col-sm-4 form-control-label">Observações: {{detalhamento_do_teste.teste_observacoes|linebreaks }}</label>
-                    </div> 
-
-                    <h4 class="page-header"></h4>
-                    <!-- Gráfico-->
-                    <div id="temperatura" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-
-    <div class="row">
-        <div class="col-lg-8">
-               
-        </div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Resultado do teste {{detalhamento_do_teste.teste_nome}}</h1>
     </div>
 </div>
-<!-- /#page-wrapper -->
-<!-- Conteúdo Central - Centro - Fim -->
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Informações básicas
+            </div>
+            <div class="panel-body">
+                <!--Cabeçalho do Gráfico-->
+                <div class="nome">
+                    {% if detalhamento_do_teste.teste_nome %}
+                        <label>Nome do teste: {{ detalhamento_do_teste.teste_nome }}</label>
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <label class="col-sm-4 form-control-label">Ciclos: {{ detalhamento_do_teste.teste_quantidade_ciclo }}</label>
+                </div>
+                <div class="row">
+                    <label class="col-sm-4 form-control-label">Velocidade do motor: {{ detalhamento_do_teste.testeVF_velocidade }}</label> 
+                </div>
+                <div class="row">          
+                    <label class="col-sm-4 form-control-label">Tempo total do teste: {{ detalhamento_do_teste.teste_tempo_total }}</label>
+                </div> 
+                <div class="row">
+                    <label class="col-sm-4 form-control-label">Observações: {{detalhamento_do_teste.teste_observacoes|linebreaks }}</label>
+                </div> 
+
+                <h4 class="page-header"></h4>
+                <!-- Gráfico-->
+                <div id="temperatura" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+           
+    </div>
+</div>
 {% endblock %}
 
 
