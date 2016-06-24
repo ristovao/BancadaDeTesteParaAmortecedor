@@ -80,33 +80,6 @@
 
 	\textbf{Modulo 1}
 
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
-\begin{table}[h]
-\centering
-\caption{Histórias de Usuário}
-\label{my-label}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{ll}
-\hline
-\multicolumn{2}{c}{\textbf{Backlog do Produto}} \\ \hline
-\multicolumn{1}{c}{\textbf{ID}} & \multicolumn{1}{c}{\textbf{Descrição}} \\ \hline
-US1 & \begin{tabular}[c]{@{}l@{}}Como usuário, eu gostaria de ter um sistema de login para que apenas o\\ usuário logado possa realizar o teste.\end{tabular} \\ \hline
-US2 & Como administrador, eu gostaria de realizar um teste com velocidades fixas \\ \hline
-US3 & Como administrador, eu gostaria de realizar um teste com velocidades variáveis \\ \hline
-US4 & Como administrador, eu gostaria de realizar um teste com várias temperaturas \\ \hline
-US5 & \begin{tabular}[c]{@{}l@{}}Como administrador, eu quero visualizar os gráficos do teste para ter acesso\\ aos resultados\end{tabular} \\ \hline
-US6 & \begin{tabular}[c]{@{}l@{}}Como administrador, eu desejo excluir um teste realizado para manter o \\ histórico limpo de testes indesejados.\end{tabular} \\ \hline
-US7 & \begin{tabular}[c]{@{}l@{}}Como usuário, eu gostaria de ver os dados detalhados do teste para ter \\ acesso a todas as informações referentes ao teste\end{tabular} \\ \hline
-US8 & Como usuário, eu gostaria de exportar os dados do teste para que eu possa imprimi-los \\ \hline
-US9 & \begin{tabular}[c]{@{}l@{}}Como usuário, eu gostaria de visualizar o histórico dos testes para visualizar a lista dos \\ experimentos já realizados na bancada.\end{tabular} \\ \hline
-US10 & \begin{tabular}[c]{@{}l@{}}Como usuário, gostaria de realizar uma busca dos testes realizados na bancada para \\ que eu tenha acesso de forma rápida\end{tabular} \\ \hline
-US11 & \begin{tabular}[c]{@{}l@{}}Como usuário, eu gostaria de visualizar um histórico dos amortecedores para que eu\\  possa visualizar os amortecedores já cadastrados\end{tabular} \\ \hline
-US12 & \begin{tabular}[c]{@{}l@{}}Como usuário, gostaria de realizar uma busca dos amortecedores cadastrados\\ para que eu tenha acesso de forma rápida\end{tabular} \\ \hline
-\end{tabular}%
-}
-\end{table}
-
 	O primeiro módulo, cliente, será responsável por estabelecer a comunicação do usuário com a bancada a fim de estabelecer um canal de comunicação para a entrada/saída de dados. Para isso, desenvolvera-se uma aplicação \textit{web-app} o qual será embarcada no microcontrolador e assim, ausenta a necessita do usuário final ter um aplicativo específico para interagir com o sistema, sendo necessário apenas um \textit{browser} a partir de um dispositivo que permita conexão via wi-fi. Este primeiro módulo será desenvolvido utilizando a linguagem Python v.3.4.3 utilizando \textit{framework} Django v.1.9. 
 
 	Apesar do Django apresentar um arquitetura própria baseado no MVC (Model-View-Controller), o \textit{framework} permite a inserção de padrões de software sobre a medida do desenvolver conforme suas necessidades.
