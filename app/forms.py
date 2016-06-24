@@ -31,7 +31,7 @@ class TesteVelocidadeVariavelForm(forms.ModelForm):
 
   class Meta:
     model = TesteVelocidadeVariavel
-    fields = ('amortecedor', 'teste_id', 'teste_nome', 'teste_quantidade_ciclo', 'teste_observacoes',)
+    fields = ( 'teste_id', 'teste_nome', 'teste_quantidade_ciclo', 'teste_observacoes','curso')
 
 
 class TesteTemperaturaForm(forms.ModelForm):

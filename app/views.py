@@ -3,7 +3,7 @@ from django.http import HttpRequest, JsonResponse
 from django.template import RequestContext
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from .forms import AmortecedorForm, TesteVelocidadeFixaForm, TesteVelocidadeVariavelForm, TesteTemperaturaForm
+from .forms import AmortecedorForm, TesteVelocidadeFixaForm, TesteVelocidadeVariavelForm, TesteTemperaturaForm, UnknownForm
 from .models import Amortecedor, Teste, TesteVelocidadeFixa, TesteVelocidadeVariavel, TesteTemperatura
 from django.contrib.sessions.models import Session
 from importlib import import_module
@@ -11,6 +11,7 @@ from django.conf import settings
 import random
 from itertools import chain
 import socket
+
 
 
 def home(request):
@@ -109,11 +110,44 @@ def iniciarTesteVelocidadeVariavel(request):
 
     if request.method == "POST":
         form = TesteVelocidadeVariavelForm(request.POST)
+        choices=[]
+        if 'choices1' in request.POST:
+            choices.append(request.POST['choices1'])
+        if 'choices2' in request.POST:
+            choices.append(request.POST['choices2'])
+        if 'choices3' in request.POST:
+            choices.append(request.POST['choices3'])
         
-        if form.is_valid():
+        if len(choices)==0:
+            form.erroChoice = "Selecione uma velocidade"
+            formArm = AmortecedorForm()
+            return render(request, page, {'form':form, 'formArm':formArm})
+
+            
+        formArm = AmortecedorForm(request.POST)
+        if 'amortecedor_codigo' in request.POST :
+            amortecedorList = Amortecedor.objects.filter(amortecedor_codigo=request.POST['amortecedor_codigo'])
+            if len(amortecedorList):
+                amortecedor = amortecedorList[0]
+                formArm = AmortecedorForm(request.POST, instance=amortecedor)
+        
+        if form.is_valid() and formArm.is_valid():
+            
+            
+            
             teste = form.save(commit=False)
+            if len(amortecedorList):
+                teste.amortecedor=amortecedor
+            else:
+                amortecedor = formArm.save(commit=False)
+                amortecedor.amortecedor_codigo = request.POST['amortecedor_codigo']
+                amortecedor.amortecedor_diametro_externo = request.POST['amortecedor_diametro_externo']
+                amortecedor.save()
+                teste.amortecedor=amortecedor
             teste.teste_nome = request.POST['teste_nome']
-            teste.testeVV_quantidade_velocidade = request.POST['testeVV_quantidade_velocidade']
+            teste.testeVV_quantidade_velocidade = len(choices)
+            teste.curso = 10
+            teste.setArrayVelocidades(choices)
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
             listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
@@ -127,8 +161,8 @@ def iniciarTesteVelocidadeVariavel(request):
 
     else:
         form = TesteVelocidadeVariavelForm()
-    
-    return render(request, page, {'form':form})
+        formArm = AmortecedorForm()
+    return render(request, page, {'form':form, 'formArm':formArm})
 
 @login_required
 def iniciarTesteTemperatura(request):
@@ -202,19 +236,20 @@ def pegarValores(quant):
     BUFFER_SIZE=10000
     while 1:
         try:
-            clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            clientsocket.connect(('localhost', 4567))
+            #clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            #clientsocket.connect(('localhost', 4567))
             #temp = clientsocket.send('hello')
-            g = clientsocket.recv(3)
-            g = g.decode("utf-8") 
-            g = g.split(",")
-            g = map(int,g)
-            g = list(g)
+            #g = clientsocket.recv(3)
+            #g = g.decode("utf-8") 
+            #g = g.split(",")
+            #g = map(int,g)
+            #g = list(g)
             f = []
             for i in range(int(quant)):
                 f.append([random.randint(0,90),i])
             break
         except:
             pass
-    return g
+    return f
             
+
