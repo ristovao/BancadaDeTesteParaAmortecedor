@@ -61,18 +61,18 @@
 			Apresentação PC1                                                                                      & Larissa                                                            & 22/04                & 22/04             & 100\%                                                               \\ \hline
 			\begin{tabular}[c]{@{}c@{}}Equacionamento da Biela Manviela \\ Analítico\end{tabular}                 & Breno                                                              & 25/04                & 29/04             & 100\%                                                               \\ \hline
 			Análises cinemáticas e dinâmicas                                                                      & Larissa                                                            & 02/05                & 06/05             & 100\%                                                               \\ \hline
-			Desenhar sistema de excitação                                                                         & Larissa                                                            & 02/05                & 06/05             & 90\%                                                                \\ \hline
+			Desenhar sistema de excitação                                                                         & Larissa                                                            & 02/05                & 06/05             & 100\%                                                                \\ \hline
 			Transmissão                                                                                           & Paulo                                                              & 09/05                & 13/05             & 90\%                                                                \\ \hline
 			Análises estruturais                                                                                  & Larissa                                                            & 09/05                & 13/05             & 100\%                                                               \\ \hline
 			Revisão do texto do Relatório                                                                         & Larissa                                                            & 16/05                & 25/05             & 100\%                                                               \\ \hline
 			Apresentação PC 2                                                                                     & Paulo                                                              & 26/05                & 01/06             & 100\%                                                               \\ \hline
-			Contruir parte deslizante da bancada                                                                  & Breno                                                              & 25/05                & 29/05             & 15\%                                                                \\ \hline
-			Fabricar Biela e polia da manivela                                                                    & Larissa                                                            & 29/05                & 05/06             & 15\%                                                                \\ \hline
-			Adquirir peças da Transmissão                                                                         & Paulo                                                              & 29/05                & 05/06             & 20\%                                                                \\ \hline
-			Montar a estrutra                                                                                     & Larissa                                                            & 05/06                & 1206              & 0\%                                                                 \\ \hline
-			Montar o sistema de exitação                                                                          & Breno                                                              & 05/06                & 12/06             & 0\%                                                                 \\ \hline
-			Montar o sistema de transmissão                                                                       & Paulo                                                              & 05/06                & 12/06             & 0\%                                                                 \\ \hline
-			\begin{tabular}[c]{@{}c@{}}Testar o sistema de exitação em\\  conjunto com a trasminssão\end{tabular} & Breno                                                              & 12/06                & 20/06             & 0\%                                                                 \\ \hline
+			Contruir parte deslizante da bancada                                                                  & Breno                                                              & 25/05                & 29/05             & 100\%                                                                \\ \hline
+			Fabricar Biela e polia da manivela                                                                    & Larissa                                                            & 29/05                & 05/06             & 100\%                                                                \\ \hline
+			Adquirir peças da Transmissão                                                                         & Paulo                                                              & 29/05                & 05/06             & 100\%                                                                \\ \hline
+			Montar a estrutra                                                                                     & Larissa                                                            & 05/06                & 1206              & 100\%                                                                 \\ \hline
+			Montar o sistema de exitação                                                                          & Breno                                                              & 05/06                & 12/06             & 100\%                                                                 \\ \hline
+			Montar o sistema de transmissão                                                                       & Paulo                                                              & 05/06                & 12/06             & 100\%                                                                 \\ \hline
+			\begin{tabular}[c]{@{}c@{}}Testar o sistema de exitação em\\  conjunto com a trasminssão\end{tabular} & Breno                                                              & 12/06                & 20/06             & 100\%                                                                 \\ \hline
 			\end{tabular}%
 		}
 		\end{table}
@@ -100,12 +100,12 @@
 		\end{itemize}
 
 
-
-\subsection{Sistema de Transmissão}
+\subsection{Ponto de Controle II}
+\subsubsection{Sistema de Transmissão}
 
 	Nesta seção serão mostradas as decisões a respeito do sistema de transmissão, assim como o equacionamento e cálculos referentes a ele.
 
-	\subsubsection{Definições}
+	\subsubsubsection{Definições}
 
 		Nessa bancada, temos um motor que deve transmitir seu movimento de rotação para a manivela. Há ainda, a necessidade de multiplicar o torque desse motor, para que ele seja suficiente para movimentar a manivela e o amortecedor. Além disso, é preciso que a velocidade do motor seja reduzida, para que a manivela trabalhe na rotação desejada, com o motor trabalhando em rotações altas, onde tem maior torque.
 
@@ -211,11 +211,11 @@
 			\label{desMecanica004}
 		\end{figure}
 
-\subsection{Análises}
+\subsubsection{Análises}
 	
 	Nesta seção serão mostradas as análises realizadas no projeto, que foram divididas em análise dinâmica, realizada em ambiente multicorpos no software  Adams/Car, e análises estáticas, realizadas no software ANSYS para o dimensionamento de peças. 
 
-	\subsubsection{Equacionamento Biela-Manivela}
+	\subsubsubsection{Equacionamento Biela-Manivela}
 
 		Com o propósito de analisar o sistema biela manivela, utilizou-se o método de números complexos para determinar as equações cinemáticas e dinâmicas do sistema, com isto foi possível determinar alguns parâmetros importantes, como velocidade e aceleração por exemplo. Utilizou-se o MatLab®, para representar graficamente os resultados.
 
@@ -295,7 +295,7 @@
 			w_{3} = - w_{2} (\frac{R_{2}cos(\theta)}{R_{3}cos(\gamma)})
 		\end{equation}
 
-	\subsubsection{Análise Dinâmica}
+	\subsubsubsection{Análise Dinâmica}
 
 		O mecanismo biela manivela é utilizado para transformação de um movimento de rotação em movimento linear, esse sistema tem diversas aplicações na engenharia, como em motores e locomotivas. Na figura \ref{desMecanica007} é apresentado o sistema biela manivela que será utlizado na bancada e as variáveis utilizadas para o equacionamento.
 
@@ -389,7 +389,7 @@
 			\label{desMecanica015}
 		\end{figure}
 
-	\subsubsection{Análises Estruturais}
+	\subsubsubsection{Análises Estruturais}
 
 		Para a análise estrutural das peças faz-se necessário a escolha dos materiais da bancada, geometria das peças, e forças dinâmicas atuantes na mesma. Na seção anterior foi descrita a metodologia para obtenção das forças dinâmicas, a geometria foi modelada no software CATIA V5 e os materiais estão apresentados na figura \ref{desMecanica016}.
 
@@ -462,8 +462,11 @@
 		A análise com a força Y atingiu 55,71 MPa, onde não atinge o escoamento do aço 1020.
 
 
-
-
+\newpage
+\subsection{Ponto de Controle III}
+\subsubsection{PC III comeca aqui}
+	
+	TO DO
 
 
 

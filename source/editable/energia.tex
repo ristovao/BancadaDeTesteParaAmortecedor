@@ -102,10 +102,10 @@
 		\begin{tabular}[c]{@{}l@{}}Estudo das possibilidades de execução dos\\ testes no motor e inversor\end{tabular} & 10/04 - 20/04 & \begin{tabular}[c]{@{}c@{}}Ana Rafaela,\\ Ludmila\end{tabular} & 100\% \\ \hline
 		\begin{tabular}[c]{@{}l@{}}Estudo dos tipos de controle e dos parâmetros\\ programáveis no inversor de frequência\end{tabular} & 20/04 - 25/05 & \begin{tabular}[c]{@{}c@{}}Ana Rafaela,\\ Ludmila,\\ Micaelle\end{tabular} & 100\% \\ \hline
 		\begin{tabular}[c]{@{}l@{}}Execução de testes a vazio e com carga\\ no motor\end{tabular} & 02/05 - 20/05 & \begin{tabular}[c]{@{}c@{}}Ana Rafaela,\\ Ludmila,\\ Micaelle,\\ Thialei\end{tabular} & 100\% \\ \hline
-		\begin{tabular}[c]{@{}l@{}}Estudo sobre as propriedades do fluido\\ dentro do amortecedor e sobre a possibilidade\\ de monitorar essa temperatura\end{tabular} & 29/04 - 19/05 & \begin{tabular}[c]{@{}c@{}}Micaelle,\\ Thialei\end{tabular} & 50\% \\ \hline
-		\begin{tabular}[c]{@{}l@{}}Novos testes no acionamento do motor e\\ controle de velocidades\end{tabular} & 30/05 - 03/06 & \begin{tabular}[c]{@{}c@{}}Ana Rafaela,\\ Ludmila\end{tabular} & 0\% \\ \hline
-		\begin{tabular}[c]{@{}l@{}}Monitorar a elevação de temperatura do\\ motor para o tempo de teste demandado\end{tabular} & 06/04 - 10/05 & \begin{tabular}[c]{@{}c@{}}Micaelle,\\ Thialei\end{tabular} & 0\% \\ \hline
-		\begin{tabular}[c]{@{}l@{}}Simulação e definição da temperatura\\ do óleo do amortecedor\end{tabular} & 13/04 - 17/05 & \begin{tabular}[c]{@{}c@{}}Ana Rafaela,\\ Ludmila,\\ Micaelle,\\ Thialei\end{tabular} & 0\% \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Estudo sobre as propriedades do fluido\\ dentro do amortecedor e sobre a possibilidade\\ de monitorar essa temperatura\end{tabular} & 29/04 - 19/05 & \begin{tabular}[c]{@{}c@{}}Micaelle,\\ Thialei\end{tabular} & 100\% \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Novos testes no acionamento do motor e\\ controle de velocidades\end{tabular} & 30/05 - 03/06 & \begin{tabular}[c]{@{}c@{}}Ana Rafaela,\\ Ludmila\end{tabular} & 1000\% \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Monitorar a elevação de temperatura do\\ motor para o tempo de teste demandado\end{tabular} & 06/04 - 10/05 & \begin{tabular}[c]{@{}c@{}}Micaelle,\\ Thialei\end{tabular} & 100\% \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Simulação e definição da temperatura\\ do óleo do amortecedor\end{tabular} & 13/04 - 17/05 & \begin{tabular}[c]{@{}c@{}}Ana Rafaela,\\ Ludmila,\\ Micaelle,\\ Thialei\end{tabular} & 100\% \\ \hline
 		\end{tabular}%
 		}
 	\end{table}
@@ -159,8 +159,8 @@
 		\end{tabular}
 	\end{table}
 
-
-\subsection{Dimensionamento do Conjunto Motor/Inversor}
+\subsection{Ponto de Controle II}
+\subsubsection{Dimensionamento do Conjunto Motor/Inversor}
 
 	A definição do motor a ser utilizado no teste de amortecedores foi baseada, inicialmente, para fins de conhecimento do sistema, nas literaturas \cite{Duarte}\cite{Vandresen} semelhantes à aplicação em questão e, posteriormente, para fins de cálculos e dimensionamento, aos dados requeridos pela carga durante o teste. 
 	
@@ -265,7 +265,7 @@
 	Como os outros casos exigidos pelo teste são todos para velocidades acima de 679,54 rpm e para torques menores que 2,91 Nm, é seguro afirmar que o motor atenderá as solicitações do teste.
 
 
-\subsection{Dimensionamento Técnico de Condutores e Dispositivos de Proteção}
+\subsubsection{Dimensionamento Técnico de Condutores e Dispositivos de Proteção}
 	
 	Dimensionamento técnico de condutores e respectivo dispositivos de proteção, conforme NBR 5410:2004, em anexo os cálculos utilizando os seis critérios que a norma trata:
 
@@ -292,7 +292,7 @@
 	Para a partida direta utiliza-se em geral o tempo de 5 segundos que é associado ao tempo necessário para que o motor saia de sua inércia e atinja a sua velocidade nominal, característica que está associada ao tipo de acionamento do motor escolhida. Portanto, para o valor de fusível, foi dimensionado o de 6 A , porém como na partida será utilizando um inversor de frequência com corrente de 6 A, o valor calculado foi de 16 A \cite{WEG04} \cite{NBR5410}.
 
 
-\subsection{Considerações sobre a Temperatura de Operação do Motor de Indução}
+\subsubsection{Considerações sobre a Temperatura de Operação do Motor de Indução}
 	
 	A vida útil do motor de indução depende quase que exclusivamente da isolação dos enrolamentos. A isolação é afetada por fatores como umidade, vibrações, ambientes corrosivos e outros. O fator mais importante é a temperatura dos materiais isolantes empregados. Um aumento entre 8 $^{\circ}C$ e 10 $^{\circ}C$ na temperatura de isolação pode reduzir a vida útil do motor pela metade \cite{Goncalez}. A experiência com motores de indução mostra que a isolação tem um tempo de duração praticamente ilimitado, se a sua temperatura for mantida abaixo de certo limite. Acima deste valor, a vida útil da isolação vai se tornando cada vez mais curta, à medida que a temperatura de trabalho é mais alta \cite{Goncalez}. Esta limitação refere-se ao ponto mais quente da isolação e não do enrolamento como um todo.
 	
@@ -322,9 +322,9 @@
 
 	Durante os testes na bancada, é recomendado que o motor opere abaixo do limite de 155 $^{\circ}C$, para que assim não haja redução na vida útil da isolação do motor. Diante dos testes executados com o motor, os quais duraram cerca de 8 minutos de funcionamento contínuo em diferentes velocidades, e do tempo previsto de operação do motor durante o teste real de amortecedores (que depende do tipo de teste realizado) foi possível notar que a variação na temperatura externa do motor foi baixa.  
 
-\subsection{Ensaios em Laboratório}
+\subsubsection{Ensaios em Laboratório}
 		
-	\subsubsection{Ensaio a Vazio}
+	\subsubsubsection{Ensaio a Vazio}
 
 		A fim de se comprovar o comportamento inicial do conjunto motor/inversor, definir os parâmetros a serem programados, bem como apresentar o funcionamento do sistema para todo o grupo e facilitar o entendimento da comunicação com as demais áreas do projeto, foi feita a prática de acionamento do MIT a vazio com inversor de frequência.
 
@@ -368,9 +368,11 @@
 			\label{posicaoChave}
 		\end{figure}
 
-	\subsubsection{Ensaios com Simulação de Cargas}
+	\subsubsubsection{Ensaios com Simulação de Cargas}
 
-		\subsubsubsection{Gerador de Indução}
+		\begin{itemize}
+		\item \textbf{Gerador de Indução}
+		\end{itemize}
 
 			Como forma de comprovar o desempenho do MIT diante de cargas acopladas ao seu eixo, foi feita uma simulação utilizando um gerador de indução conectado à rede elétrica, onde o rotor da máquina de indução deveria ter velocidade superior à velocidade síncrona, para gerar energia \cite{Nascimento}. Seguindo essa teoria, é possível fazer com que a máquina opere como gerador quando a velocidade do rotor ultrapassa a velocidade síncrona, resultando tanto um escorregamento negativo quanto produzindo um torque também negativo.
 			
@@ -404,7 +406,9 @@
 
 			Por motivos ainda em fase de identificação, esse teste não obteve êxito. Apesar do dimensionamento do banco de capacitores ter sido feito de forma correta, baseado em literatura \cite{Vanco}, pode ser possível dizer que a simulação a baixas velocidades (de 600 a 1200 rpm), que são as velocidades de operação do motor para o teste demandado, não tenha permitido a ação do gerador de indução. Pretende-se, então, aprofundar os estudos quanto à possibilidade de execução desse teste a baixas velocidades, de forma a obter os resultados esperados.
 
-		\subsubsubsection{Freio de Prony}
+		\begin{itemize}
+		\item \textbf{Freio de Prony}
+		\end{itemize}
 
 			A outra forma de simulação de carga no motor foi através de um freio mecânico, conhecido como Freio de Prony, conforme a figura \ref{bancadaProny}.
 
@@ -453,7 +457,7 @@
 			Depois da confirmação da funcionalidade de tal parâmetro, foi feito o teste aplicando uma força aproximada de 70 Newtons no eixo do motor, com um respectivo torque de 2,94 Nm (torque máximo exigido para o teste de amortecedor, a uma velocidade aproximada de 679,54 rpm). O teste foi feito com o motor funcionando durante 5 minutos, que é equivalente à realização de aproximadamente 52 ciclos no amortecedor a uma velocidade de 679 rpm no motor. Comprovou-se então que a velocidade de 679 rpm se manteve constante com a variação de carga, o comportamento do motor foi compatível ao esperado durante o ensaio e a situação mais crítica que será exigida pelo teste de amortecedor foi simulada e comprovada com segurança, dando assim maior confiabilidade para qualquer das outras situações exigida a partir dessa.
 
 \newpage
-\subsection{Simulação Computacional de Transferência de Calor em Amortecedores}
+\subsubsection{Simulação Computacional de Transferência de Calor em Amortecedores}
 
 	O estudo de transferência de calor entre diferentes superfícies de características distintas exige um rigor matemático na área de escoamento de fluidos, como é caso dos amortecedores. Os amortecedores possuem fluidos distintos e podem se comportar de maneiras diferentes diante de variações de temperatura.
 	
@@ -499,3 +503,8 @@
 
 	A partir de várias análises como a apresentada, poderão ser obtidas conclusões acerca do desempenho do amortecedor a partir do comportamento do fluido contido em seu interior, o que torna este estudo viável para o projeto em curso. Um dos parâmetros de interesse é a determinação da temperatura do fluido durante o ensaio, uma vez que a temperatura medida será a da carcaça. Assim, a finalidade do estudo é obter um gradiente de temperatura para o ensaio de amortecedores, que nos dê como resultado a temperatura do fluido naquele instante.
 
+\newpage
+\subsection{Ponto de Controle III}
+\subsubsection{PC III comeca aqui}
+	
+	TO DO

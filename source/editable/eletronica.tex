@@ -92,15 +92,15 @@
 	\hline
 	Aquisição dos dados de força			&	16/05 - 23/05  & 100\% \\
 	\hline
-	Aquisição dos dados de velocidade		&	19/05 - 01/06  & 50\% \\
+	Aquisição dos dados de velocidade		&	19/05 - 01/06  & 100\% \\
 	\hline
-	Aquisição dos dados de temperatura		&	27/05 - 08/06  & 0\% \\
+	Aquisição dos dados de temperatura		&	27/05 - 08/06  & 100\% \\
 	\hline
-	Controle do teste						&	27/05 - 13/06  & 0\% \\
+	Controle do teste						&	27/05 - 13/06  & 100\% \\
 	\hline
-	Interfaceamento BBB com o inversor		&	13/06 - 16/06  & 30\% \\
+	Interfaceamento BBB com o inversor		&	13/06 - 16/06  & 100\% \\
 	\hline
-	Calibragem								&	16/06 - 23/06  & 0\% \\
+	Calibragem								&	16/06 - 23/06  & 100\% \\
 	\hline
 
 	\label{cronogramaeletronica}
@@ -187,8 +187,8 @@
 		\item Interfaceamento BBB com o inversor: Corresponde ao módulo de amplificação do sinal de saída da BBB para inserção na entrada analógica do inversor para controle de velocidade.
 	\end{itemize}
 
-
-\subsection{Proposta Eletrônica}
+\subsection{Ponto de Controle II}
+\subsubsection{Proposta Eletrônica}
 
 	Em linhas gerais, a plataforma, em termos de componentes eletrôncos, ao final desse projeto estará equipada com :
 
@@ -213,7 +213,7 @@
 	\end{figure}
 
 
-\subsection{Definição da Plataforma de Processamento e Controle}
+\subsubsection{Definição da Plataforma de Processamento e Controle}
 
 	Nesse projeto optou-se por utilizar a BeagleBone Black,mostrada na Figura \ref{beaglebone}, que é uma plataforma de desenvolvimento de baixo custo. Segue abaixo alguns dos aspectos que foram levados em consideração para a escolha da mesma.
 
@@ -244,7 +244,7 @@
 		\label{beaglebone}
 	\end{figure}	
 
-\subsection{Definição dos sensores}
+\subsubsection{Definição dos sensores}
 
 	Com o objetivo central de obter parâmetros necessários ao processo de caracterização de um amortecedor, a aferição de algumas grandezas torna-se essencial na realização do teste em bancada, os referidos mensuráveis são descritos abaixo:
 
@@ -258,7 +258,7 @@
 
 	\end{itemize}
 
-	\subsubsection{Módulo de Sensoriamento de Força}
+	\subsubsubsection{Módulo de Sensoriamento de Força}
 
 		Segundo o escopo do projeto, a bancada será dimensionada para veículos leves. Comparando-se 3 modelos de veículos leves populares obteve-se os valores de massa máxima, como mostrado na Tabela \ref{comparativocarros}.
 
@@ -315,7 +315,7 @@
 		A partir dos dados digitais obtidos implementou-se uma função que relaciona a faixa de valores digitais entre 0 e 4095 e a faixa de valores de medição de carga entre 0 e 500kg.  
 
 
-	\subsubsection{Módulo de Sensoriamento de Velocidade}
+	\subsubsubsection{Módulo de Sensoriamento de Velocidade}
 
 		Em virtude da dificuldade de aferição da velocidade linear da haste optou-se pela utilização de um sensor de proximidade e implementar uma função de cálculo da taxa de variação da posição no tempo de amostragem. Em uma pesquisa de mercado optou-se pelo sensor HC-SR04 em virtude da sua fácil aquisição, implementação, faixa de operação larga. A Figura \ref{ultrassom} corresponde ao referido sensor e a  \ref{descricaoHCSR04} aponta algumas de suas principais características.
 	
@@ -372,7 +372,7 @@
 		\end{figure}
 
 
-	\subsubsection{Módulo de Sensoriamento de Temperatura}
+	\subsubsubsection{Módulo de Sensoriamento de Temperatura}
 
 		Em função das características intrínsecas dos testes, optou-se por utilizar sensor com medição sem contato, nesse caso o dispositivo faz uso de tecnologia baseada em sistema infravermelho para realizar a medição. Considerando as condições climáticas do Distrito Federal, amortecedores possuem uma faixa de operação que oscilam em torno de $10^oC \rightarrow 120^oC$. 
 
@@ -398,7 +398,7 @@
 		Os dados de leitura do sensor, temperatura ambiente e temperatura do objeto, são recebidos utilizando interface I2C e armazenados em um vetor de string, o código parcial dessa implementação está disponível no repositório do github.
 
 
-\subsection{PCI de condicionamento dos sinais}
+\subsubsection{PCI de condicionamento dos sinais}
 
 	Como descrito na sessão de sensoriamento, deve-se implementar uma topologia de condicionamento específica para cada sensor, projetou-se uma placa de circuito impresso com o intuito de reduzir os ruídos e, consequentemente, oferecer mais robustez à solução. O esquemático da referida placa é mostrado na Figura \ref{cape}. 
 
@@ -522,7 +522,7 @@
 	\end{table}
 
 
-\subsection{Sistema de Controle Embarcado}
+\subsubsection{Sistema de Controle Embarcado}
 
 	A bancada será controlada por meio de um sistema operacional embarcado na placa beaglebone, usando as técnicas de comunicação TCP/IP para o cliente/servidor, sistema operacional Linux e eletrônica digital para os sensores, como mostrado na Figura \ref{esquema}. O sistema possui as seguintes características:
 
@@ -582,3 +582,9 @@
 	É importante ressaltar que para a construção efetiva sistema cliente/servidor, ou seja, com a determinação exata de quais os parâmetros serão enviados/recebidos, é necessário aguardar as informações da equipe de mecânica. Entretanto a instanciação dos dispositivos na beaglebone, utilizando um cliente/servidor genérico já está sendo implementada. O trabalho já desenvolvido pode ser visualizado no repositório do github:
 
 	\href{https://github.com/ristovao/BancadaDeTesteParaAmortecedor}{https://github.com/ristovao/BancadaDeTesteParaAmortecedor}
+
+\newpage
+\subsection{Ponto de Controle III}
+\subsubsection{PC III comeca aqui}
+	
+	TO DO
