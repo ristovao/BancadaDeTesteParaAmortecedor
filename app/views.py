@@ -200,13 +200,21 @@ def pegarNomesAmortecedor(request):
 #funcao de teste para pegar valores de algum lugar
 def pegarValores(quant):
     BUFFER_SIZE=10000
-    clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    clientsocket.connect(('localhost', 4567))
-    #temp = clientsocket.send('hello')
-    g = clientsocket.recv(3)
-    g = g.split(",")
-    g = map(int,g)
-    f=[]
-    for i in range(int(quant)):
-        f.append([random.randint(0,90),i])
+    while 1:
+        try:
+            clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            clientsocket.connect(('localhost', 4567))
+            #temp = clientsocket.send('hello')
+            g = clientsocket.recv(3)
+            g = g.decode("utf-8") 
+            g = g.split(",")
+            g = map(int,g)
+            g = list(g)
+            f = []
+            for i in range(int(quant)):
+                f.append([random.randint(0,90),i])
+            break
+        except:
+            pass
     return g
+            
