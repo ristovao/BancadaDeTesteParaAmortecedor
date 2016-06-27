@@ -62,7 +62,7 @@
 			\begin{tabular}[c]{@{}c@{}}Equacionamento da Biela Manviela \\ Analítico\end{tabular}                 & Breno                                                              & 25/04                & 29/04             & 100\%                                                               \\ \hline
 			Análises cinemáticas e dinâmicas                                                                      & Larissa                                                            & 02/05                & 06/05             & 100\%                                                               \\ \hline
 			Desenhar sistema de excitação                                                                         & Larissa                                                            & 02/05                & 06/05             & 100\%                                                                \\ \hline
-			Transmissão                                                                                           & Paulo                                                              & 09/05                & 13/05             & 90\%                                                                \\ \hline
+			Transmissão                                                                                           & Paulo                                                              & 09/05                & 13/05             & 100\%                                                                \\ \hline
 			Análises estruturais                                                                                  & Larissa                                                            & 09/05                & 13/05             & 100\%                                                               \\ \hline
 			Revisão do texto do Relatório                                                                         & Larissa                                                            & 16/05                & 25/05             & 100\%                                                               \\ \hline
 			Apresentação PC 2                                                                                     & Paulo                                                              & 26/05                & 01/06             & 100\%                                                               \\ \hline
@@ -464,12 +464,192 @@
 
 \newpage
 \subsection{Ponto de Controle III}
-\subsubsection{PC III comeca aqui}
+\subsubsection{Análise estrutural}
+
+
+	Após a análise individual das peças mais sujeitas a esforços, é necessário também analisar a estrutura, que alocará todos os outros componentes. Para a verificação de sua robustez, realizou-se uma análise estrutural utilizando-se o método de elementos finitos no software ANSYS. A força utilizada na análise foi retirada do software adams, e tem o valor de 2057N. Para a análise, foi definido um apoio na parte inferior da estrutura.
+ 	
+ 	A Figura \ref{meca1} apresenta as deformações encontradas, onde a máxima deformação se encontra na área de aplicação da força, e tem valor de 0,1518mm.
+
+	\begin{figure}[!htpb]
+		\centering
+		\includegraphics[scale=1]{meca1}
+		\caption{Deformação máxima na estrutura}
+		\label{meca1}
+	\end{figure}
+
+	A Figura \ref{meca2} apresenta as tensões de von-Mises encontradas com a mesma força aplicada, de 2057 N, onde a maior tensão também se encontra na área de aplicação da força, com valor de 37,78 MPa.
+
+	\newpage
+	\begin{figure}[!htpb]
+		\centering
+		\includegraphics[scale=1]{meca2}
+		\caption{Tensão equivalente de von-Mises da estrutura}
+		\label{meca2}
+	\end{figure}
+
+	Com as mesmas condições de contorno a estrutura apresentou um coeficiente de segurança mínimo de 2,28 no ponto onde se encontra a força aplicada. 
 	
-	TO DO
+	A estrutura do sistema é a parte da bancada que apresenta o maior custo e tempo de trabalho, portanto, o pino que trava a biela no sistema deslizante da bancada foi projetado com função de peça de sacrifício, para que este seja o primeiro item a falhar, evitando qualquer dano à estrutura.
 
 
+\subsubsection{Materiais e Serviços}
+
+	Após feitos alguns orçamentos, foi feita a compra de alguns materiais necessários, e de algumas ferramentas. Além disso, foi contratado um serviço de soldagem da estrutura da bancada. Todos esses itens compuseram a tabela de custos da parte mecânica, mostrada na Tabela \ref{mecatable1}.
+
+	\begin{table}[!htpb]
+	\centering
+	\caption{Materiais e serviços}
+	\label{mecatable1}
+	\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	\rowcolor[HTML]{C0C0C0} 
+	\multicolumn{5}{|c|}{\cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{ORÇAMENTO - PARTE MECÂNICA}}} \\ \hline
+	\rowcolor[HTML]{C0C0C0} 
+	{\color[HTML]{000000} \textbf{PRODUTO}} & {\color[HTML]{000000} \textbf{\begin{tabular}[c]{@{}c@{}}VALOR\\ /UN (R\$)\end{tabular}}} & {\color[HTML]{000000} \textbf{QUANT.}} & {\color[HTML]{000000} \textbf{TOTAL}} & {\color[HTML]{000000} \textbf{EMPRESA}} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Disco\\   de Carbo. Lix. Corte\end{tabular}} & {\color[HTML]{000000} 2,48} & {\color[HTML]{000000} 1} & {\color[HTML]{000000} 2,48} & {\color[HTML]{000000} PERFIBRAZ} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Tubo\\   Quadrado 50 x 50 mm\end{tabular}} & {\color[HTML]{000000} 205,00} & {\color[HTML]{000000} 1} & {\color[HTML]{000000} 205,00} & {\color[HTML]{000000} PERFIBRAZ} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Chapa\\   Plasma/Oxicorte \#3/4\\ SAC/COR S/E\end{tabular}} & {\color[HTML]{000000} 12,84} & {\color[HTML]{000000} 4} & {\color[HTML]{000000} 51,36} & {\color[HTML]{000000} GRAVIA} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Chapa\\   Plasma/Oxicorte \#3/4\\ SAC/COR S/E\end{tabular}} & {\color[HTML]{000000} 6,20} & {\color[HTML]{000000} 3} & {\color[HTML]{000000} 18,60} & {\color[HTML]{000000} GRAVIA} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Chapa\\   de Corte \#3/16 S/E\\ SAC/COR\end{tabular}} & {\color[HTML]{000000} 8,56} & {\color[HTML]{000000} 5} & {\color[HTML]{000000} 42,80} & {\color[HTML]{000000} GRAVIA} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Silicone Ultra\\ Gray Cinza\end{tabular}} & {\color[HTML]{000000} 22,00} & {\color[HTML]{000000} 1} & {\color[HTML]{000000} 22,00} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}COMANDO\\ AUTO PEÇAS\end{tabular}} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Serra\\   Copo\end{tabular}} & {\color[HTML]{000000} 43,90} & {\color[HTML]{000000} 1} & {\color[HTML]{000000} 43,90} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}LOBÃO\\ FERRAGENS\end{tabular}} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Serra\\   Copo 29mm\end{tabular}} & {\color[HTML]{000000} 27,32} & {\color[HTML]{000000} 1} & {\color[HTML]{000000} 27,32} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}LOBÃO\\ FERRAGENS\end{tabular}} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}4 Polias Aluminio(200mm,\\ 110mm, 110mm, 70mm)\end{tabular}} & {\color[HTML]{000000} 90,00} & {\color[HTML]{000000} 1} & {\color[HTML]{000000} 90,00} & {\color[HTML]{000000} A SERTANEJA} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Pino de\\   Travamento\end{tabular}} & {\color[HTML]{000000} 0,50} & {\color[HTML]{000000} 1} & {\color[HTML]{000000} 0,50} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}POPA PORCAS\\ E PARAFUSOS\end{tabular}} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Serviço\\   de Soldagem\end{tabular}} & {\color[HTML]{000000} 400,00} & {\color[HTML]{000000} 1} & {\color[HTML]{000000} 400,00} & {\color[HTML]{000000} MATEUS} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aço 1020\\ Treficado Redondo\end{tabular}} & {\color[HTML]{000000} 19,28} & {\color[HTML]{000000} 1} & {\color[HTML]{000000} 19,28} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}FERRAGENS\\ PINHEIRO\end{tabular}} \\ \hline
+	{\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Aço 1045 SAE\\ Laminado Redondo\end{tabular}} & {\color[HTML]{000000} 129,00} & {\color[HTML]{000000} 1} & {\color[HTML]{000000} 129,00} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}FERRAGENS\\ PINHEIRO\end{tabular}} \\ \hline
+	\multicolumn{3}{|c|}{\cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{Total (R\$)}}} & \multicolumn{2}{c|}{{\color[HTML]{000000} \textbf{1052,24}}} \\ \hline
+	\end{tabular}
+	\end{table}
+
+	Nessa tabela não estão contidos os custos de alguns processos que foram feitos gratuitamente, assim como alguns materiais que já estavam disponíveis e não precisaram ser adquiridos.
+
+\newpage
+\subsubsection{Fabricação}
+
+	Com todo o projeto feito, incluindo desenhos em CAD e análises via softwares de simulação, e ainda os materiais comprados, deu-se início a construção da bancada. Toda esta etapa, foi realizada no Galpão da Faculdade Gama de Engenharias, onde estavam disponíveis todas as máquinas e ferramentas necessárias para a construção. Foi necessário então, que a equipe mecânica trabalhasse em conjunto com os técnicos, para o correto uso de cada equipamento.
+	
+	Como a bancada contém várias peças, é necessário confeccionar cada peça de forma separada, para que no final tudo seja montado. Na Tabela \ref{mecatable2} pode-se ver as peças e seu respectivo material:
+
+	\begin{table}[!htpb]
+	\centering
+	\caption{Peças e material}
+	\label{mecatable2}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	\rowcolor[HTML]{C0C0C0} 
+	\multicolumn{3}{|c|}{\cellcolor[HTML]{C0C0C0}\textbf{\begin{tabular}[c]{@{}c@{}}TABELA\\ DE COMPONENTES\end{tabular}}} \\ \hline
+	\rowcolor[HTML]{C0C0C0} 
+	\textbf{Numeração} & \textbf{Peça} & \textbf{Material} \\ \hline
+	1 & Manivela & Chapa - aço 1045 \\ \hline
+	2 & Biela & Chapa – Aço 1020 \\ \hline
+	3 & Hastes do Deslizante & \begin{tabular}[c]{@{}c@{}}Tubo – Aço 1045\\ Cromado\end{tabular} \\ \hline
+	4 & Estrutura & \begin{tabular}[c]{@{}c@{}}Tubo Quadrado -\\ Aço 1010\end{tabular} \\ \hline
+	5 & Móvel do Deslizante & Chapa – Aço 1020 \\ \hline
+	6 & Buchas do Deslizante & Acetal \\ \hline
+	7 & Buchas da Manivela & Acetal \\ \hline
+	8 & Pino superior da Biela & Aço 1020 \\ \hline
+	9 & Polia 200mm & Alumínio \\ \hline
+	10 & Polia Maciça 110mm & Alumínio \\ \hline
+	11 & Polia 110mm & Alumínio \\ \hline
+	12 & Polia Maciça 70mm & Alumínio \\ \hline
+	13 & \begin{tabular}[c]{@{}c@{}}Trava do Pino superior\\ da Biela\end{tabular} & Aço 1010 \\ \hline
+	14 & \begin{tabular}[c]{@{}c@{}}Suporte superior\\ do Amortecedor\end{tabular} & Aço 1010 \\ \hline
+	15 & Correia V 1 & Composto \\ \hline
+	16 & Suporte superior da Biela & Aço 1020 \\ \hline
+	17 & Correia V 2 & Composto \\ \hline
+	\end{tabular}
+	\end{table}
+
+	A primeira meta nessa etapa era a construção do sistema deslizante, parte crucial para o correto funcionamento da bancada. Começou-se pelas hastes, onde foram utilizados dois tubos cromados vazados de 3mm de diâmetro externo, que foram cortados no tamanho correto e preenchidos em suas extremidades, onde abriu-se uma rosca para fixação. Após concluídas as hastes, iniciou-se a construção da parte móvel, que foi feita a partir de uma chapa de aço 1020. Esta chapa foi inicialmente cortada em um tamanho aproximado, e depois foi feito o acabamento e furação na fresa. Além dessas duas peças, foram confeccionadas em torno mecânico duas buchas a partir de um tarugo redondo de acetal.
+
+	\begin{figure}[!htpb]
+		\centering
+		\includegraphics[scale=1]{meca3}
+		\caption{Sistema Deslizante}
+		\label{meca3}
+	\end{figure}
+	
+	Em paralelo, foram realizados, por usinagem em torno mecânico, os furos e os rasgos para chaveta nas polias, para que encaixassem e travassem corretamente no motor, redução e eixo da manivela. Ao mesmo tempo, realizou-se a inspeção e manutenção preventiva na caixa de redução, por se tratar de uma peça usada. Após aberta, foi efetuada uma limpeza com querosene e verificou-se o estado das engrenagens, rolamentos e retentores. Como estava tudo em condições de uso, a caixa foi montada e fechada, vedando todas as juntas com silicone automotivo para juntas. Após a cura do silicone, um novo óleo lubrificante foi colocado, respeitando o nível estabelecido pelo fabricante. Neste meio tempo, os tubos foram cortados nos tamanhos e ângulos corretos com a serra-fita, e foi então realizada a soldagem da estrutura. Isso tudo foi orientado pelo desenho em CAD, obedecendo a correta disposição de cada tubo, assim como as dimensões de cada parte.
+
+	\begin{figure}[!htpb]
+		\centering
+		\includegraphics[scale=1]{meca4}
+		\caption{Polia da manivela}
+		\label{meca4}
+	\end{figure}
+
+	\begin{figure}[!htpb]
+		\centering
+		\includegraphics[scale=1]{meca5}
+		\caption{Polia da saída da caixa de redução}
+		\label{meca5}
+	\end{figure}
+
+	\newpage
+	Neste meio tempo, os tubos foram cortados nos tamanhos e ângulos corretos com a serra-fita, e foi então realizada a soldagem da estrutura. Isso tudo foi orientado pelo desenho em CAD, obedecendo a correta disposição de cada tubo, assim como as dimensões de cada parte.
+
+	\newpage
+	\begin{figure}[!htpb]
+		\centering
+		\includegraphics[scale=1]{meca6}
+		\caption{Estrutura da Bancada}
+		\label{meca6}
+	\end{figure}
+
+	
+	Para a biela e manivela, foram utilizados respectivamente chapa e tarugo redondo de aço 1045. Para a primeira delas, a chapa foi cortada na serra fita em um tamanho aproximado, e foram feitos os furos e dado o formato final com fresamento. Ainda para esta, foi confeccionado o pino inferior, em torno mecânico. Para a confecção da manivela, o tarugo redondo foi usinado em torno mecânico até que a espessura e raio desejados fossem atingidos. Após isso realizou-se na fresa os três furos para o encaixe do pino da biela, utilizando uma serra copo. Esses furos foram preenchidos com buchas de acetal, usinadas em torno mecânico e colocadas com a prensa. Ainda no torno, foi feito o eixo da manivela, que também foi colocado com a prensa, e depois soldado. A manivela foi então colocada novamente no torno, para remover excessos da solda, e também verificar se estava tudo alinhado.
+
+	\newpage
+	\begin{figure}[!htpb]
+		\centering
+		\includegraphics[scale=1]{meca7}
+		\caption{Biela e manivela}
+		\label{meca7}
+	\end{figure}
+	
+	A fixação desse sistema será feita via mancais de rolamento, que serão fixados a uma chapa de aço, soldada na estrutura. A chapa foi cortada nas corretas dimensões na serra fita, e efetuou-se a furação da mesma, com a furadeira de bancada, para que os mancais sejam parafusados. Foram também realizados pequenos furos no eixo da manivela, para a correta fixação do mesmo nos mancais.
+
+	\begin{figure}[!htpb]
+		\centering
+		\includegraphics[scale=0.8]{meca8}
+		\caption{Mancais de rolamento do eixo da manivela e chapa de fixação}
+		\label{meca8}
+	\end{figure}
+
+	\newpage
+	Após concluída essa parte, iniciou-se então a fabricação do suporte superior da biela, que foi feito a partir de um tarugo de aço 1020. Este tarugo foi primeiramente usinado no torno, e então levado a fresa para realização do rasgo onde a biela se encaixará, além dos furos por onde passará o pino superior da biela. 
+
+	\begin{figure}[!htpb]
+		\centering
+		\includegraphics[scale=0.9]{meca9}
+		\caption{Fixação da biela na placa de apoio do amortecedor}
+		\label{meca9}
+	\end{figure}
+
+	
+	Por fim, a Figura \ref{meca10} ilustra a bancada após a sua montagem completa.
+
+	\begin{figure}[!htpb]
+		\centering
+		\includegraphics[scale=1]{meca10}
+		\caption{Bancada de Teste de Amortecedor após a montagem completa}
+		\label{meca10}
+	\end{figure}
 
 
+\subsubsection{Principais contribuições da Equipe Mecânica para o Projeto}
+	
+	A equipe mecânica contribuiu para o projeto e fabricação da bancada, comprando os materiais necessários e usinando as peças necessárias para sua fabricação. Foram realizados testes estruturais no ANSYS e testes dinâmicos no ADAMS. Os desenhos da bancada e das peças utilizadas de modo geral foram feitos no CATIA, e através dos desenhos foi possível fabricar as peças necessárias. 
 
+	Ou seja, a equipe mecânica contribuiu de maneira geral para a fabricação final da bancada, atendendo aos requisitos das outras equipes e aos requisitos finais do projeto.
 
+\subsubsection{Considerações finais da Equipe Mecânica}
+
+	A equipe mecânica chegou a algumas considerações finais sobre o projeto realizado, entre elas que o aprendizado dos conceitos de engenharia permitiu o andamento do projeto. Porem devido à falta de tempo e algumas complicações finais o projeto encontra-se em fase de acabamento.
+	
+	De maneira geral todas as metas de trabalho foram ou estão sendo atingidas, em razão do comprometimento e do esforço de cada participante, o que resultou em um crescimento profissional, consciência da importância do trabalho em grupo, além da superação dos desafios propostos a cada um dos integrantes da equipe. 
+
+	

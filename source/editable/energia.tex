@@ -104,8 +104,9 @@
 		\begin{tabular}[c]{@{}l@{}}Execução de testes a vazio e com carga\\ no motor\end{tabular} & 02/05 - 20/05 & \begin{tabular}[c]{@{}c@{}}Ana Rafaela,\\ Ludmila,\\ Micaelle,\\ Thialei\end{tabular} & 100\% \\ \hline
 		\begin{tabular}[c]{@{}l@{}}Estudo sobre as propriedades do fluido\\ dentro do amortecedor e sobre a possibilidade\\ de monitorar essa temperatura\end{tabular} & 29/04 - 19/05 & \begin{tabular}[c]{@{}c@{}}Micaelle,\\ Thialei\end{tabular} & 100\% \\ \hline
 		\begin{tabular}[c]{@{}l@{}}Novos testes no acionamento do motor e\\ controle de velocidades\end{tabular} & 30/05 - 03/06 & \begin{tabular}[c]{@{}c@{}}Ana Rafaela,\\ Ludmila\end{tabular} & 1000\% \\ \hline
-		\begin{tabular}[c]{@{}l@{}}Monitorar a elevação de temperatura do\\ motor para o tempo de teste demandado\end{tabular} & 06/04 - 10/05 & \begin{tabular}[c]{@{}c@{}}Micaelle,\\ Thialei\end{tabular} & 100\% \\ \hline
-		\begin{tabular}[c]{@{}l@{}}Simulação e definição da temperatura\\ do óleo do amortecedor\end{tabular} & 13/04 - 17/05 & \begin{tabular}[c]{@{}c@{}}Ana Rafaela,\\ Ludmila,\\ Micaelle,\\ Thialei\end{tabular} & 100\% \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Monitorar a elevação de temperatura do\\ motor para o tempo de teste demandado\end{tabular} & 06/04 - 10/05 & \begin{tabular}[c]{@{}c@{}}Micaelle,\\ Thialei\end{tabular} & 0\% \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Simulação do gradiente de temperatura do\\ fluido do amortecedor\end{tabular} & 20/05 - 23/06 & \begin{tabular}[c]{@{}c@{}}Micaelle,\\ Thialei\end{tabular} & 0\% \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Testes de Amortecedores com\\ estrutura adaptada\end{tabular} & 20/05 - 23/06 & \begin{tabular}[c]{@{}c@{}}Ana Rafaela,\\ Ludmila\end{tabular} & 100\% \\ \hline
 		\end{tabular}%
 		}
 	\end{table}
@@ -143,7 +144,8 @@
 
 	\textbf{Milestones Identificadas}
 
-	\begin{table}[]
+	A Tabela \ref{milestones-energia} apresenta as milestones identificadas para o projeto.
+	\begin{table}[!hptb]
 		\centering
 		\caption{Milestones do Projeto de Energia}
 		\label{milestones-energia}
@@ -156,6 +158,7 @@
 		{\color[HTML]{000000} Montagem do sistema de acionamento e proteção do,motor.} & {\color[HTML]{000000} Ponto de controle 2} \\ \hline
 		{\color[HTML]{000000} \begin{tabular}[c]{@{}l@{}}Testes de acionamento do motor (a vazio e com\\ carga),com o inversor de frequência.\end{tabular}} & {\color[HTML]{000000} Ponto de controle 2} \\ \hline
 		{\color[HTML]{000000} \begin{tabular}[c]{@{}l@{}}Estudo de simulações nos softwares Ansys e MATLAB,\\ para a obtenção do gradiente de temperatura do fluido.\end{tabular}} & {\color[HTML]{000000} Ponto de controle 2} \\ \hline
+		{\color[HTML]{000000} \begin{tabular}[c]{@{}l@{}}Testes com Amortecedores com estrutura adaptada.\end{tabular}} & {\color[HTML]{000000} Ponto de controle 3} \\ \hline
 		\end{tabular}
 	\end{table}
 
@@ -171,7 +174,7 @@
 	\newpage
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[scale=1]{motorEspecificacao.png}
+		\includegraphics[scale=0.9]{motorEspecificacao.png}
 		\caption[Características de desempenho do motor]{Características de desempenho do motor \cite{Voges}}
 		\label{motorEspecificacao}
 	\end{figure}
@@ -265,64 +268,7 @@
 	Como os outros casos exigidos pelo teste são todos para velocidades acima de 679,54 rpm e para torques menores que 2,91 Nm, é seguro afirmar que o motor atenderá as solicitações do teste.
 
 
-\subsubsection{Dimensionamento Técnico de Condutores e Dispositivos de Proteção}
-	
-	Dimensionamento técnico de condutores e respectivo dispositivos de proteção, conforme NBR 5410:2004, em anexo os cálculos utilizando os seis critérios que a norma trata:
-
-	\begin{itemize}
-		\item Capacidade de condução de corrente;
-		\item Queda de tensão;
-		\item Seção mínima;
-		\item Sobrecarga;
-		\item Curto-circuito.
-	\end{itemize}
-
-	Para que um circuito esteja dimensionado de forma correta é necessário aplicar seis critérios, sendo que o resultado de cada seção é aplicado a cada um dos critérios, sendo considerado o de maior seção dentre eles para implementação \cite{NBR5410}.
-	
-	O primeiro critério aplicado foi o de seção mínima, que foi determinada levando em consideração a NBR 5410:204, como circuito de força. A segunda seção refere-se à capacidade de corrente, feita o cálculo de corrente de projeto com valor obtido de 3,45 A, com fatores de correção aplicados, a secção mínima inicialmente foi de 2,5 $mm^{2}$ \cite{NBR5410}.
-	
-	Utilizando o critério de queda de tensão com limite de 7\% para 220V, considerando como valor limitante de 15,4V, foi possível calcular o novo valor de diâmetro do condutor como 6$mm^{2}$. Aplicando os demais critérios de sobrecarga e curto-circuito o valor permaneceu de 6$mm^{2}$, para o condutor no acionamento no motor de indução trifásica que será utilizado \cite{NBR5410}.
-
-	\textbf{Dispositivos de Proteção}
-
-	O fusível utilizado para a partida de motor é do tipo D- Diazed, Indicado para circuitos de acionamento de motores, pois possui corrente de ruptura de até 17 KA, faixa de corrente que suporta é entre 2 a 63A, tem função retardada, ou seja, suporta a corrente de pico do motor antes de romper, e indicação de corrente que o filamento suporta \cite{WEG04}. Para instalação de um fusível em um circuito elétrico, é necessário componente para sua fixação, o próprio fusível, tampa, parafuso de ajuste, anel de proteção e base \cite{WEG04}.
-	
-	O dimensionamento de fusível é possível, levando em consideração, a corrente de partida como sendo a razão de corrente de partida pela correte nominal, disponível na placa de identificação do motor, que multiplicada pela corrente nominal, esse valor obtido é de 26,35 A. Porém esse dado não é suficiente para determinar o fusível que será utilizado \cite{WEG04}.
-	
-	Para a partida direta utiliza-se em geral o tempo de 5 segundos que é associado ao tempo necessário para que o motor saia de sua inércia e atinja a sua velocidade nominal, característica que está associada ao tipo de acionamento do motor escolhida. Portanto, para o valor de fusível, foi dimensionado o de 6 A , porém como na partida será utilizando um inversor de frequência com corrente de 6 A, o valor calculado foi de 16 A \cite{WEG04} \cite{NBR5410}.
-
-
-\subsubsection{Considerações sobre a Temperatura de Operação do Motor de Indução}
-	
-	A vida útil do motor de indução depende quase que exclusivamente da isolação dos enrolamentos. A isolação é afetada por fatores como umidade, vibrações, ambientes corrosivos e outros. O fator mais importante é a temperatura dos materiais isolantes empregados. Um aumento entre 8 $^{\circ}C$ e 10 $^{\circ}C$ na temperatura de isolação pode reduzir a vida útil do motor pela metade \cite{Goncalez}. A experiência com motores de indução mostra que a isolação tem um tempo de duração praticamente ilimitado, se a sua temperatura for mantida abaixo de certo limite. Acima deste valor, a vida útil da isolação vai se tornando cada vez mais curta, à medida que a temperatura de trabalho é mais alta \cite{Goncalez}. Esta limitação refere-se ao ponto mais quente da isolação e não do enrolamento como um todo.
-	
-	Os motores de indução possuem uma classe de isolamento com determinados limites de temperatura para a operação. O motor de indução utilizado na bancada de testes para amortecedores possui uma classe de isolação F \cite{Voges}. Para esta classe de isolação, o limite de temperatura para o trabalho é de 155 $^{\circ}C$, conforme mostra a figura abaixo, e, com esta temperatura de operação, sua vida será de 90.000 horas \cite{ABNT17094}.
-
-	\newpage
-	\begin{figure}[!h]
-		\centering
-		\includegraphics[scale=1]{classeMotor.png}
-		\caption[Classes do motor de elevação de temperatura conforme NBR 17094:2003]{Classes do motor de elevação de temperatura conforme \cite{ABNT17094}} 
-		\label{classeMotor}
-	\end{figure}
-
-	O controle de temperatura é difícil de se obter por intermédio de sensores de temperatura e termômetros, pois não há uma relação linear de variação nos enrolamentos, sendo impossível identificar onde está o ponto mais quente do motor. Por isso, é utilizado o método de variação da sua resistência ôhmica em ensaio, que aproveita a propriedade dos condutores de variar sua resistência \cite{WEG05}. O cálculo é feito com através da equação:
-
-	$$ D_{t} = t_{2} - t_{a} = (\frac{R_{2} - R_{1}}{R_{1}}) * (235 + t_{1}) + (t_{1} - t_{a}) $$
-
-	Onde:
-	\begin{itemize}
-		\item $D_{t}$ = Elevação de temperatura;
-		\item $t_{2}$ = Temperatura dos enrolamentos no fim do ensaio;
-		\item $t_{a}$ = Temperatura do meio refrigerante no fim do ensaio;
-		\item $t_{1}$ = Temperatura do enrolamento antes ensaio;
-		\item $R_{1}$ = Resistência antes do ensaio;
-		\item $R_{2}$ = Resistência do enrolamento no fim do ensaio.
-	\end{itemize}
-
-	Durante os testes na bancada, é recomendado que o motor opere abaixo do limite de 155 $^{\circ}C$, para que assim não haja redução na vida útil da isolação do motor. Diante dos testes executados com o motor, os quais duraram cerca de 8 minutos de funcionamento contínuo em diferentes velocidades, e do tempo previsto de operação do motor durante o teste real de amortecedores (que depende do tipo de teste realizado) foi possível notar que a variação na temperatura externa do motor foi baixa.  
-
-\subsubsection{Ensaios em Laboratório}
+\subsubsection{Aplicação - Testes}
 		
 	\subsubsubsection{Ensaio a Vazio}
 
@@ -397,13 +343,14 @@
 
 			A bancada foi então disposta como mostra a figura \ref{bancadaEE}, onde mostra a ligação de todos os compenentes.
 
-			\begin{figure}[!h]
+			\begin{figure}[!htpb]
 				\centering
-				\includegraphics[scale=1]{bancadaEE.png}
+				\includegraphics[scale=0.6]{bancadaEE.png}
 				\caption[Circuito montado do acoplamento de dois motores]{Circuito montado do acoplamento de dois motores} 
 				\label{bancadaEE}
 			\end{figure}
 
+			\newpage
 			Por motivos ainda em fase de identificação, esse teste não obteve êxito. Apesar do dimensionamento do banco de capacitores ter sido feito de forma correta, baseado em literatura \cite{Vanco}, pode ser possível dizer que a simulação a baixas velocidades (de 600 a 1200 rpm), que são as velocidades de operação do motor para o teste demandado, não tenha permitido a ação do gerador de indução. Pretende-se, então, aprofundar os estudos quanto à possibilidade de execução desse teste a baixas velocidades, de forma a obter os resultados esperados.
 
 		\begin{itemize}
@@ -412,9 +359,9 @@
 
 			A outra forma de simulação de carga no motor foi através de um freio mecânico, conhecido como Freio de Prony, conforme a figura \ref{bancadaProny}.
 
-			\begin{figure}[!h]
+			\begin{figure}[!hptb]
 				\centering
-				\includegraphics[scale=1]{bancadaProny.png}
+				\includegraphics[scale=0.75]{bancadaProny.png}
 				\caption[Freio de Prony acoplado ao motor]{Freio de Prony acoplado ao motor} 
 				\label{bancadaProny}
 			\end{figure}
@@ -427,7 +374,6 @@
 
 			A figura \ref{resultadoEE01} mostra os resultados do teste.
 
-			\newpage
  			\begin{figure}[!h]
 				\centering
 				\includegraphics[scale=1]{resultadoEE01.png}
@@ -446,7 +392,6 @@
 
 			De acordo com os resultados, foi possível concluir que, ao incrementar o parâmetro de compensação de escorregamento, é possível manter a velocidade constante no teste, mesmo quando sujeito a variações de carga.
 
-			\newpage
 			\begin{figure}[!h]
 				\centering
 				\includegraphics[scale=1]{bancadaEE02.png}
@@ -456,7 +401,6 @@
 
 			Depois da confirmação da funcionalidade de tal parâmetro, foi feito o teste aplicando uma força aproximada de 70 Newtons no eixo do motor, com um respectivo torque de 2,94 Nm (torque máximo exigido para o teste de amortecedor, a uma velocidade aproximada de 679,54 rpm). O teste foi feito com o motor funcionando durante 5 minutos, que é equivalente à realização de aproximadamente 52 ciclos no amortecedor a uma velocidade de 679 rpm no motor. Comprovou-se então que a velocidade de 679 rpm se manteve constante com a variação de carga, o comportamento do motor foi compatível ao esperado durante o ensaio e a situação mais crítica que será exigida pelo teste de amortecedor foi simulada e comprovada com segurança, dando assim maior confiabilidade para qualquer das outras situações exigida a partir dessa.
 
-\newpage
 \subsubsection{Simulação Computacional de Transferência de Calor em Amortecedores}
 
 	O estudo de transferência de calor entre diferentes superfícies de características distintas exige um rigor matemático na área de escoamento de fluidos, como é caso dos amortecedores. Os amortecedores possuem fluidos distintos e podem se comportar de maneiras diferentes diante de variações de temperatura.
@@ -505,6 +449,109 @@
 
 \newpage
 \subsection{Ponto de Controle III}
-\subsubsection{PC III comeca aqui}
+\subsubsection{Ensaio com o Protótipo Adaptado da Bancada}
 	
-	TO DO
+	Para realizar os primeiros ensaios, diante da impossibilidade, até o presente momento, de testes na bancada real proposta pelo grupo, foi construído um protótipo que simulou a situação do teste proposto neste projeto. Trata-se de uma bancada adaptada, composta por motor de indução trifásico, caixa de redução e amortecedor, todos parafusados em uma base de madeira. 
+	
+	Inicialmente, testou-se um amortecedor de motocicleta, tanto para comprovar a variedade de possibilidades de testes que a estrutura adaptada e o conjunto motor-inversor dimensionado oferecem, juntamente com a caixa de redução, quanto para assegurar que a base de madeira suportaria as forças nela exercidas. Em um segundo momento, foi então testado o amortecedor traseiro GL12380 Cofap, do veículo \textit{Fiat Strada}.
+
+	O objetivo destes testes foi garantir o bom funcionamento do sistema, pois, ao utilizar apenas dois sistemas de transmissão (do motor para a caixa de redução de 5/8 e da própria caixa de 1/12), enquanto a proposta inicial objetivou utilizar além desses, dois outros sistemas de redução, já foi possível se comprovar a eficiência de excitação do sistema. 
+	
+	O esquema abaixo mostra o sistema de transmissão motor-redutor considerado, no qual a polia do motor tem como raio 3,75 cm e a polia da caixa de redução tem raio 6 cm.
+
+	\begin{figure}[!hbtp]
+		\centering
+		\includegraphics[scale=0.8]{ene1.png}
+		\caption{Esboço do sistema de transmissão motor-redutor.} 
+		\label{ene1}
+	\end{figure}
+
+\subsubsection{Teste com Amortecedor de Motocicleta}
+	
+	A partir do sistema de transmissão mostrado no item anterior, como a caixa de redução é coaxial, foi acoplado no eixo do lado oposto um disco de raio 9 cm e nele foi acoplado o amortecedor a ser testado. Essa conexão do disco com o amortecedor, representada na Figura \ref{ene2}, foi feita através de um parafuso e uma bucha fabricada no galpão da UnB – Faculdade do Gama, de forma a ter a flexibilidade necessária para acompanhar a rotação do disco. 
+	
+	A montagem do sistema, contemplando o motor, a caixa de redução e o amortecedor também segue representada na Figura \ref{ene3}.
+
+	\begin{figure}[!hbtp]
+		\centering
+		\includegraphics[scale=0.8]{ene2.png}
+		\caption{Acoplamento do amortecedor de moto ao disco da caixa de redução.} 
+		\label{ene2}
+	\end{figure}
+
+	\begin{figure}[!hbtp]
+		\centering
+		\includegraphics[scale=0.8]{ene3.png}
+		\caption{Sistema montado.} 
+		\label{ene3}
+	\end{figure}
+
+	Obteve-se êxito no teste em questão, visto que o sistema teve um comportamento totalmente eficiente, conseguindo atender o objetivo proposto. O amortecedor foi testado durante 8 minutos, sendo que houve a possibilidade de variação de três velocidades (300, 500 e 900 rpm) através do inversor de frequência e das chaves seletoras, mostrando-se seguro durante todo o tempo. Como a estrutura mostrou-se segura e a montagem permitiu que o teste fosse realizado conforme as exigências propostas, seguiu-se então para o outro teste com o amortecedor que será de fato testado na bancada final.
+
+\subsubsection{Teste com Amortecedor de Veículo \textit{Fiat Strada}}
+	
+	Foram feitos testes com o amortecedor do veículo \textit{Fiat Strada}, o qual se encaixa na proposta da bancada projetada pelo grupo. Segue representada na Figura \ref{ene4} o acoplamento de tal amortecedor ao disco da caixa de redução. A outra extremidade do amortecedor foi fixada na base de madeira por meio de um mancal, um parafuso e uma bucha, representados na Figura \ref{ene5}.
+
+	\begin{figure}[!hbtp]
+		\centering
+		\includegraphics[scale=0.7]{ene4.png}
+		\caption{Acoplamento do amortecedor ao disco da caixa de redução.} 
+		\label{ene4}
+	\end{figure}
+
+	\begin{figure}[!hbtp]
+		\centering
+		\includegraphics[scale=0.7]{ene5.png}
+		\caption{Acoplamento do amortecedor ao sistema.} 
+		\label{ene5}
+	\end{figure}
+
+	O sistema completo (motor-redutor-amortecedor) pode ser visualizado na Figura \ref{ene6}, onde se tem a transmissão por polias e correia do motor para o redutor, assim como o acoplamento do amortecedor na saída da caixa de redução. Como já mencionado, no sistema de redução por polias existente entre o motor e o redutor, tem-se uma razão redução de velocidades de 5/8. No ponto onde se encontra o disco e o amortecedor acoplado, tem-se razão de 1/12. 
+	
+	Portanto, no ponto de excitação direta do amortecedor, há diminuição de velocidade e aumento de torque, de grande valia para a execução de compressão e expansão do mesmo.
+
+	\begin{figure}[!hbtp]
+		\centering
+		\includegraphics[scale=0.7]{ene6.png}
+		\caption{Sistema de teste adaptado para o amortecedor de veículo \textit{Fiat Strada}.} 
+		\label{ene6}
+	\end{figure}
+
+	O circuito elétrico montado faz a conexão de 3 fusíveis com o inversor de frequência, que por sua vez é conectado ao motor de indução trifásico. Foram usadas chaves seletoras para a escolha das velocidades programadas, pela lógica binária apresentada anteriormente na Figura \ref{posicaoChave}.  
+	
+	Além da proteção externa que os fusíveis proporcionam, o inversor de frequência oferece ao sistema proteção padrão de sobrecarga do motor, além de permitir a programação de proteção de sobrecorrente pela função \textit{“Hold de Rampa”}, que evita o tombamento do motor durante sobrecarga de torque na aceleração ou desaceleração. Quando programada essa função, se a corrente do motor ultrapassar o valor pré-ajustado durante a aceleração ou desaceleração, a velocidade não será mais aumentada (aceleração) ou diminuída (desaceleração). Assim, somente quando a corrente do motor atingir um valor abaixo do ajustado, o motor volta a acelerar ou desacelerar.
+	
+	A Figura \ref{ene7} mostra o sistema completo, desde a alimentação elétrica do sistema até o protótipo construído para o ensaio de excitação do amortecedor.
+
+	\begin{figure}[!hbtp]
+		\centering
+		\includegraphics[scale=0.7]{ene7.png}
+		\caption{Sistema completo de teste adaptado para o amortecedor de veículo \textit{Fiat Strada}.} 
+		\label{ene7}
+	\end{figure}
+
+	A estrutura nos forneceu a possibilidade de excitar o amortecedor através de um curso de 5,5 cm, com as velocidades citadas na Figura abaixo e obter os seguintes resultados.
+
+	\begin{figure}[!hbtp]
+		\centering
+		\includegraphics[scale=0.9]{ene8.png}
+		\caption{Resultados obtidos no teste do amortecedor de veículo \textit{Fiat Strada}.} 
+		\label{ene8}
+	\end{figure}
+
+	As velocidades testadas no motor foram programadas a fim de se estabelecer uma rampa de aceleração, começando por uma velocidade baixa (de 300 rpm), tendo a opção de retornar a essa velocidade antes de desligar o motor, com o auxílio das chaves seletoras. Ainda foi estabelecida a partida do motor por rampa de aceleração quando se programou o parâmetro “Habilita Geral” do inversor de frequência, que permite essa função. Além disso, como o motor utilizado é autoventilado, foram testadas velocidades relativamente baixas, para se comprovar que o torque exigido pela carga será atendido mesmo em situações consideradas críticas para o motor, previamente calculadas.
+
+\subsubsection{Principais Contribuições da Equipe de Energia para o Projeto}
+	
+	Foi realizado por parte da Equipe de Energia todo o dimensionamento necessário ao acionamento do sistema, depois foram feitos todos os testes necessários com o conjunto motor-inversor e com a caixa de redução, que comprovaram na prática os dados calculados e garantiram o funcionamento do sistema. 
+	
+	Dadas as condições, foi construída por duas integrantes da Equipe da Energia uma estrutura adaptada, na qual se conseguiu testar os amortecedores de motocicleta e de veículo \textit{Fiat Strada}, simulando a situação mais próxima à real possível do teste proposto, segundo as condições impostas pelo grupo. Para a construção de tal estrutura, utilizou-se de materiais cedidos por terceiros e de outros fabricados no Galpão da Faculdade do Gama FGA, como por exemplo os pontos de apoio do amortecedor. 
+	
+	Pela impossibilidade de gastos extras, que pudessem ir além dos estabelecidos para a bancada real, os meios de escolha de materiais para a construção da estrutura adaptada foram limitados. Apesar de tal estrutura não contemplar o sistema biela-manivela, que existirá na bancada real, pois o mesmo está em fase de construção, o conjunto motor-inversor juntamente com a caixa de redução mostrou efetivamente que, assim como proposto, os testes dos amortecedores automotivos são executáveis com eficiência e segurança pelo sistema de alimentação dimensionado.
+
+
+\subsubsection{Considerações Finais da Equipe de Energia}
+
+	Todos os testes realizados com o motor de indução trifásico, o inversor de frequência, a caixa de redução e os amortecedores foram de extrema importância tanto para o entendimento do funcionamento do sistema quanto para fins comprobatórios de que o sistema de acionamento dos testes de amortecedores propostos pelo projeto em questão é viável, eficaz e atende aos requisitos impostos. Como supracitado, apesar dos imprevistos ocorridos ao desenvolver do projeto, como falta de elementos necessários aos testes da bancada real proposta, foi possível, até então, de forma adaptada, testar os amortecedores de motocicleta e de um \textit{Fiat Strada} e comprovar a capacidade do sistema de acionamento.
+	
+
