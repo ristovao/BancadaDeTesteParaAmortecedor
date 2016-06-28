@@ -60,7 +60,7 @@ class TesteVelocidadeFixa(Teste):
 
 	testeVF_velocidade = models.FloatField(null = True, verbose_name='Velocidade do Motor',default=5,
         validators=[
-            MaxValueValidator(100),
+            MaxValueValidator(225),
             MinValueValidator(1)])	
 	
 class TesteVelocidadeVariavel(Teste):
