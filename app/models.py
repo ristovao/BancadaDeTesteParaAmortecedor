@@ -10,7 +10,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Utilizada para cardar informações do Amortecedor	
 class Amortecedor (models.Model):
 
-	#amortecedor_id = models.AutoField(primary_key=True, verbose_name='ID do Amortecedor')
 	amortecedor_codigo = models.CharField(max_length=45, primary_key=True, verbose_name='Código') 
 	amortecedor_diametro_externo = models.FloatField(verbose_name='Tamanho do Diâmetro Externo')
 	
@@ -64,7 +63,7 @@ class TesteVelocidadeFixa(Teste):
 	
 class TesteVelocidadeVariavel(Teste):
 
-	testeVV_quantidade_velocidade = models.IntegerField(null = True, verbose_name='Quantidade de Velocidades')
+	#testeVV_quantidade_velocidade = models.IntegerField(null = True, verbose_name='Quantidade de Velocidades')
 	arrayVelocidades = models.BinaryField(null = True)
 	def getArrayVelocidades(self):
 		return loads(self.arrayVelocidades)
