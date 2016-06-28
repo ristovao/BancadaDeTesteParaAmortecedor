@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from django.contrib.auth.models import User
 import unittest
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
 
 
 class TesteVelocidadeFixa(unittest.TestCase):
