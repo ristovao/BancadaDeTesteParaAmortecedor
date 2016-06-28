@@ -31,7 +31,6 @@ class Teste(models.Model):
             MinValueValidator(1)])
 	teste_observacoes = models.TextField(max_length=255, null = True, verbose_name='Observações')
 	teste_data_hora = models.DateTimeField(default=timezone.now, verbose_name='Data')
-	#graficos = models.ForeignKey(Grafico, verbose_name='Gráficos', on_delete=models.CASCADE)
 	amortecedor = models.ForeignKey(Amortecedor, on_delete=models.CASCADE)
 	graficoTemperaturaTempo = models.BinaryField(null = True)
 	graficoForcaTempo = models.BinaryField(null = True)
@@ -67,7 +66,6 @@ class TesteVelocidadeVariavel(Teste):
 
 	testeVV_quantidade_velocidade = models.IntegerField(null = True, verbose_name='Quantidade de Velocidades')
 	arrayVelocidades = models.BinaryField(null = True)
-	#FALTA: array das velocidade(s)
 	def getArrayVelocidades(self):
 		return loads(self.arrayVelocidades)
 		
@@ -77,16 +75,5 @@ class TesteVelocidadeVariavel(Teste):
 class TesteTemperatura(Teste):
 
 	testeTT_quantidade_temperatura = models.IntegerField(null = True, verbose_name='Quantidade de Temperaturas') 
-	#FALTA: array de temperatura(s)
 	testeVV_quantidade_velocidade = models.IntegerField(null = True, verbose_name='Quantidade de Velocidades')	
-	#FALTA: array das velocidade(s)
 
-
-
-
-# Model: Grafico
-# Utilizada para criação dos gráficos resultantes da realização dos testes
-class Grafico (models.Model):
-	teste = models.ForeignKey(Teste, verbose_name='Teste', on_delete=models.CASCADE)
-	
-	
