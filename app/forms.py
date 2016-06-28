@@ -31,7 +31,7 @@ class TesteVelocidadeVariavelForm(forms.ModelForm):
 
   class Meta:
     model = TesteVelocidadeVariavel
-    fields = ('amortecedor', 'teste_id', 'teste_nome', 'teste_quantidade_ciclo', 'teste_observacoes', 'testeVV_quantidade_velocidade')
+    fields = ( 'teste_id', 'teste_nome', 'teste_quantidade_ciclo', 'teste_observacoes','curso')
 
 
 class TesteTemperaturaForm(forms.ModelForm):
@@ -47,3 +47,12 @@ class AmortecedorForm(forms.ModelForm):
     model = Amortecedor
     fields = ('amortecedor_codigo', 'amortecedor_diametro_externo')
 
+class UnknownForm(forms.Form):
+    choices = forms.MultipleChoiceField(
+        choices = (
+                  ('10.0', '10'),
+                  ('12.5', '12.5'),
+                  ('15.0', '15'),
+                 ), # this is optional
+        widget  = forms.CheckboxSelectMultiple,
+    )

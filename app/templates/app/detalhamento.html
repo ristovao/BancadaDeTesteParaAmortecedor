@@ -36,6 +36,9 @@
                 <h4 class="page-header"></h4>
                 <!-- Gráfico-->
                 <div id="temperatura" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                <div id="forcaTempo" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                <div id="forcaDeslocamento" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
             </div>
             <!-- /.panel-body -->
         </div>
@@ -70,6 +73,8 @@
 
         // Esconde a imagem the loading quando o gráfico termina de plotar as informações
         $.when(grafico()).then(terminarLoaging());
+        $.when(grafico1()).then(terminarLoaging());
+        $.when(grafico2()).then(terminarLoaging());
         
     });
 
@@ -130,6 +135,124 @@
             series: [{
                 name: 'Tempo',
                 data: {{ detalhamento_do_teste.graficoTemp }}
+            }]
+        });
+    }
+    function grafico1() {
+        
+        
+        $('#forcaTempo').highcharts({
+            chart: {
+                type: 'spline',
+                inverted: true
+            },
+            title: {
+                text: 'Força por Ciclo'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                reversed: false,
+                title: {
+                    enabled: true,
+                    text: 'Força'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + 'N';
+                    }
+                },
+                maxPadding: 0.05,
+                showLastLabel: true
+            },
+            yAxis: {
+                title: {
+                    text: 'Ciclo'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + '';
+                    }
+                },
+                lineWidth: 2
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br/>',
+                pointFormat: '{point.x} N: {point.y} Ciclo'
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enable: false
+                    }
+                }
+            },
+            series: [{
+                name: 'Tempo',
+                data: {{ detalhamento_do_teste.graficoForcaTempo }}
+            }]
+        });
+    }
+    function grafico2() {
+        
+        
+        $('#forcaDeslocamento').highcharts({
+            chart: {
+                type: 'spline',
+                inverted: true
+            },
+            title: {
+                text: 'Força por posição'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                reversed: false,
+                title: {
+                    enabled: true,
+                    text: 'Força'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + '';
+                    }
+                },
+                maxPadding: 0.05,
+                showLastLabel: true
+            },
+            yAxis: {
+                title: {
+                    text: 'Posição'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + '';
+                    }
+                },
+                lineWidth: 2
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br/>',
+                pointFormat: '{point.x} N: {point.y} '
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enable: false
+                    }
+                }
+            },
+            series: [{
+                name: 'Tempo',
+                data: {{ detalhamento_do_teste.graficoForcaDeslocamento }}
             }]
         });
     }
