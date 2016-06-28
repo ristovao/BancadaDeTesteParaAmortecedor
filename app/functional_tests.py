@@ -11,9 +11,10 @@ class TesteVelocidadeFixa(unittest.TestCase):
 	def setUp(self):
 		self.browser = webdriver.Firefox()
 		self.browser.maximize_window()
-		self.browser.implicitly_wait(5)
+		self.browser.implicitly_wait(3)
 
-		user = User.objects.create_user(username='asdf', email='teste@teste.com', password='asdf1234')
+		if 'asdf' not in [x.username for x in User.objects.all()]:
+			user = User.objects.create_user(username='asdf', email='teste@teste.com', password='asdf1234')
 
 		#Abrindo o link a ser testado
 		self.browser.get('http://localhost:8000/login')
@@ -24,16 +25,19 @@ class TesteVelocidadeFixa(unittest.TestCase):
 		entrar = self.browser.find_element_by_id('id_entrar')
 
 		#Inserindo os dados do usuário
+		usuario.click()
 		usuario.send_keys('asdf')
+		senha.click()
 		senha.send_keys('asdf1234')
 
 		#Enviando o formulário
 		entrar.send_keys(Keys.RETURN)
+		self.browser.implicitly_wait(10)
 
 	def tearDown(self):
 		self.browser.quit()
 
-	def teste_iniciar_teste_velocidade_fixa_when_no_login(self):
+	def teste_iniciar_teste_velocidade_fixa(self):
 		#Abrindo o link da página de teste por velocidade fixa
 		self.browser.get('http://localhost:8000/iniciarTesteVelocidadeFixa')
 
@@ -55,12 +59,12 @@ class TesteVelocidadeFixa(unittest.TestCase):
 		nome.send_keys('Teste 1')
 		ciclo.send_keys('10')
 		curso.send_keys('10')
-		velocidade.send_keys('10')
+		velocidade.send_keys('255')
 		observacoes.send_keys('observacoes')
 
 		#Enviando formulário
 		iniciar.send_keys(Keys.RETURN)
-		
+		#self.assertIn('Resultado do teste', body.text)		
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore') 
