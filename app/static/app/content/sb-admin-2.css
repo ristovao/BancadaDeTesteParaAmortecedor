@@ -355,3 +355,6 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+.span_h2{font-weight: 300;color: #FF530D}
+.text_h2 {font-weight: 100;margin-bottom: 4%; line-height: 4.5rem;}
+.light{font-weight: 300; }
