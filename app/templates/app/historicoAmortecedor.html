@@ -22,14 +22,16 @@
                         <tr>
                             <th style="font-weight:bold">Código</th>
                             <th style="font-weight:bold">Diametro</th>
+                            <th style="font-weight:bold">Diametro</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {% for amortecedor in lista_de_amortecedores %}
                             <tr>
-                                <th>{{amortecedor.amortecedor_codigo}}</th>
+                                <th><a href="{% url 'detalharAmortecedor' primary_key=amortecedor.pk}">{{amortecedor.amortecedor_codigo}}</a></th>
                                 <th>{{amortecedor.amortecedor_diametro_externo}}</th>
+                                <th>{{amortecedor.pk}}</th>
                             </tr>
                             
                         {% endfor %}

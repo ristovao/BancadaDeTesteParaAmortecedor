@@ -36,7 +36,7 @@ urlpatterns = [
     url(r'^teste/(?P<primary_key>[0-9]+)/$', appviews.detalharTeste, name='detalharTeste'),
     url(r'^json/amortecedor/(?P<primary_key>[\w\d\.]+)', appviews.pegarDadosAmortecedor, name='jsonAmortecedor'),
     url(r'^json/nomeAmortecedor', appviews.pegarNomesAmortecedor, name='jsonNomesAmortecedor'),
-    #url(r'^detalhamento', appviews.detalhamento, name='detalhamento'),
+    url(r'^amortecedor/(?P<primary_key>[0-9]*)/$', appviews.detalharAmortecedor, name='detalharAmortecedor'),
     url(r'^grafico', appviews.grafico, name='grafico'),
 
 
