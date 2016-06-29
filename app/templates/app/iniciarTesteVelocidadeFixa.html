@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Teste por Velocidade Fixa</h1>
+        <h1 class="page-header"><center>Teste por Velocidade Fixa</center></h1>
     </div>
 </div>
 
@@ -12,7 +12,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Informações básicas
+                <b>Informações básicas</b>
             </div>
             <div class="panel-body">
                 <form role="form" method="POST" name="FrmRecurso" autocomplete="off">
@@ -25,8 +25,12 @@
                     <div class="form-group row">
                     {{formArm.amortecedor_codigo.errors}}
                         <label class="col-sm-2 form-control-label" for="id_amortecedor_codigo">Código:</label>
-                        <div class="col-sm-2">
-                            <input class="form-control" id="id_amortecedor_codigo" maxlength="45" name="amortecedor_codigo" type="text" />
+                        <div class="col-sm-3">
+                            <input class="form-control" id="id_amortecedor_codigo" maxlength="45" name="amortecedor_codigo" type="text" placeholder="Insira o código do Amortecedor"/>
+                            <p class="help-block">* Campo Obrigatório</p>
+                        </div>
+                         <div class="col-sm-7">
+                            <p class="help-block" style="text-align: justify;">O código do amortecedor é o identificador único utilizado para buscar os testes realiados com diferentes amortecedor. Se estiver utilizando um amortecedor novo, defina um valor e o informe aqui, caso já tenha realizado outros testes com este amortecedor, insira o código cadastrado.</p>
                         </div>
                     </div>
 
@@ -47,12 +51,14 @@
                     </div> -->
 
                     
-
                      <div class="form-group row">
                         {{ form.amortecedor_diametro_externo.errors }}
                         <label class="col-sm-2 form-control-label" for="id_amortecedor_diametro_externo">Tamanho do Diâmetro Externo:</label>
-                        <div class="col-sm-1">
-                            <input class="form-control" id="id_amortecedor_diametro_externo" name="amortecedor_diametro_externo" type="number" value="1"/>
+                        <div class="col-xs-3">
+                            <input class="form-control" id="id_amortecedor_diametro_externo" name="amortecedor_diametro_externo" type="number" value="10" size="2" maxlength="2" min="2" max="100"/>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="help-block" style="text-align: justify;">Valor do Diametro Externo do Amortecedor dado em <span style="text-decoration:underline;">centímetros (cm)</span>, caso não o tenha, deixe o valor 0 como padrão.</p>
                         </div>
                     </div>
 
@@ -64,48 +70,57 @@
                     <div class="form-group row">
                         {{ form.teste_nome.errors }}
                         <label class="col-sm-2 form-control-label" for="id_teste_nome">Nome:</label>
-                        <div class="col-sm-5">
-                            <input class="form-control" id="id_teste_nome" maxlength="45" name="teste_nome" type="text" />
+                        <div class="col-sm-3">
+                            <input class="form-control" id="id_teste_nome" maxlength="45" name="teste_nome" type="text" placeholder="Insira um nome para este Teste" />
+                            <p class="help-block">* Campo Obrigatório</p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="help-block" style="text-align: justify;">O Nome do teste é utilizado para recuperar, durante uma busca, por testes já realizados. Utilize nomes significativos como: Teste_Amort510_Velocidade_225  </p>
                         </div>
                     </div>
 
                     <div class="form-group row">
                      {{ form.teste_quantidade_ciclo.errors }}
                         <label class="col-sm-2 form-control-label" for="id_teste_quantidade_ciclo">Quantidade de Ciclo:</label>
-                        <div class="col-sm-1">
-                            <input class="form-control" id="id_teste_quantidade_ciclo" name="teste_quantidade_ciclo" type="number" value="5" />
+                        <div class="col-sm-3">
+                            <input class="form-control" id="id_teste_quantidade_ciclo" name="teste_quantidade_ciclo" type="number" value="5" size="2" maxlength="2" min="3" max="20"/>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="help-block" style="text-align: justify;">A quantidade de ciclos define quantos rotações o motor deverá realizar para executar o teste. Assuma que para um ciclo, o motor completou uma rotação completa em seu eixo total (Diametro: 25cm)</p>
                         </div>
                     </div>
-                    
                     
                     
                     <div class="form-group row">
                         {{ form.amortecedor_curso.errors }}   
                         <label class="col-sm-2 form-control-label" for="id_amortecedor_curso">Curso:</label>
 
-                        <div class="col-sm-2">
-                            <select id="curso" name="curso">
-                            <option value="10.0" selected="selected">10 cm</option>
+                        <div class="col-sm-3">
+                            <select id="curso" name="curso" class="form-control">
+                            <option value="10.0" selected="selected" style="width:132px;">10 cm</option>
                             <option value="12.5">12.5 cm</option>
                             <option value="15.0">15 cm</option>
                             </select> 
                         </div>
+                        <div class="col-sm-7">
+                            <p class="help-block" style="text-align: justify;">O curso é definido de acordo com deslocamento configurado no amortecedor. <span style="text-decoration:underline; color:red">CUIDADO:</span> Ao selecionar um valor, certifique-se, antes de iniciar o teste, que o curso da bancada está correpondente.</p>
+                        </div>
                     </div>
-                    
-                    
 
                     <div class="form-group row">
                      {{ form.testeVF_velocidade.errors }}
                         <label class="col-sm-2 form-control-label" for="id_testeVF_velocidade">Velocidade linear máxima:</label>
 
-                        <div class="col-sm-2">
-                            <select id="testeVF_velocidade" name="testeVF_velocidade">
+                        <div class="col-sm-3">
+                            <select id="testeVF_velocidade" name="testeVF_velocidade" class="form-control">
                             <option value="225" selected="selected">225 mm/segundo</option>
                             <option value="200">200 mm/segundo</option>
                             <option value="175">175 mm/segundo</option>
                             </select>
                         </div>
-                       
+                        <div class="col-sm-7">
+                            <p class="help-block" style="text-align: justify;">Este campo corresponde a velocidade que será utilizada na execução do teste. Para visualizar a tabela com os valores lineares correspondes a velocidade do motor clique no aqui. </p>
+                        </div>
                     </div>
 
                     <div class="form-group row">
@@ -113,13 +128,16 @@
 
                         <label class="col-sm-2 form-control-label" for="id_teste_observacoes">Observações:</label>
                         <div class="col-sm-5">
-                            <textarea cols="40" id="id_teste_observacoes" maxlength="255" name="teste_observacoes" rows="10" class="form-control"></textarea>
+                            <textarea cols="40" id="id_teste_observacoes" maxlength="255" name="teste_observacoes" rows="10" class="form-control" placeholder="Insira informações adicionais"></textarea>
+                        </div>
+                        <div class="col-md-5">
+                            <p class="help-block" style="text-align: justify;">Insira aqui os valores que achar pertinentes para seu teste. </p>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <input id="id_enviar" class="btn btn-primary" type="submit" name="enviar" value="Iniciar" >
+                            <center><input id="id_enviar" class="btn btn-primary" type="submit" name="enviar" value="Iniciar Teste" style="margin:10px; width:275px; height: 50px"></center>
                         </div>
                     </div>
                 </form>
