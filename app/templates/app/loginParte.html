@@ -1,15 +1,15 @@
 {% if user.is_authenticated %}
-<form id="logoutForm" action="/logout" method="post" class="navbar-right">
+<form id="logoutForm" action="/logout" method="post" class="navbar-center">
     {% csrf_token %}
     <ul class="nav navbar-nav navbar-left">
-        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw"></i> Sair</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw"></i>Sair</a></li>
     </ul>
 </form>
 
 {% else %}
 
-<ul class="nav navbar-nav navbar-right">
-    <li><a href="{% url 'login' %}">Log in</a></li>
+<ul class="nav navbar-nav navbar-left">
+    <li><a href="{% url 'login' %}"><i class="fa fa-sign-in fa-fw"></i>Log in</a></li>
 </ul>
 
 {% endif %}

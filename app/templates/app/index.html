@@ -7,6 +7,8 @@
     	<center>
         	<h1 class="page-header">Bancada de Teste de Amortecedores</h1>
     	</center>
+    </div>
+</div>
     	
     <div class="container">
         <div class="row">
@@ -21,69 +23,84 @@
         </div>
 
         <div class="row">
-            <div  class="col-xs-6 col-md-3" style="margin:20px;">
+            <div  class="col-xs-3 col-md-3" style="margin:20px;">
                 <center>
-                <!--<a href="#" class="thumbnail">
-                  <img src="../../static/app/images/box.png" alt="Box">
-                </a>-->
+                <a href="{% url 'iniciarTesteVelocidadeFixa' %}" class="thumbnail">
+                    <img src="../../static/app/images/vf_2.png" alt="Box">
+                </a>
+                <a href="{% url 'iniciarTesteVelocidadeFixa' %}" class="icons-fun">
                 <h4><span class="span_h2">Iniciar um Teste de Velocidade Fixa</span></h4>
                 <p>Você pode realizar um teste utilizando apenas de uma velocidade pré definida. Ao final do experimento, será gerado um relatório da execução.</p>                
+                </a>
                 </center>
             </div>
 
-            <div  class="col-xs-6 col-md-3" style="margin:20px;">
+            <div  class="col-xs-3 col-md-3" style="margin:20px;">
                 <center>
+                <a href="{% url 'iniciarTesteVelocidadeVariavel' %}" class="thumbnail">
+                    <img src="../../static/app/images/vv_2.png" alt="Box">
+                </a>
+                <a href="{% url 'iniciarTesteVelocidadeVariavel' %}" class="icons-fun">
                 <h4><span class="span_h2">Iniciar um Teste de Velocidade Variável</span></h4>
                 <p>Neste teste, você pode utilizar até três velocidades distintas e pré definidas. Ao final do experimento, será gerado um relatório da execução.</p>                
                 </center>
+                </a>
             </div>
 
-            <div  class="col-xs-6 col-md-3" style="margin:20px;">
+            <div  class="col-xs-3 col-md-3" style="margin:20px;">
                 <center>
+                <a href="{% url 'historico'%}" class="thumbnail">
+                    <img src="../../static/app/images/teste_2.png" alt="Box">
+                </a>
+                <a href="{% url 'historico'%}" class="icons-fun">
                 <h4><span class="span_h2">Visualizar Testes Realizados</span></h4>
                 <p>Aqui você poderá visualizar uma lista completa de todos os teste já realizado, para ver o relatório de um teste, basta clicar em cima dele.</p>                
                 </center>
+                </a>
             </div>
         </div>
 
         <div class="row">
-            <div  class="col-xs-6 col-md-3" style="margin:20px;">
+            <div  class="col-xs-3 col-md-3" style="margin:20px;">
                 <center>
-                <h4><span class="span_h2">Visualizar Amortecedores Testados</span></h4>
-                <p>Aqui você poderá visualizar uma lista com todos os amortecedores utilizado, de acordo com o código fornecido durante o experimento.</p>                
+                <a href="{% url 'amortecedorHistorico'%}" class="thumbnail">
+                    <img src="../../static/app/images/amortecedor_2.png" alt="Box">
+                </a>
+                <a href="{% url 'amortecedorHistorico'%}" class="icons-fun">
+                    <h4><span class="span_h2">Visualizar Amortecedores Testados</span></h4>
+                    <p>Aqui você poderá visualizar uma lista com todos os amortecedores utilizado, de acordo com o código fornecido durante o experimento.</p>
+                </a>
                 </center>
             </div>
 
-            <div  class="col-xs-6 col-md-3" style="margin:20px;">
+            <div  class="col-xs-3 col-md-3" style="margin:20px;">
                 <center>
+                <a href="{% url 'historico'%}" class="thumbnail">
+                    <img src="../../static/app/images/busca_2.png" alt="Box">
+                </a>
+                <a href="{% url 'historico'%}" class="icons-fun">
+                
                 <h4><span class="span_h2">Buscar por Teste Realizados ou Amortecedores Testados</span></h4>
                 <p>Você pode utilizá-la para encontrar algum teste executado, de acordo nome dado ao testar, ou para encontrar algum amortecedor que já foi testado, de acordo com o código dado ao iniciar um teste.</p>
+                </a>
                 </center>
             </div>
 
-            <div  class="col-xs-6 col-md-3" style="margin:20px;">
+            <div  class="col-xs-3 col-md-3" style="margin:20px;">
                 <center>
+                <a href="{% url 'historico'%}" class="thumbnail">
+                    <img src="../../static/app/images/relatorio_2.png" alt="Box">
+                </a>
+                <a href="{% url 'historico'%}" class="icons-fun">
                 <h4><span class="span_h2">Visualizar Relatório de Teste</span></h4>
-                <p>Você poderá visualizar um relatório completo contendo os dados básicos informados no experimento e outras informações como o coeficiente de amortecimento do amortecedor, a força aplicada, entre outros.</p> 
+                <p>Você poderá visualizar um relatório completo contendo os dados básicos informados no experimento e outras informações como o coeficiente de amortecimento do amortecedor, a força aplicada, entre outros.</p>
+                </a>
                 </center>
             </div>
         </div>
             
     </div>
-</div>
 
 
-
-
-
-    	
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-8">
-         
-    </div>
-</div>
 
 {% endblock %}
