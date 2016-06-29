@@ -24,10 +24,10 @@
                         <tr>
                             <th style="font-weight:bold">ID</th>
                             <th style="font-weight:bold">Nome</th>
+                            <th style="font-weight:bold">Observação</th>
+                            <th style="font-weight:bold">Data e Hora</th>
                             <th style="font-weight:bold">Tempo Total</th>
                             <th style="font-weight:bold">Tempo Oscilação</th>
-                            <th style="font-weight:bold">Data e Hora</th>
-                            <th style="font-weight:bold">Observação</th>
                         </tr>
                       </thead>
 
@@ -36,10 +36,10 @@
                             <tr>
                                 <th>{{teste.teste_id}}</th>
                                 <th><a href="{% url 'detalharTeste' primary_key=teste.pk %}">{{teste.teste_nome}}</a></th> 
+                                <th>{{teste.teste_observacoes}}</th>
+                                <th>{{teste.teste_data_hora}}</th>
                                 <th>{{teste.teste_tempo_total}}</th>
                                 <th>{{teste.teste_tempo_oscilacao}}</th>
-                                <th>{{teste.teste_data_hora}}</th>
-                                <th>{{teste.teste_observacoes}}</th>
                             </tr>
                         {% endfor %}
                      </tbody>

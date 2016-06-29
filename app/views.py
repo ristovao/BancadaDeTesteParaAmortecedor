@@ -78,6 +78,14 @@ def detalharTeste(request, primary_key):
     teste_current.graficoForcaTempo = str(teste_current.getGraficoForcaTempo())
     return render(request, page, {'detalhamento_do_teste': teste_current})
 
+def detalharAmortecedor(request, primary_key):
+    page = 'app/detalhamentoamortecedor.html'
+
+    amortecedor = get_object_or_404(Amortecedor, amortecedor_id=primary_key)
+    amortecedor_testes = list(Teste.amortecedor.filter(amortecedor_codigo=amortecedor.amortecedor_codigo))
+
+    return render(request, page, {'amortecedor_testes': amortecedor_testes})
+
 @login_required
 def iniciarTesteVelocidadeFixa(request):
     
