@@ -31,7 +31,26 @@ def home(request):
             'title':'Home Page',
             'year':datetime.now().year,
         })
-    )    
+    )  
+
+def sobre(request):
+    """Renders the about page."""
+    assert isinstance(request, HttpRequest)
+
+    #if len(Session.objects.all())>1:
+    #    session = Session.objects.all()[1]
+    #    session.delete()
+    #    return render(request,'app/jaLogado.html')
+
+    return render(
+        request,
+        'app/sobre.html',
+        context_instance = RequestContext(request,
+        {
+            'title':'Sobre a Bancada',
+            'year':datetime.now().year,
+        })
+    )
 
 #@login_required
 def teste(request):
