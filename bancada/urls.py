@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^json/nomeAmortecedor', appviews.pegarNomesAmortecedor, name='jsonNomesAmortecedor'),
     url(r'^amortecedor/(?P<primary_key>[0-9]*)/$', appviews.detalharAmortecedor, name='detalharAmortecedor'),
     url(r'^grafico', appviews.grafico, name='grafico'),
+    url(r'^sobre', appviews.sobre, name='sobre'),
 
 
     url(r'^login/$',

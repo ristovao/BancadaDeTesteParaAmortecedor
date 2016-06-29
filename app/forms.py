@@ -22,8 +22,6 @@ class TesteVelocidadeFixaForm(forms.ModelForm):
 
   class Meta:
     model = TesteVelocidadeFixa
-    #fields = '__all__'
-    #exclude = ['teste_data_hora']   
     fields = ('teste_id', 'teste_nome', 'teste_quantidade_ciclo', 'testeVF_velocidade', 'teste_observacoes', 'curso')
 
 
@@ -53,6 +51,6 @@ class UnknownForm(forms.Form):
                   ('10.0', '10'),
                   ('12.5', '12.5'),
                   ('15.0', '15'),
-                 ), # this is optional
+                 ), 
         widget  = forms.CheckboxSelectMultiple,
     )
