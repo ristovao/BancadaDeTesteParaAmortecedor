@@ -246,7 +246,7 @@ def pegarValores(quant):
             clientsocket.connect(('localhost', 8765))
             temp = clientsocket.send('1')
             temp = clientsocket.recv(10000)
-            while(temp):
+            while('\0' notin temp):
                 g=g+temp
                 temp = clientsocket.recv(10000)
             #g = g.decode("utf-8") 
@@ -259,9 +259,20 @@ def pegarValores(quant):
             break
         except:
             pass
-    saida=[]
+    tempo=[]
+    velocidade=[]
+    temperatura=[]
+    forca=[]
     for i in g:
-        saida.append(g[1])
+        tempo.append(g.split(' ')[0])
+        velocidade.append(g.split(' ')[0])
+        temperatura.append(g.split(' ')[0])
+        forca.append(g.split(' ')[0])
+    saida=[]
+    saida.append(tempo)
+    saida.append(velocidade)
+    saida.append(temperatura)
+    saida.append(forca)
     return saida
 
 def pegarValores2(quant):
