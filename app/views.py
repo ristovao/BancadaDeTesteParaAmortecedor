@@ -73,7 +73,6 @@ def detalharTeste(request, primary_key):
     teste_current = get_object_or_404(Teste, teste_id=primary_key)
     teste_current  = list(chain(TesteVelocidadeFixa.objects.filter(teste_id=primary_key),TesteVelocidadeVariavel.objects.filter(teste_id=primary_key)))
     teste_current = teste_current[0]
-    teste_current.graficoTemp = str(teste_current.getGraficoTemperaturaTempo())
     teste_current.graficoForcaDeslocamento = str(teste_current.getGraficoForcaDeslocamento())
     teste_current.graficoForcaTempo = str(teste_current.getGraficoForcaTempo())
     return render(request, page, {'detalhamento_do_teste': teste_current})
