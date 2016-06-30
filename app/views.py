@@ -81,10 +81,10 @@ def detalharTeste(request, primary_key):
 def detalharAmortecedor(request, primary_key):
     page = 'app/detalhamentoamortecedor.html'
 
-    amortecedor = get_object_or_404(Amortecedor, amortecedor_id=primary_key)
-    amortecedor_testes = list(Teste.amortecedor.filter(amortecedor_codigo=amortecedor.amortecedor_codigo))
+    amortecedor = get_object_or_404(Amortecedor, amortecedor_codigo=primary_key)
+    amortecedor_testes = list(Teste.objects.filter(amortecedor=amortecedor))
 
-    return render(request, page, {'amortecedor_testes': amortecedor_testes})
+    return render(request, page, {'amortecedor_testes':amortecedor_testes, 'amortecedor_atual':amortecedor})
 
 @login_required
 def iniciarTesteVelocidadeFixa(request):
@@ -260,17 +260,21 @@ def pegarNomesAmortecedor(request):
 
 #funcao de teste para pegar valores de algum lugar
 def pegarValores(quant):
-    BUFFER_SIZE=10000
+    #BUFFER_SIZE=10000
+    g = ""
     while 1:
         try:
             #clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            #clientsocket.connect(('localhost', 4567))
-            #temp = clientsocket.send('hello')
-            #g = clientsocket.recv(3)
-            #g = g.decode("utf-8") 
-            #g = g.split(",")
-            #g = map(int,g)
-            #g = list(g)
+            #clientsocket.connect(('localhost', 8765))
+            #temp = clientsocket.send('1')
+            #temp = clientsocket.recv(10000)
+            #while(temp):
+            #    g=g+temp
+            #    temp = clientsocket.recv(10000)
+            ##g = g.decode("utf-8") 
+            #g = g.split("\n")
+            ##g = map(int,g)
+            ##g = list(g)
             f = []
             for i in range(int(quant)):
                 f.append([random.randint(0,90),i])
