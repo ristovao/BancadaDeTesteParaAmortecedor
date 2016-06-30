@@ -265,7 +265,7 @@ def pegarValores(quant):
     while 1:
         try:
             clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            clientsocket.connect(('localhost', 8765))
+            clientsocket.connect(('192.168.1.47', 8765))
             temp = clientsocket.send('1')
             temp = clientsocket.recv(10000)
             while(temp):
