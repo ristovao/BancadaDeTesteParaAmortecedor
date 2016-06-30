@@ -30,7 +30,6 @@ urlpatterns = [
     url(r'^$', appviews.home, name='home'),
     url(r'^iniciarTesteVelocidadeFixa', appviews.iniciarTesteVelocidadeFixa, name='iniciarTesteVelocidadeFixa'),
     url(r'^iniciarTesteVelocidadeVariavel', appviews.iniciarTesteVelocidadeVariavel, name='iniciarTesteVelocidadeVariavel'),
-    url(r'^iniciarTesteTemperatura', appviews.iniciarTesteTemperatura, name='iniciarTesteTemperatura'),
     url(r'^historico', appviews.historico, name='historico'),    
     url(r'^amortecedorHistorico', appviews.amortecedorHistorico, name='amortecedorHistorico'),
     url(r'^teste/(?P<primary_key>[0-9]+)/$', appviews.detalharTeste, name='detalharTeste'),

@@ -3,8 +3,8 @@ from django.http import HttpRequest, JsonResponse
 from django.template import RequestContext
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from .forms import AmortecedorForm, TesteVelocidadeFixaForm, TesteVelocidadeVariavelForm, TesteTemperaturaForm, UnknownForm
-from .models import Amortecedor, Teste, TesteVelocidadeFixa, TesteVelocidadeVariavel, TesteTemperatura
+from .forms import AmortecedorForm, TesteVelocidadeFixaForm, TesteVelocidadeVariavelForm, UnknownForm
+from .models import Amortecedor, Teste, TesteVelocidadeFixa, TesteVelocidadeVariavel
 from django.contrib.sessions.models import Session
 from importlib import import_module
 from django.conf import settings
@@ -71,7 +71,7 @@ def detalharTeste(request, primary_key):
     
     page = 'app/detalhamento.html'
     teste_current = get_object_or_404(Teste, teste_id=primary_key)
-    teste_current  = list(chain(TesteTemperatura.objects.filter(teste_id=primary_key),TesteVelocidadeFixa.objects.filter(teste_id=primary_key),TesteVelocidadeVariavel.objects.filter(teste_id=primary_key)))
+    teste_current  = list(chain(TesteVelocidadeFixa.objects.filter(teste_id=primary_key),TesteVelocidadeVariavel.objects.filter(teste_id=primary_key)))
     teste_current = teste_current[0]
     teste_current.graficoTemp = str(teste_current.getGraficoTemperaturaTempo())
     teste_current.graficoForcaDeslocamento = str(teste_current.getGraficoForcaDeslocamento())
@@ -190,27 +190,6 @@ def iniciarTesteVelocidadeVariavel(request):
         form = TesteVelocidadeVariavelForm()
         formArm = AmortecedorForm()
     return render(request, page, {'form':form, 'formArm':formArm})
-
-@login_required
-def iniciarTesteTemperatura(request):
-    
-    page = 'app/iniciarTesteTemperatura.html'
-
-    if request.method == "POST":
-        form = TesteTemperaturaForm(request.POST)
-        
-        if form.is_valid():
-            teste = form.save(commit=False)
-            teste.teste_nome = request.POST['teste_nome']
-            teste.teste_observacoes = request.POST['teste_observacoes']
-            
-            teste.save()
-            return redirect('app.views.detalharTeste', primary_key=teste.pk)
-
-    else:
-        form = TesteTemperaturaForm()
-    
-    return render(request, page, {'form':form})
 
 def historico(request):
     

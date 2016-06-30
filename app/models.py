@@ -71,8 +71,3 @@ class TesteVelocidadeVariavel(Teste):
 	def setArrayVelocidades(self,lista):
 		self.arrayVelocidades = dumps(lista)
 
-class TesteTemperatura(Teste):
-
-	testeTT_quantidade_temperatura = models.IntegerField(null = True, verbose_name='Quantidade de Temperaturas') 
-	testeVV_quantidade_velocidade = models.IntegerField(null = True, verbose_name='Quantidade de Velocidades')	
-
