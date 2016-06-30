@@ -179,9 +179,9 @@ def iniciarTesteVelocidadeVariavel(request):
             teste.teste_observacoes = request.POST['teste_observacoes']
             listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -243,6 +243,33 @@ def pegarValores(quant):
     g = ""
     while 1:
         try:
+            clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            clientsocket.connect(('localhost', 8765))
+            temp = clientsocket.send('1')
+            temp = clientsocket.recv(10000)
+            while(temp):
+                g=g+temp
+                temp = clientsocket.recv(10000)
+            #g = g.decode("utf-8") 
+            g = g.split("\n")
+            #g = map(int,g)
+            #g = list(g)
+            #f = []
+            #for i in range(int(quant)):
+            #    f.append([random.randint(0,90),i])
+            break
+        except:
+            pass
+    saida=[]
+    for i in g:
+        saida.append(g[1])
+    return saida
+
+def pegarValores2(quant):
+    #BUFFER_SIZE=10000
+    g = ""
+    while 1:
+        try:
             #clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             #clientsocket.connect(('localhost', 8765))
             #temp = clientsocket.send('1')
@@ -260,6 +287,5 @@ def pegarValores(quant):
             break
         except:
             pass
-    return f
-            
+    return f            
 
