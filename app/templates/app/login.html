@@ -3,34 +3,39 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
         <section id="loginForm">
-            <form action="" method="post" class="form-horizontal">
-                {% csrf_token %}
-                <h4>Autenticação</h4>
-                <hr />
-                <div class="form-group">
-                    <label for="id_username" class="col-md-2 control-label">Usuário</label>
-                    <div class="col-md-10">
-                        {{ form.username }}
-                    </div>
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Autenticação</h3>
                 </div>
-                <div class="form-group">
-                    <label for="id_password" class="col-md-2 control-label">Senha</label>
-                    <div class="col-md-10">
-                        {{ form.password }}
-                    </div>
+                <div class="panel-body">
+                    <form action="" method="post" class="form-horizontal">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_username" class="col-md-2 control-label">Usuário</label>
+                            <div class="col-md-10">
+                                {{ form.username }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_password" class="col-md-2 control-label">Senha</label>
+                            <div class="col-md-10">
+                                {{ form.password }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="hidden" name="next" value="/" />
+                                <input id='id_entrar' type="submit" value="Entrar" class="btn" />
+                            </div>
+                        </div>
+                        {% if form.errors %}
+                        <p class="validation-summary-errors">O usuário ou senha está errado.</p>
+                        {% endif %}
+                    </form>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="hidden" name="next" value="/" />
-                        <input id='id_entrar' type="submit" value="Entrar" class="btn btn-primary" />
-                    </div>
-                </div>
-                {% if form.errors %}
-                <p class="validation-summary-errors">O usuário ou senha está errado.</p>
-                {% endif %}
-            </form>
+            </div>
         </section>
     </div>
     <div class="col-md-4">
