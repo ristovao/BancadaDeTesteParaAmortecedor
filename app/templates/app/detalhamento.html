@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Resultado do teste {{detalhamento_do_teste.teste_nome}}</h1>
+        <h1 class="page-header"><center>Resultado do teste</center></h1>
     </div>
 </div>
 
@@ -11,11 +11,13 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Informações básicas
+                <b>Informações básicas</b>
             </div>
             <div class="panel-body">
                 <!--Cabeçalho do Gráfico-->
-                    
+
+                <!-- Dados do Teste -->
+                <h4 class="page-header"><span class="span_h2">Dados do teste:</span></h4>
                 <div class="nome row">
                     {% if detalhamento_do_teste.teste_nome %}
                     <div class="col-sm-3">
@@ -23,7 +25,7 @@
                     </div>
                     <div class="col-sm-3">
                         {{ detalhamento_do_teste.teste_nome }}
-                        </div>
+                    </div>
                     {% endif %}
                 </div>
                 <div class="row">
@@ -45,15 +47,44 @@
 
                 <div class="row">
                     <div class="col-sm-3">
+                        <label class="form-control-label">Tipo de teste:</label>
+                    </div> 
+                    <div class="col-sm-3">
+                        {{ detalhamento_do_teste.tipo_teste }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
                         <label class="form-control-label">Observações:</label>
                     </div>
                     <div class="col-sm-8">
                         {{detalhamento_do_teste.teste_observacoes|linebreaks }}
                     </div>
                 </div> 
+                
+                <h4 class="page-header"><span class="span_h2">Dados do mortecedor:</span></h4>
+                <!-- Dados do Amortecedor-->
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="form-control-label">Código do amortecedor:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        {{ detalhamento_do_teste.amortecedor.amortecedor_codigo }}
+                    </div>
+                </div>
 
-                <h4 class="page-header"></h4>
-                <!-- Gráfico-->
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="form-control-label">Diametro:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        {{ detalhamento_do_teste.amortecedor.amortecedor_diametro_externo}}
+                    </div>
+                </div>
+
+            <h4 class="page-header"></h4>
+            <!--            Gráficos                 -->
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel panel-default">

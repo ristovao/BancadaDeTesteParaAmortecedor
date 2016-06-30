@@ -56,6 +56,7 @@ class Teste(models.Model):
 	
 class TesteVelocidadeFixa(Teste):
 
+	tipo_teste = "Velocidade Fixa"
 	testeVF_velocidade = models.FloatField(null = True, verbose_name='Velocidade do Motor',default=5,
         validators=[
             MaxValueValidator(225),
@@ -64,6 +65,7 @@ class TesteVelocidadeFixa(Teste):
 class TesteVelocidadeVariavel(Teste):
 
 	#testeVV_quantidade_velocidade = models.IntegerField(null = True, verbose_name='Quantidade de Velocidades')
+	tipo_teste = "Velocidade Variável"
 	arrayVelocidades = models.BinaryField(null = True)
 	def getArrayVelocidades(self):
 		return loads(self.arrayVelocidades)

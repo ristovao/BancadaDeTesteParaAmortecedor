@@ -73,7 +73,6 @@ def detalharTeste(request, primary_key):
     teste_current = get_object_or_404(Teste, teste_id=primary_key)
     teste_current  = list(chain(TesteVelocidadeFixa.objects.filter(teste_id=primary_key),TesteVelocidadeVariavel.objects.filter(teste_id=primary_key)))
     teste_current = teste_current[0]
-    teste_current.graficoTemp = str(teste_current.getGraficoTemperaturaTempo())
     teste_current.graficoForcaDeslocamento = str(teste_current.getGraficoForcaDeslocamento())
     teste_current.graficoForcaTempo = str(teste_current.getGraficoForcaTempo())
     return render(request, page, {'detalhamento_do_teste': teste_current})
@@ -115,11 +114,11 @@ def iniciarTesteVelocidadeFixa(request):
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
             teste.curso = request.POST['curso']
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -177,7 +176,7 @@ def iniciarTesteVelocidadeVariavel(request):
             teste.setArrayVelocidades(choices)
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
             listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
