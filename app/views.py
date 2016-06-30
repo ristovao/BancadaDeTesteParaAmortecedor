@@ -3,8 +3,8 @@ from django.http import HttpRequest, JsonResponse
 from django.template import RequestContext
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from .forms import AmortecedorForm, TesteVelocidadeFixaForm, TesteVelocidadeVariavelForm, TesteTemperaturaForm, UnknownForm
-from .models import Amortecedor, Teste, TesteVelocidadeFixa, TesteVelocidadeVariavel, TesteTemperatura
+from .forms import AmortecedorForm, TesteVelocidadeFixaForm, TesteVelocidadeVariavelForm, UnknownForm
+from .models import Amortecedor, Teste, TesteVelocidadeFixa, TesteVelocidadeVariavel
 from django.contrib.sessions.models import Session
 from importlib import import_module
 from django.conf import settings
@@ -71,9 +71,8 @@ def detalharTeste(request, primary_key):
     
     page = 'app/detalhamento.html'
     teste_current = get_object_or_404(Teste, teste_id=primary_key)
-    teste_current  = list(chain(TesteTemperatura.objects.filter(teste_id=primary_key),TesteVelocidadeFixa.objects.filter(teste_id=primary_key),TesteVelocidadeVariavel.objects.filter(teste_id=primary_key)))
+    teste_current  = list(chain(TesteVelocidadeFixa.objects.filter(teste_id=primary_key),TesteVelocidadeVariavel.objects.filter(teste_id=primary_key)))
     teste_current = teste_current[0]
-    teste_current.graficoTemp = str(teste_current.getGraficoTemperaturaTempo())
     teste_current.graficoForcaDeslocamento = str(teste_current.getGraficoForcaDeslocamento())
     teste_current.graficoForcaTempo = str(teste_current.getGraficoForcaTempo())
     return render(request, page, {'detalhamento_do_teste': teste_current})
@@ -82,7 +81,7 @@ def detalharAmortecedor(request, primary_key):
     page = 'app/detalhamentoamortecedor.html'
 
     amortecedor = get_object_or_404(Amortecedor, amortecedor_codigo=primary_key)
-    amortecedor_testes = list(Teste.objects.filter(amortecedor=amortecedor))
+    amortecedor_testes = list(chain(TesteVelocidadeFixa.objects.filter(amortecedor=amortecedor),TesteVelocidadeVariavel.objects.filter(amortecedor=amortecedor)))
 
     return render(request, page, {'amortecedor_testes':amortecedor_testes, 'amortecedor_atual':amortecedor})
 
@@ -115,11 +114,11 @@ def iniciarTesteVelocidadeFixa(request):
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
             teste.curso = request.POST['curso']
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -177,7 +176,7 @@ def iniciarTesteVelocidadeVariavel(request):
             teste.setArrayVelocidades(choices)
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
             listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
@@ -191,32 +190,11 @@ def iniciarTesteVelocidadeVariavel(request):
         formArm = AmortecedorForm()
     return render(request, page, {'form':form, 'formArm':formArm})
 
-@login_required
-def iniciarTesteTemperatura(request):
-    
-    page = 'app/iniciarTesteTemperatura.html'
-
-    if request.method == "POST":
-        form = TesteTemperaturaForm(request.POST)
-        
-        if form.is_valid():
-            teste = form.save(commit=False)
-            teste.teste_nome = request.POST['teste_nome']
-            teste.teste_observacoes = request.POST['teste_observacoes']
-            
-            teste.save()
-            return redirect('app.views.detalharTeste', primary_key=teste.pk)
-
-    else:
-        form = TesteTemperaturaForm()
-    
-    return render(request, page, {'form':form})
-
 def historico(request):
     
     page = 'app/historico.html'
 
-    lista_de_testes = Teste.objects.order_by('teste_id')
+    lista_de_testes = list(chain(TesteVelocidadeFixa.objects.all(),TesteVelocidadeVariavel.objects.all()))
 
     return render(request, page, {'lista_de_testes': lista_de_testes})
 
@@ -268,7 +246,7 @@ def pegarValores(quant):
             clientsocket.connect(('192.168.1.47', 8765))
             temp = clientsocket.send('1')
             temp = clientsocket.recv(10000)
-            while(temp):
+            while('\0' notin temp):
                 g=g+temp
                 temp = clientsocket.recv(10000)
             #g = g.decode("utf-8") 
@@ -281,9 +259,20 @@ def pegarValores(quant):
             break
         except:
             pass
-    saida=[]
+    tempo=[]
+    velocidade=[]
+    temperatura=[]
+    forca=[]
     for i in g:
-        saida.append(g[1])
+        tempo.append(g.split(' ')[0])
+        velocidade.append(g.split(' ')[0])
+        temperatura.append(g.split(' ')[0])
+        forca.append(g.split(' ')[0])
+    saida=[]
+    saida.append(tempo)
+    saida.append(velocidade)
+    saida.append(temperatura)
+    saida.append(forca)
     return saida
 
 def pegarValores2(quant):

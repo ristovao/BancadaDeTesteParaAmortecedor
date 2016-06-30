@@ -24,7 +24,9 @@
                         <tr>
                             <th style="font-weight:bold; text-align: center;">ID</th>
                             <th style="font-weight:bold; text-align: center;">Nome</th>
-                            <th style="font-weight:bold; text-align: center;">Observação</th>
+                             <th style="font-weight:bold; text-align: center;">Tipo</th>
+                            <th style="font-weight:bold; text-align: center;">Quantidade de Ciclos</th>
+                            <th style="font-weight:bold; text-align: center;">Curso</th>
                             <th style="font-weight:bold; text-align: center;">Data e Hora</th>
                         </tr>
                       </thead>
@@ -34,7 +36,10 @@
                             <tr>
                                 <th style="text-align: center;">{{teste.teste_id}}</th>
                                 <th style="text-align: center;"><a href="{% url 'detalharTeste' primary_key=teste.pk %}">{{teste.teste_nome}}</a></th> 
-                                <th style="text-align: center;">{{teste.teste_observacoes}}</th>
+                                <th style="text-align: center;">{{teste.tipo_teste}}</th>
+                                <th style="text-align: center;">{{teste.teste_quantidade_ciclo}}</th> 
+                                <th style="text-align: center;">{{teste.curso}}</th> 
+
                                 <th style="text-align: center;">{{teste.teste_data_hora}}</th>
                             </tr>
                         {% endfor %}

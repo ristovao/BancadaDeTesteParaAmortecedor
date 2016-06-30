@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Resultado do teste {{detalhamento_do_teste.teste_nome}}</h1>
+        <h1 class="page-header"><center>Resultado do teste</center></h1>
     </div>
 </div>
 
@@ -11,33 +11,109 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Informações básicas
+                <b>Informações básicas</b>
             </div>
             <div class="panel-body">
                 <!--Cabeçalho do Gráfico-->
-                <div class="nome">
+
+                <!-- Dados do Teste -->
+                <h4 class="page-header"><span class="span_h2">Dados do teste:</span></h4>
+                <div class="nome row">
                     {% if detalhamento_do_teste.teste_nome %}
-                        <label>Nome do teste: {{ detalhamento_do_teste.teste_nome }}</label>
+                    <div class="col-sm-3">
+                        <label>Nome do teste:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        {{ detalhamento_do_teste.teste_nome }}
+                    </div>
                     {% endif %}
                 </div>
                 <div class="row">
-                    <label class="col-sm-4 form-control-label">Ciclos: {{ detalhamento_do_teste.teste_quantidade_ciclo }}</label>
+                    <div class="col-sm-3">
+                        <label class="form-control-label">Ciclos:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        {{ detalhamento_do_teste.teste_quantidade_ciclo }}
+                    </div>
                 </div>
                 <div class="row">
-                    <label class="col-sm-4 form-control-label">Velocidade do motor: {{ detalhamento_do_teste.testeVF_velocidade }}</label> 
+                    <div class="col-sm-3">
+                        <label class="form-control-label">Velocidade do motor:</label>
+                    </div> 
+                    <div class="col-sm-1">
+                        {{ detalhamento_do_teste.testeVF_velocidade }}
+                    </div>
                 </div>
-                <div class="row">          
-                    <label class="col-sm-4 form-control-label">Tempo total do teste: {{ detalhamento_do_teste.teste_tempo_total }}</label>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="form-control-label">Tipo de teste:</label>
+                    </div> 
+                    <div class="col-sm-3">
+                        {{ detalhamento_do_teste.tipo_teste }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="form-control-label">Observações:</label>
+                    </div>
+                    <div class="col-sm-8">
+                        {{detalhamento_do_teste.teste_observacoes|linebreaks }}
+                    </div>
                 </div> 
+                
+                <h4 class="page-header"><span class="span_h2">Dados do mortecedor:</span></h4>
+                <!-- Dados do Amortecedor-->
                 <div class="row">
-                    <label class="col-sm-4 form-control-label">Observações: {{detalhamento_do_teste.teste_observacoes|linebreaks }}</label>
+                    <div class="col-sm-3">
+                        <label class="form-control-label">Código do amortecedor:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        {{ detalhamento_do_teste.amortecedor.amortecedor_codigo }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label class="form-control-label">Diametro:</label>
+                    </div>
+                    <div class="col-sm-3">
+                        {{ detalhamento_do_teste.amortecedor.amortecedor_diametro_externo}}
+                    </div>
+                </div>
+
+            <h4 class="page-header"></h4>
+            <!--            Gráficos                 -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                              <div id="forcaTempo" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
                 </div> 
 
-                <h4 class="page-header"></h4>
-                <!-- Gráfico-->
-                <div id="temperatura" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-                <div id="forcaTempo" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-                <div id="forcaDeslocamento" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                              <div id="forcaDeslocamento" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+
+
+            </div>
 
             </div>
             <!-- /.panel-body -->
@@ -72,75 +148,13 @@
         // }, 3000);
 
         // Esconde a imagem the loading quando o gráfico termina de plotar as informações
-        $.when(grafico()).then(terminarLoaging());
         $.when(grafico1()).then(terminarLoaging());
         $.when(grafico2()).then(terminarLoaging());
         
     });
 
     // Plota o gráfico na tela
-    function grafico() {
-        
-        
-        $('#temperatura').highcharts({
-            chart: {
-                type: 'spline',
-                inverted: true
-            },
-            title: {
-                text: 'Temperatura por Ciclo'
-            },
-            subtitle: {
-                text: ''
-            },
-            xAxis: {
-                reversed: false,
-                title: {
-                    enabled: true,
-                    text: 'Temperatura'
-                },
-                labels: {
-                    formatter: function () {
-                        return this.value + 'ºC';
-                    }
-                },
-                maxPadding: 0.05,
-                showLastLabel: true
-            },
-            yAxis: {
-                title: {
-                    text: 'Ciclo'
-                },
-                labels: {
-                    formatter: function () {
-                        return this.value + '';
-                    }
-                },
-                lineWidth: 2
-            },
-            legend: {
-                enabled: false
-            },
-            tooltip: {
-                headerFormat: '<b>{series.name}</b><br/>',
-                pointFormat: '{point.x} ºC: {point.y} Ciclo'
-            },
-            plotOptions: {
-                spline: {
-                    marker: {
-                        enable: false
-                    }
-                }
-            },
-            series: [{
-                name: 'Tempo',
-                data: {{ detalhamento_do_teste.graficoTemp }}
-            }]
-        });
-    }
     function grafico1() {
-        
-        
         $('#forcaTempo').highcharts({
             chart: {
                 type: 'spline',

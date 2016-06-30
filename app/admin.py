@@ -1,10 +1,9 @@
 from django.contrib import admin
-from app.models import Amortecedor, Teste, TesteVelocidadeFixa, TesteVelocidadeVariavel, TesteTemperatura
+from app.models import Amortecedor, Teste, TesteVelocidadeFixa, TesteVelocidadeVariavel
 
 admin.site.register(Amortecedor)
 admin.site.register(TesteVelocidadeVariavel)
 admin.site.register(TesteVelocidadeFixa)
-admin.site.register(TesteTemperatura)
 
 class AmortecedorAdmin(admin.ModelAdmin):
 	model = Amortecedor
@@ -21,7 +20,3 @@ class TesteVelocidadeFixaAdmin(admin.ModelAdmin):
 class TesteVelocidadeVariavelAdmin(admin.ModelAdmin):
 	model = TesteVelocidadeVariavel
 	list_display = ['testeVV_quantidade_velocidade']
-
-class TesteTemperaturaAdmin(admin.ModelAdmin):
-	model = TesteTemperatura
-	list_display = ['testeTT_quantidade_temperatura', 'testeVV_quantidade_velocidade']
