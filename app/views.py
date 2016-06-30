@@ -84,7 +84,7 @@ def detalharAmortecedor(request, primary_key):
     amortecedor = get_object_or_404(Amortecedor, amortecedor_codigo=primary_key)
     amortecedor_testes = list(Teste.objects.filter(amortecedor=amortecedor))
 
-    return render(request, page, {'amortecedor_testes': amortecedor_testes})
+    return render(request, page, {'amortecedor_testes':amortecedor_testes, 'amortecedor_atual':amortecedor})
 
 @login_required
 def iniciarTesteVelocidadeFixa(request):
