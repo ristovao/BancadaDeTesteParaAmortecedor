@@ -115,14 +115,12 @@ def iniciarTesteVelocidadeFixa(request):
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
             teste.curso = request.POST['curso']
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
-            tempo = listaDeValores[0]
-            velocidade = listaDeValores[1]
-            temperatura = listaDeValores[2]
-            forca = listaDeValores[3]
-            teste.setGraficoTemperaturaTempo(temperatura)
-            teste.setGraficoForcaTempo(forca)
-            teste.setrGaficoForcaDeslocamento(velocidade)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
+            teste.setGraficoTemperaturaTempo(listaDeValores)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
+            teste.setGraficoForcaTempo(listaDeValores)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
+            teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
 
@@ -179,7 +177,7 @@ def iniciarTesteVelocidadeVariavel(request):
             teste.setArrayVelocidades(choices)
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
             listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
