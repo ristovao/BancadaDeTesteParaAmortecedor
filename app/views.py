@@ -81,7 +81,7 @@ def detalharAmortecedor(request, primary_key):
     page = 'app/detalhamentoamortecedor.html'
 
     amortecedor = get_object_or_404(Amortecedor, amortecedor_codigo=primary_key)
-    amortecedor_testes = list(Teste.objects.filter(amortecedor=amortecedor))
+    amortecedor_testes = list(chain(TesteVelocidadeFixa.objects.filter(amortecedor=amortecedor),TesteVelocidadeVariavel.objects.filter(amortecedor=amortecedor)))
 
     return render(request, page, {'amortecedor_testes':amortecedor_testes, 'amortecedor_atual':amortecedor})
 
@@ -194,7 +194,7 @@ def historico(request):
     
     page = 'app/historico.html'
 
-    lista_de_testes = Teste.objects.order_by('teste_id')
+    lista_de_testes = list(chain(TesteVelocidadeFixa.objects.all(),TesteVelocidadeVariavel.objects.all()))
 
     return render(request, page, {'lista_de_testes': lista_de_testes})
 
