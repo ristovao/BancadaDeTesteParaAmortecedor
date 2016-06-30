@@ -26,8 +26,6 @@
                             <th style="font-weight:bold">Nome</th>
                             <th style="font-weight:bold">Observação</th>
                             <th style="font-weight:bold">Data e Hora</th>
-                            <th style="font-weight:bold">Tempo Total</th>
-                            <th style="font-weight:bold">Tempo Oscilação</th>
                         </tr>
                       </thead>
 
@@ -38,8 +36,6 @@
                                 <th><a href="{% url 'detalharTeste' primary_key=teste.pk %}">{{teste.teste_nome}}</a></th> 
                                 <th>{{teste.teste_observacoes}}</th>
                                 <th>{{teste.teste_data_hora}}</th>
-                                <th>{{teste.teste_tempo_total}}</th>
-                                <th>{{teste.teste_tempo_oscilacao}}</th>
                             </tr>
                         {% endfor %}
                      </tbody>
@@ -64,7 +60,30 @@
 {% block scripts%}
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#dataTables-example').DataTable();
+        $('#dataTables-example').DataTable({
+            language: {
+                processing:     "Processando...",
+                search:         "Busca:",
+                lengthMenu:    "Visualizar _MENU_ entradas",
+                info:           "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                infoEmpty:      "Mostrando 0 a 0 de 0 entradas",
+                infoFiltered:   "(filtrando de _MAX_ total de entradas)",
+                infoPostFix:    "",
+                loadingRecords: "Carregando...",
+                zeroRecords:    "Nenhum registro encontrado",
+                emptyTable:     "Nenhum dado disponível na tabela",
+                paginate: {
+                    first:      "Primeiro",
+                    previous:   "Anterior",
+                    next:       "Próximo",
+                    last:       "Ultimo"
+                },
+                aria: {
+                    sortAscending:  "Ative para ordenar colunas de forma ascendente",
+                    sortDescending: ": Ative para ordenar colunas de forma descendente"
+                }
+            }
+        });
     });
 </script>
 {% endblock %}

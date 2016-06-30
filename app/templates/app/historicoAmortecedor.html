@@ -22,7 +22,6 @@
                         <tr>
                             <th style="font-weight:bold">Código</th>
                             <th style="font-weight:bold">Diametro</th>
-                            <th style="font-weight:bold">Diametro</th>
                         </tr>
                     </thead>
 
@@ -31,7 +30,6 @@
                             <tr>
                                 <th><a href="{% url 'detalharAmortecedor' primary_key=amortecedor.pk}">{{amortecedor.amortecedor_codigo}}</a></th>
                                 <th>{{amortecedor.amortecedor_diametro_externo}}</th>
-                                <th>{{amortecedor.pk}}</th>
                             </tr>
                             
                         {% endfor %}
@@ -57,7 +55,30 @@
 {% block scripts%}
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#dataTables').DataTable();
+        $('#dataTables').DataTable({
+            language: {
+                processing:     "Processando...",
+                search:         "Busca:",
+                lengthMenu:    "Visualizar _MENU_ entradas",
+                info:           "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                infoEmpty:      "Mostrando 0 a 0 de 0 entradas",
+                infoFiltered:   "(filtrando de _MAX_ total de entradas)",
+                infoPostFix:    "",
+                loadingRecords: "Carregando...",
+                zeroRecords:    "Nenhum registro encontrado",
+                emptyTable:     "Nenhum dado disponível na tabela",
+                paginate: {
+                    first:      "Primeiro",
+                    previous:   "Anterior",
+                    next:       "Próximo",
+                    last:       "Ultimo"
+                },
+                aria: {
+                    sortAscending:  "Ative para ordenar colunas de forma ascendente",
+                    sortDescending: ": Ative para ordenar colunas de forma descendente"
+                }
+            }
+        });
     });
 </script>
 {% endblock %}
