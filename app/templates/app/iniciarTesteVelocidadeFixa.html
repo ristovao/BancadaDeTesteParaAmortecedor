@@ -20,7 +20,7 @@
                     
                     <!-- Formulário do Amortecedor -->
                     {{formArm.non_field_errors}}
-                    <h4 class="page-header">Amortecedor</h4>
+                    <h4 class="page-header"><span class="span_h2">Amortecedor</span></h4>
 
                     <div class="form-group row">
                     {{formArm.amortecedor_codigo.errors}}
@@ -33,23 +33,6 @@
                             <p class="help-block" style="text-align: justify;">O código do amortecedor é o identificador único utilizado para buscar os testes realiados com diferentes amortecedor. Se estiver utilizando um amortecedor novo, defina um valor e o informe aqui, caso já tenha realizado outros testes com este amortecedor, insira o código cadastrado.</p>
                         </div>
                     </div>
-
-<!--                             <div class="form-group row">
-                        {{ form.amortecedor_diametro_externo.errors }}
-                        <label class="col-sm-2 form-control-label" for="id_amortecedor_diametro_externo">Tamanho do Diâmetro Externo:</label>
-                        <div class="col-sm-1">
-                            <input class="form-control" id="id_amortecedor_diametro_externo" name="amortecedor_diametro_externo" type="number" value="1"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        {{ form.amortecedor_curso.errors }}
-                        <label class="col-sm-2 form-control-label" for="id_amortecedor_curso">Tamanho do Curso:</label>
-                        <div class="col-sm-1">
-                            <input class="form-control" id="id_amortecedor_curso" name="amortecedor_curso" type="number" value="1"/>
-                        </div>
-                    </div> -->
-
                     
                      <div class="form-group row">
                         {{ form.amortecedor_diametro_externo.errors }}
@@ -65,8 +48,7 @@
 
                     <!-- Formulário do Teste -->
                     {{ form.non_field_errors }}
-                    <h4 class="page-header">Teste</h4>
-
+                    <h4 class="page-header"><span class="span_h2">Teste</span></h4>
                     <div class="form-group row">
                         {{ form.teste_nome.errors }}
                         <label class="col-sm-2 form-control-label" for="id_teste_nome">Nome:</label>
@@ -86,15 +68,13 @@
                             <input class="form-control" id="id_teste_quantidade_ciclo" name="teste_quantidade_ciclo" type="number" value="5" size="2" maxlength="2" min="3" max="20"/>
                         </div>
                         <div class="col-sm-7">
-                            <p class="help-block" style="text-align: justify;">A quantidade de ciclos define quantos rotações o motor deverá realizar para executar o teste. Assuma que para um ciclo, o motor completou uma rotação completa em seu eixo total (Diametro: 25cm)</p>
+                            <p class="help-block" style="text-align: justify;">A quantidade de ciclos define quantos rotações o motor deverá realizar para executar o teste. Assuma que para um ciclo, o motor deve rotacionar uma volta completa em seu eixo (Diametro do Eixo: 25cm)</p>
                         </div>
                     </div>
-                    
                     
                     <div class="form-group row">
                         {{ form.amortecedor_curso.errors }}   
                         <label class="col-sm-2 form-control-label" for="id_amortecedor_curso">Curso:</label>
-
                         <div class="col-sm-3">
                             <select id="curso" name="curso" class="form-control">
                             <option value="10.0" selected="selected" style="width:132px;">10 cm</option>
@@ -110,7 +90,6 @@
                     <div class="form-group row">
                      {{ form.testeVF_velocidade.errors }}
                         <label class="col-sm-2 form-control-label" for="id_testeVF_velocidade">Velocidade linear máxima:</label>
-
                         <div class="col-sm-3">
                             <select id="testeVF_velocidade" name="testeVF_velocidade" class="form-control">
                             <option value="225" selected="selected">225 mm/segundo</option>
@@ -119,13 +98,52 @@
                             </select>
                         </div>
                         <div class="col-sm-7">
-                            <p class="help-block" style="text-align: justify;">Este campo corresponde a velocidade que será utilizada na execução do teste. Para visualizar a tabela com os valores lineares correspondes a velocidade do motor clique no aqui. </p>
+                            <div id="box-toggle">
+                                <p class="help-block" style="text-align: justify;">Este campo corresponde a velocidade que será utilizada na execução do teste. Você pode selecionar apenas 1 velocidade. A tabela, disponível no <i>link</i> a seguir, relaciona os valores das velocidades lineares com os valores das velocidades do motor.
+                                <div class="tgl">
+                                    <table class="velocidade">
+                                        <tr class="table-velocidade">
+                                            <th class="table-velocidade"></th>
+                                            <th class="table-velocidade">Curso de 10cm</th>
+                                            <th class="table-velocidade">Curso de 12,5cm</th>
+                                            <th class="table-velocidade">Curso de 15cm</th>
+                                        </tr>
+                                        <tr class="table-velocidade">
+                                            <td class="table-velocidade" colspan="4"> Velocidade Linear 225 mm/s</td>
+                                        </tr>
+                                        <tr class="table-velocidade">
+                                            <td class="table-velocidade">Velocidade do<br>Amortecedor (rpm)</td>
+                                            <td class="table-velocidade">1350</td>
+                                            <td class="table-velocidade">1074,46</td>
+                                            <td class="table-velocidade">873,78</td>
+                                        </tr>
+                                        <tr class="table-velocidade">
+                                            <td class="table-velocidade" colspan="4">Velocidade Linear 200 mm/s</td>
+                                        </tr>
+                                        <tr class="table-velocidade">
+                                            <td class="table-velocidade">Velocidade do<br>Amortecedor (rpm)</td>
+                                            <td class="table-velocidade">1199,24</td>
+                                            <td class="table-velocidade">955,15</td>
+                                            <td class="table-velocidade">776,66</td>
+                                        </tr>
+                                        <tr class="table-velocidade">
+                                            <td class="table-velocidade" colspan="4">Velocidade Linear 175 mm/s</td>
+                                        </tr>
+                                        <tr class="table-velocidade">
+                                            <td class="table-velocidade">Velocidade do<br>Amortecedor (rpm)</td>
+                                            <td class="table-velocidade">1049,38</td>
+                                            <td class="table-velocidade">835,83</td>
+                                            <td class="table-velocidade">679,54</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                </p>
+                            </div>
                         </div>
                     </div>
-
+            
                     <div class="form-group row">
                     {{ form.teste_observacoes.errors }}
-
                         <label class="col-sm-2 form-control-label" for="id_teste_observacoes">Observações:</label>
                         <div class="col-sm-5">
                             <textarea cols="40" id="id_teste_observacoes" maxlength="255" name="teste_observacoes" rows="10" class="form-control" placeholder="Insira informações adicionais"></textarea>
@@ -160,6 +178,23 @@
 {% block scripts %}
 
 <script>
+
+jQuery.fn.toggleText = function(a,b) {
+return   this.html(this.html().replace(new RegExp("("+a+"|"+b+")"),function(x){return(x==a)?b:a;}));
+}
+
+$(document).ready(function(){
+$('.tgl').before('<span>Clique aqui para exibir a tabela.</span>');
+$('.tgl').css('display', 'none')
+$('span', '#box-toggle').click(function() {
+$(this).next().slideToggle('slow')
+.siblings('.tgl:visible').slideToggle('fast');
+// aqui começa o funcionamento do plugin
+$(this).toggleText('exibir','ocultar')
+.siblings('span').next('.tgl:visible').prev()
+.toggleText('exibir','ocultar')
+});
+})
 
 $.ajax({
     url: "/json/nomeAmortecedor",

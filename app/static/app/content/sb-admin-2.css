@@ -382,3 +382,25 @@ a:active {
     text-decoration: none;
     color: #1C1C1C;
 }
+
+ul.choices-vv {list-style-type: none;}
+
+table.velocidade {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-velocidade th{
+    background-color: #1C1C1C;
+    color: white;
+    text-align: center;
+}
+
+
+.table-velocidade td{
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
