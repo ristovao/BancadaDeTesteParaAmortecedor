@@ -81,8 +81,8 @@ def detalharTeste(request, primary_key):
 def detalharAmortecedor(request, primary_key):
     page = 'app/detalhamentoamortecedor.html'
 
-    amortecedor = get_object_or_404(Amortecedor, amortecedor_id=primary_key)
-    amortecedor_testes = list(Teste.amortecedor.filter(amortecedor_codigo=amortecedor.amortecedor_codigo))
+    amortecedor = get_object_or_404(Amortecedor, amortecedor_codigo=primary_key)
+    amortecedor_testes = list(Teste.objects.filter(amortecedor=amortecedor))
 
     return render(request, page, {'amortecedor_testes': amortecedor_testes})
 

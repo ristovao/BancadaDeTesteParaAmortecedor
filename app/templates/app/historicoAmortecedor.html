@@ -29,7 +29,7 @@
                     <tbody>
                         {% for amortecedor in lista_de_amortecedores %}
                             <tr>
-                                <th><a href="{% url 'detalharAmortecedor' primary_key=amortecedor.pk}">{{amortecedor.amortecedor_codigo}}</a></th>
+                                <th><a href="amortecedor/{{amortecedor.pk}}">{{amortecedor.amortecedor_codigo}}</a></th>
                                 <th>{{amortecedor.amortecedor_diametro_externo}}</th>
                                 <th>{{amortecedor.pk}}</th>
                             </tr>
