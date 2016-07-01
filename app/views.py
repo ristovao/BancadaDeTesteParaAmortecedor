@@ -319,11 +319,17 @@ def selecionaTeste(curso, velocidade, ciclo):
 def pegarValores(curso, velocidade, ciclo):
     #BUFFER_SIZE=10000
     g = ""
+    codigo = 0
+    host = '192.168.1.47'
+    port = 8765
     while 1:
         try:
             clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            clientsocket.connect(('192.168.1.47', 8765))
-            temp = clientsocket.send('1')
+            clientsocket.connect((host, port))
+
+            codigo = selecionaTeste(curso, velocidade, ciclo)
+            
+            temp = clientsocket.sendall(codigo)
             time.sleep(0.25)
             temp = clientsocket.recv(10000)
             g = temp
