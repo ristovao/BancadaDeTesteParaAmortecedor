@@ -11,6 +11,7 @@ from django.conf import settings
 import random
 from itertools import chain
 import socket
+import time
 
 
 
@@ -114,12 +115,23 @@ def iniciarTesteVelocidadeFixa(request):
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
             teste.curso = request.POST['curso']
+<<<<<<< HEAD
             listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
             listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
             listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
             teste.setrGaficoForcaDeslocamento(listaDeValores)
+=======
+            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
+            tempo = listaDeValores[0]
+            velocidade = listaDeValores[1]
+            temperatura = listaDeValores[2]
+            forca = listaDeValores[3]
+            teste.setGraficoTemperaturaTempo(temperatura)
+            teste.setGraficoForcaTempo(forca)
+            teste.setrGaficoForcaDeslocamento(velocidade)
+>>>>>>> f397c1cfc221aa09d3fb76e728e8e8cc17e5f5b9
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
 
@@ -321,13 +333,12 @@ def pegarValores(curso, velocidade, ciclo):
     while 1:
         try:
             clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            clientsocket.connect(('localhost', 8765))
-
-            codigo = selecionaTeste(curso, velocidade, ciclo)
-
-            temp = clientsocket.send(codigo)
+            clientsocket.connect(('192.168.1.47', 8765))
+            temp = clientsocket.send('1')
+            time.sleep(0.25)
             temp = clientsocket.recv(10000)
-            while('\0' not in temp):
+            g = temp
+            while('\n\n' not in temp):
                 g=g+temp
                 temp = clientsocket.recv(10000)
             #g = g.decode("utf-8") 
@@ -345,15 +356,16 @@ def pegarValores(curso, velocidade, ciclo):
     temperatura=[]
     forca=[]
     for i in g:
-        tempo.append(g.split(' ')[0])
-        velocidade.append(g.split(' ')[0])
-        temperatura.append(g.split(' ')[0])
-        forca.append(g.split(' ')[0])
+        if i:
+            tempo.append(i.split('\t')[0])
+            velocidade.append(i.split('\t')[1])
+            temperatura.append(i.split('\t')[2])
+            forca.append(i.split('\t')[3])
     saida=[]
-    saida.append(tempo)
-    saida.append(velocidade)
-    saida.append(temperatura)
-    saida.append(forca)
+    saida.append(list(map(float,[x for x in tempo if x])))
+    saida.append(list(map(float,[x for x in velocidade if x])))
+    saida.append(list(map(float,[x for x in temperatura if x])))
+    saida.append(list(map(float,[x for x in forca if x])))
     return saida
 
 def pegarValores2(curso, velocidade, ciclo):
