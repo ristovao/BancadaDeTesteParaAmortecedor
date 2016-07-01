@@ -115,11 +115,13 @@ def iniciarTesteVelocidadeFixa(request):
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
             teste.curso = request.POST['curso']
+
             listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo,1)
             teste.setGraficoTemperaturaTempo(listaDeValores)
             listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo,2)
             teste.setGraficoForcaTempo(listaDeValores)
             listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo,3)
+
             teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -182,6 +184,7 @@ def iniciarTesteVelocidadeVariavel(request):
             listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo,2)
             teste.setGraficoForcaTempo(listaDeValores)
             listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo,3)
+
             teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -316,15 +319,21 @@ def selecionaTeste(curso, velocidade, ciclo):
     return codigo
 
 #funcao de teste para pegar valores de algum lugar
-def pegarValores(curso, velocidade, ciclo):
+def lerDadosSensores(curso, velocidade, ciclo):
     #BUFFER_SIZE=10000
     g = ""
+    codigo = 0
+    host = '192.168.1.47'
+    port = 8765
     while 1:
         try:
             clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            clientsocket.connect(('192.168.1.47', 8765))
-            codigo = selecionaTeste(curso,velocidade,ciclo)
-            temp = clientsocket.send(str(codigo))
+
+            clientsocket.connect((host, port))
+
+            codigo = selecionaTeste(curso, velocidade, ciclo)
+            
+            temp = clientsocket.sendall(codigo)
             time.sleep(0.25)
             temp = clientsocket.recv(10000)
             g = temp
@@ -375,6 +384,7 @@ def pegarValores2(curso, velocidade, ciclo,k):
             ##g = map(int,g)
             ##g = list(g)
             f = []
+
             if k ==1:
                 for i in range(int(ciclo)):
                     f.append([random.randint(0,90),i])
@@ -384,6 +394,7 @@ def pegarValores2(curso, velocidade, ciclo,k):
             if k == 3:
                 for i in range(int(ciclo)):
                     f.append([round((math.cos(i))*random.randint(80,90),2),i])
+
             break
         except:
             pass
