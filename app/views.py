@@ -12,7 +12,7 @@ import random
 from itertools import chain
 import socket
 import time
-
+import math
 
 
 def home(request):
@@ -115,11 +115,11 @@ def iniciarTesteVelocidadeFixa(request):
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
             teste.curso = request.POST['curso']
-            listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo,1)
             teste.setGraficoTemperaturaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo,2)
             teste.setGraficoForcaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo,3)
             teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -177,11 +177,11 @@ def iniciarTesteVelocidadeVariavel(request):
             teste.setArrayVelocidades(choices)
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
-            listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo,1)
             teste.setGraficoTemperaturaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo,2)
             teste.setGraficoForcaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo,3)
             teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -323,7 +323,8 @@ def pegarValores(curso, velocidade, ciclo):
         try:
             clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             clientsocket.connect(('192.168.1.47', 8765))
-            temp = clientsocket.send('1')
+            codigo = selecionaTeste(curso,velocidade,ciclo)
+            temp = clientsocket.send(str(codigo))
             time.sleep(0.25)
             temp = clientsocket.recv(10000)
             g = temp
@@ -357,7 +358,7 @@ def pegarValores(curso, velocidade, ciclo):
     saida.append(list(map(float,[x for x in forca if x])))
     return saida
 
-def pegarValores2(curso, velocidade, ciclo):
+def pegarValores2(curso, velocidade, ciclo,k):
     #BUFFER_SIZE=10000
     g = ""
     while 1:
@@ -374,8 +375,15 @@ def pegarValores2(curso, velocidade, ciclo):
             ##g = map(int,g)
             ##g = list(g)
             f = []
-            for i in range(int(quant)):
-                f.append([random.randint(0,90),i])
+            if k ==1:
+                for i in range(int(ciclo)):
+                    f.append([random.randint(0,90),i])
+            if k ==2:
+                for i in range(int(ciclo)):
+                    f.append([random.randint(80,90),i])
+            if k == 3:
+                for i in range(int(ciclo)):
+                    f.append([round((math.cos(i))*random.randint(80,90),2),i])
             break
         except:
             pass
