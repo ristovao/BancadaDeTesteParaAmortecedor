@@ -177,11 +177,11 @@ def iniciarTesteVelocidadeVariavel(request):
             teste.setArrayVelocidades(choices)
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
-            listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.arrayVelocidades, teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.arrayVelocidades, teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.arrayVelocidades, teste.teste_quantidade_ciclo)
             teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -374,7 +374,7 @@ def pegarValores2(curso, velocidade, ciclo):
             ##g = map(int,g)
             ##g = list(g)
             f = []
-            for i in range(int(quant)):
+            for i in range(int(ciclo)):
                 f.append([random.randint(0,90),i])
             break
         except:

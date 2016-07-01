@@ -46,9 +46,17 @@
                     <div class="col-sm-3">
                         <label class="form-control-label">Velocidade do motor:</label>
                     </div> 
-                    <div class="col-sm-1">
-                        {{ detalhamento_do_teste.testeVF_velocidade }}
-                    </div>
+                    {% if detalhamento_do_teste.tipo_teste == 'Velocidade Fixa'%}
+                        <div class="col-sm-1">
+                            {{ detalhamento_do_teste.testeVF_velocidade }}
+                        </div>
+                    {% else %}
+                        {% for velocidade in detalhamento_do_teste.getArrayVelocidades %}
+                            <div class="col-sm-1">
+                                <p> {{ velocidade }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
 
                 <div class="row">
@@ -89,38 +97,76 @@
                     </div>
                 </div>
 
-            <h4 class="page-header"></h4>
-            <!--            Gráficos                 -->
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                <h4 class="page-header"></h4>
+                <!--            Gráficos velocidade fixa             -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            </div>
+                            <div class="panel-body">
+                                  <div id="forcaTempo" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                            </div>
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                              <div id="forcaTempo" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div> 
+                    </div> 
 
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            </div>
+                            <div class="panel-body">
+                                  <div id="forcaDeslocamento" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                            </div>
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                              <div id="forcaDeslocamento" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
-                        </div>
-                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
                 </div>
 
+                 {% if detalhamento_do_teste.tipo_teste == 'Velocidade Variável'%}
+                    <!--            Gráficos para velocidades variáveis             -->
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                </div>
+                                <div class="panel-body">
+                                      <div id="forcaTempoUm" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                                </div>
+                            </div>
+                        </div> 
 
-            </div>
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                </div>
+                                <div class="panel-body">
+                                      <div id="forcaDeslocamentoUm" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                </div>
+                                <div class="panel-body">
+                                      <div id="forcaTempoDois" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                                </div>
+                            </div>
+                        </div> 
+
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                </div>
+                                <div class="panel-body">
+                                      <div id="forcaDeslocamentoDois" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
             <!-- /.panel-body -->
         </div>
@@ -156,10 +202,14 @@
         // Esconde a imagem the loading quando o gráfico termina de plotar as informações
         $.when(grafico1()).then(terminarLoaging());
         $.when(grafico2()).then(terminarLoaging());
+        $.when(grafico3()).then(terminarLoaging());
+        $.when(grafico4()).then(terminarLoaging());
+        $.when(grafico5()).then(terminarLoaging());
+        $.when(grafico6()).then(terminarLoaging());
         
     });
 
-    // Plota o gráfico na tela
+    // Plota o gráfico na tela para velocidade fixa
     function grafico1() {
         $('#forcaTempo').highcharts({
             chart: {
@@ -217,6 +267,7 @@
             }]
         });
     }
+
     function grafico2() {
         
         
@@ -226,7 +277,7 @@
                 inverted: true
             },
             title: {
-                text: 'Força por posição'
+                text: 'Força por Velocidade'
             },
             subtitle: {
                 text: ''
@@ -247,7 +298,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'Posição'
+                    text: 'Velocidade'
                 },
                 labels: {
                     formatter: function () {
@@ -276,6 +327,241 @@
             }]
         });
     }
+
+    // Plota o gráfico na tela para velocidade 2 em velocidade variável
+    function grafico3() {
+        $('#forcaTempoUm').highcharts({
+            chart: {
+                type: 'spline',
+                inverted: true
+            },
+            title: {
+                text: 'Força por Ciclo'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                reversed: false,
+                title: {
+                    enabled: true,
+                    text: 'Força'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + 'N';
+                    }
+                },
+                maxPadding: 0.05,
+                showLastLabel: true
+            },
+            yAxis: {
+                title: {
+                    text: 'Ciclo'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + '';
+                    }
+                },
+                lineWidth: 2
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br/>',
+                pointFormat: '{point.x} N: {point.y} Ciclo'
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enable: false
+                    }
+                }
+            },
+            series: [{
+                name: 'Tempo',
+                data: {{ detalhamento_do_teste.graficoForcaTempo }}
+            }]
+        });
+    }
+
+    function grafico4() {
+        $('#forcaDeslocamentoUm').highcharts({
+            chart: {
+                type: 'spline',
+                inverted: true
+            },
+            title: {
+                text: 'Força por Velocidade'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                reversed: false,
+                title: {
+                    enabled: true,
+                    text: 'Força'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + '';
+                    }
+                },
+                maxPadding: 0.05,
+                showLastLabel: true
+            },
+            yAxis: {
+                title: {
+                    text: 'Velocidade'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + '';
+                    }
+                },
+                lineWidth: 2
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br/>',
+                pointFormat: '{point.x} N: {point.y} '
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enable: false
+                    }
+                }
+            },
+            series: [{
+                name: 'Tempo',
+                data: {{ detalhamento_do_teste.graficoForcaDeslocamento }}
+            }]
+        });
+    }
+
+        // Plota o gráfico na tela para velocidade 2 em velocidade variável
+    function grafico5() {
+        $('#forcaTempoDois').highcharts({
+            chart: {
+                type: 'spline',
+                inverted: true
+            },
+            title: {
+                text: 'Força por Ciclo'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                reversed: false,
+                title: {
+                    enabled: true,
+                    text: 'Força'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + 'N';
+                    }
+                },
+                maxPadding: 0.05,
+                showLastLabel: true
+            },
+            yAxis: {
+                title: {
+                    text: 'Ciclo'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + '';
+                    }
+                },
+                lineWidth: 2
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br/>',
+                pointFormat: '{point.x} N: {point.y} Ciclo'
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enable: false
+                    }
+                }
+            },
+            series: [{
+                name: 'Tempo',
+                data: {{ detalhamento_do_teste.graficoForcaTempo }}
+            }]
+        });
+    }
+
+    function grafico6() {
+        $('#forcaDeslocamentoDois').highcharts({
+            chart: {
+                type: 'spline',
+                inverted: true
+            },
+            title: {
+                text: 'Força por Velocidade'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                reversed: false,
+                title: {
+                    enabled: true,
+                    text: 'Força'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + '';
+                    }
+                },
+                maxPadding: 0.05,
+                showLastLabel: true
+            },
+            yAxis: {
+                title: {
+                    text: 'Velocidade'
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value + '';
+                    }
+                },
+                lineWidth: 2
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br/>',
+                pointFormat: '{point.x} N: {point.y} '
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enable: false
+                    }
+                }
+            },
+            series: [{
+                name: 'Tempo',
+                data: {{ detalhamento_do_teste.graficoForcaDeslocamento }}
+            }]
+        });
+    }
+
 
     // Esconde a imagem de loading
     function terminarLoaging() {

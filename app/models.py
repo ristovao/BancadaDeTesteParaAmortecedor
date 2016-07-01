@@ -28,7 +28,7 @@ class Teste(models.Model):
         validators=[
             MaxValueValidator(100),
             MinValueValidator(1)])
-	teste_observacoes = models.TextField(max_length=255, null = True, verbose_name='Observações')
+	teste_observacoes = models.TextField(max_length=255, blank = True, verbose_name='Observações')
 	teste_data_hora = models.DateTimeField(default=timezone.now, verbose_name='Data')
 	amortecedor = models.ForeignKey(Amortecedor, on_delete=models.CASCADE)
 	graficoTemperaturaTempo = models.BinaryField(null = True)
