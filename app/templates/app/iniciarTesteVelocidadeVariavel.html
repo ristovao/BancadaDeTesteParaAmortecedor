@@ -65,8 +65,13 @@
                      {{ form.teste_quantidade_ciclo.errors }}
                         <label class="col-sm-2 form-control-label" for="id_teste_quantidade_ciclo">Quantidade de Ciclo:</label>
                         <div class="col-sm-3">
-                            <input class="form-control" id="id_teste_quantidade_ciclo" name="teste_quantidade_ciclo" type="number" value="5" size="2" maxlength="2" min="3" max="20"/>
+                            <select id="id_teste_quantidade_ciclo" name="teste_quantidade_ciclo" class="form-control">
+                            <option value="10" selected="selected" style="width:132px;">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            </select> 
                         </div>
+
                         <div class="col-sm-7">
                             <p class="help-block" style="text-align: justify;">A quantidade de ciclos define quantos rotações o motor deverá realizar para executar o teste. Assuma que para um ciclo, o motor deve rotacionar uma volta completa em seu eixo (Diametro do Eixo: 25cm)</p>
                         </div>
@@ -123,7 +128,7 @@
                                             <td class="table-velocidade" colspan="4"> Velocidade Linear 225 mm/s</td>
                                         </tr>
                                         <tr class="table-velocidade">
-                                            <td class="table-velocidade">Velocidade do<br>Amortecedor (rpm)</td>
+                                            <td class="table-velocidade">Velocidade do<br>motor (rpm)</td>
                                             <td class="table-velocidade">1350</td>
                                             <td class="table-velocidade">1074,46</td>
                                             <td class="table-velocidade">873,78</td>
@@ -132,7 +137,7 @@
                                             <td class="table-velocidade" colspan="4">Velocidade Linear 200 mm/s</td>
                                         </tr>
                                         <tr class="table-velocidade">
-                                            <td class="table-velocidade">Velocidade do<br>Amortecedor (rpm)</td>
+                                            <td class="table-velocidade">Velocidade do<br>motor (rpm)</td>
                                             <td class="table-velocidade">1199,24</td>
                                             <td class="table-velocidade">955,15</td>
                                             <td class="table-velocidade">776,66</td>
@@ -141,7 +146,7 @@
                                             <td class="table-velocidade" colspan="4">Velocidade Linear 175 mm/s</td>
                                         </tr>
                                         <tr class="table-velocidade">
-                                            <td class="table-velocidade">Velocidade do<br>Amortecedor (rpm)</td>
+                                            <td class="table-velocidade">Velocidade do<br>motor (rpm)</td>
                                             <td class="table-velocidade">1049,38</td>
                                             <td class="table-velocidade">835,83</td>
                                             <td class="table-velocidade">679,54</td>

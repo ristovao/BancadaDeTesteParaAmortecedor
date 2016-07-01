@@ -114,11 +114,11 @@ def iniciarTesteVelocidadeFixa(request):
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
             teste.curso = request.POST['curso']
-            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
             teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -172,15 +172,15 @@ def iniciarTesteVelocidadeVariavel(request):
                 teste.amortecedor=amortecedor
             teste.teste_nome = request.POST['teste_nome']
             teste.testeVV_quantidade_velocidade = len(choices)
-            teste.curso = 10
+            teste.curso = request.POST['curso']
             teste.setArrayVelocidades(choices)
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
-            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.teste_quantidade_ciclo)
+            listaDeValores = pegarValores2(teste.curso, teste.testeVV_quantidade_velocidade, teste.teste_quantidade_ciclo)
             teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -234,19 +234,100 @@ def pegarNomesAmortecedor(request):
     
     return JsonResponse(dados)
 
-
+#função responsável por selecionar um teste
+def selecionaTeste(curso, velocidade, ciclo):
+    codigo = 0
+    curso_um = 10
+    curso_dois = 12.5 
+    curso_tres = 15
+    velocidade_um = 175
+    velocidade_dois = 200
+    velocidade_tres = 225
+    ciclo_um = 10
+    ciclo_dois =  20
+    ciclo_tres = 30
+    if(curso == curso_um):
+        if(velocidade == velocidade_um):
+            if(ciclo == ciclo_um):
+                codigo = 1
+            elif(ciclo == ciclo_dois):
+                codigo = 2
+            elif(ciclo == ciclo_tres):
+                codigo = 3
+        elif(velocidade == velocidade_dois):
+            if(ciclo == ciclo_um):
+                codigo = 4
+            elif(ciclo == ciclo_dois):
+                codigo = 5
+            elif(ciclo == ciclo_tres):
+                codigo = 6
+        elif(velocidade == velocidade_tres):
+            if(ciclo == ciclo_um):
+                codigo = 7
+            elif(ciclo == ciclo_dois):
+                codigo = 8
+            elif(ciclo == ciclo_tres):
+                codigo = 9
+    elif(curso == curso_dois):
+        if(velocidade == velocidade_um):
+            if(ciclo == ciclo_um):
+                codigo = 10
+            elif(ciclo == ciclo_dois):
+                codigo = 11
+            else:
+                codigo = 12
+        elif(velocidade == velocidade_dois):
+            if(ciclo == ciclo_um):
+                codigo = 13
+            elif(ciclo == ciclo_dois):
+                codigo = 14
+            elif(ciclo == ciclo_tres):
+                codigo = 15
+        elif(velocidade == velocidade_tres):
+            if(ciclo == ciclo_um):
+                codigo = 16
+            elif(ciclo == ciclo_dois):
+                codigo = 17
+            elif(ciclo == ciclo_tres):
+                codigo = 18
+    elif(curso == curso_tres):
+        if(velocidade == velocidade_um):
+            if(ciclo == ciclo_um):
+                codigo = 19
+            elif(ciclo == ciclo_dois):
+                codigo = 20
+            else:
+                codigo = 21
+        elif(velocidade == velocidade_dois):
+            if(ciclo == ciclo_um):
+                codigo = 22
+            elif(ciclo == ciclo_dois):
+                codigo = 23
+            elif(ciclo == ciclo_tres):
+                codigo = 24
+        elif(velocidade == velocidade_tres):
+            if(ciclo == ciclo_um):
+                codigo = 25
+            elif(ciclo == ciclo_dois):
+                codigo = 26
+            elif(ciclo == ciclo_tres):
+                codigo = 27    
+    return codigo
 
 #funcao de teste para pegar valores de algum lugar
-def pegarValores(quant):
+def pegarValores(curso, velocidade, ciclo):
     #BUFFER_SIZE=10000
     g = ""
     while 1:
         try:
             clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             clientsocket.connect(('localhost', 8765))
-            temp = clientsocket.send('1')
+
+            codigo = selecionaTeste(curso, velocidade, ciclo)
+
+            temp = clientsocket.send(codigo)
             temp = clientsocket.recv(10000)
-            while('\0' notin temp):
+            while('\0' not in temp):
                 g=g+temp
                 temp = clientsocket.recv(10000)
             #g = g.decode("utf-8") 
@@ -275,7 +356,7 @@ def pegarValores(quant):
     saida.append(forca)
     return saida
 
-def pegarValores2(quant):
+def pegarValores2(curso, velocidade, ciclo):
     #BUFFER_SIZE=10000
     g = ""
     while 1:
