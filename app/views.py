@@ -115,11 +115,11 @@ def iniciarTesteVelocidadeFixa(request):
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
             teste.curso = request.POST['curso']
-            listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
+            listaDeValores = lerDadosSensores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
+            listaDeValores = lerDadosSensores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
+            listaDeValores = lerDadosSensores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
             teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -177,11 +177,11 @@ def iniciarTesteVelocidadeVariavel(request):
             teste.setArrayVelocidades(choices)
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
-            listaDeValores = pegarValores2(teste.curso, teste.arrayVelocidades, teste.teste_quantidade_ciclo)
+            listaDeValores = lerDadosSensores2(teste.curso, teste.arrayVelocidades, teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.curso, teste.arrayVelocidades, teste.teste_quantidade_ciclo)
+            listaDeValores = lerDadosSensores2(teste.curso, teste.arrayVelocidades, teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
-            listaDeValores = pegarValores2(teste.curso, teste.arrayVelocidades, teste.teste_quantidade_ciclo)
+            listaDeValores = lerDadosSensores2(teste.curso, teste.arrayVelocidades, teste.teste_quantidade_ciclo)
             teste.setrGaficoForcaDeslocamento(listaDeValores)
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
@@ -316,7 +316,7 @@ def selecionaTeste(curso, velocidade, ciclo):
     return codigo
 
 #funcao de teste para pegar valores de algum lugar
-def pegarValores(curso, velocidade, ciclo):
+def lerDadosSensores(curso, velocidade, ciclo):
     #BUFFER_SIZE=10000
     g = ""
     codigo = 0
@@ -363,7 +363,7 @@ def pegarValores(curso, velocidade, ciclo):
     saida.append(list(map(float,[x for x in forca if x])))
     return saida
 
-def pegarValores2(curso, velocidade, ciclo):
+def lerDadosSensores2(curso, velocidade, ciclo):
     #BUFFER_SIZE=10000
     g = ""
     while 1:

@@ -105,20 +105,21 @@
                             <div class="panel-heading">
                             </div>
                             <div class="panel-body">
-                                  <div id="forcaTempo" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                                  <div id="forcaDeslocamento" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
                             </div>
                         </div>
-                    </div> 
-
+                    </div>
+                    
                     <div class="col-lg-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                             </div>
                             <div class="panel-body">
-                                  <div id="forcaDeslocamento" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                                  <div id="forcaTempo" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
+
                 </div>
 
                  {% if detalhamento_do_teste.tipo_teste == 'Velocidade Variável'%}
@@ -129,23 +130,33 @@
                                 <div class="panel-heading">
                                 </div>
                                 <div class="panel-body">
-                                      <div id="forcaTempoUm" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                                      <div id="forcaDeslocamentoUm" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
 
                         <div class="col-lg-6">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                 </div>
                                 <div class="panel-body">
-                                      <div id="forcaDeslocamentoUm" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                                      <div id="forcaTempoUm" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                     </div>
 
                     <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                </div>
+                                <div class="panel-body">
+                                      <div id="forcaDeslocamentoDois" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-lg-6">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -156,15 +167,6 @@
                             </div>
                         </div> 
 
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                </div>
-                                <div class="panel-body">
-                                      <div id="forcaDeslocamentoDois" style="min-width: 200px; height: 300px; max-width: 600px; margin: 0 auto"></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 {% endif %}
             </div>
@@ -217,7 +219,7 @@
                 inverted: true
             },
             title: {
-                text: 'Força por Ciclo'
+                text: 'Força por Tempo'
             },
             subtitle: {
                 text: ''
@@ -238,7 +240,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'Ciclo'
+                    text: 'Tempo'
                 },
                 labels: {
                     formatter: function () {
@@ -336,7 +338,7 @@
                 inverted: true
             },
             title: {
-                text: 'Força por Ciclo'
+                text: 'Força por Tempo'
             },
             subtitle: {
                 text: ''
@@ -357,7 +359,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'Ciclo'
+                    text: 'Tempo'
                 },
                 labels: {
                     formatter: function () {
@@ -453,7 +455,7 @@
                 inverted: true
             },
             title: {
-                text: 'Força por Ciclo'
+                text: 'Força por Tempo'
             },
             subtitle: {
                 text: ''
@@ -474,7 +476,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'Ciclo'
+                    text: 'Tempo'
                 },
                 labels: {
                     formatter: function () {
