@@ -15,7 +15,7 @@
                 <b>Informações básicas</b>
             </div>
             <div class="panel-body">
-                <form role="form" method="POST" name="FrmRecurso" autocomplete="off">
+                <form id="myForm" role="form" method="POST" name="FrmRecurso" autocomplete="off">
                     {%csrf_token %}
                     
                     <!-- Formulário do Amortecedor -->
@@ -245,5 +245,14 @@ $.ajax({
              }
         });
      });
+     
+     
+     function terminarLoaging() {
+         $.LoadingOverlay("hide");
+    }
+
+    
+};
+     
 </script>
 {% endblock %}
