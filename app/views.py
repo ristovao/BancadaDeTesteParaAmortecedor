@@ -115,23 +115,12 @@ def iniciarTesteVelocidadeFixa(request):
             teste.teste_quantidade_ciclo = request.POST['teste_quantidade_ciclo']
             teste.teste_observacoes = request.POST['teste_observacoes']
             teste.curso = request.POST['curso']
-<<<<<<< HEAD
             listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
             teste.setGraficoTemperaturaTempo(listaDeValores)
             listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
             teste.setGraficoForcaTempo(listaDeValores)
             listaDeValores = pegarValores2(teste.curso, teste.testeVF_velocidade, teste.teste_quantidade_ciclo)
             teste.setrGaficoForcaDeslocamento(listaDeValores)
-=======
-            listaDeValores = pegarValores(teste.teste_quantidade_ciclo)
-            tempo = listaDeValores[0]
-            velocidade = listaDeValores[1]
-            temperatura = listaDeValores[2]
-            forca = listaDeValores[3]
-            teste.setGraficoTemperaturaTempo(temperatura)
-            teste.setGraficoForcaTempo(forca)
-            teste.setrGaficoForcaDeslocamento(velocidade)
->>>>>>> f397c1cfc221aa09d3fb76e728e8e8cc17e5f5b9
             teste.save()
             return redirect('app.views.detalharTeste', primary_key=teste.pk)
 
